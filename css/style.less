@@ -164,6 +164,7 @@ a:hover {
 	background-attachment: scroll;
 	background-position: center top;
 	position: relative;
+  background-size: cover;
 }
 
 .section h3 {
@@ -234,8 +235,6 @@ a:hover {
 }
 
 @media screen and (min-width: 1200px) {
-	
-
 	.container-fluid {
 	    width: 1024px;
 	}
@@ -250,6 +249,11 @@ a:hover {
 	    line-height: 32px;
 	    margin: 20px auto;
 	}
+
+  .container-fluid {
+      padding-left: 75px;
+      padding-right: 75px;
+  } 
 
 }
 
@@ -277,11 +281,6 @@ a:hover {
 	#section5 .content .span4 {
 		padding-right: 0px;
 	}
-	
-	.container-fluid {
-	    padding-left: 75px;
-	    padding-right: 75px;
-	}	
 		
 }
 
@@ -307,10 +306,6 @@ a:hover {
 	body {
 		padding: 0px;
 	}
-		
-	.section {
-		padding: 100px 0;
-	}
 	
 	.section .content {
 	    margin-top: 0;
@@ -326,10 +321,6 @@ a:hover {
 	
 	.section .title hr {
 		margin-left: 0px;
-	}
-		
-	#accueil {
-		background-size: 920px auto;
 	}
 	
 	#accueil .intro {
@@ -353,132 +344,12 @@ a:hover {
 }
 
 @media screen and (min-width: 481px) and (max-width: 649px) {
-
-
 }
 
 @media screen and (min-width: 481px) {
-	
 }
-
 
 @media screen and (max-width: 480px) {
 	
-	#accueil {
-	    background-size: 1024px auto;
-	    padding: 60px 0;
-	}
-	
-	#accueil .intro {
-		margin: 50px 0;
-	}
-
-	#accueil .intro h1 {
-		font-size: 50px; font-size: 5rem;
-		line-height: 50px;
-	}
-	
-	#accueil .intro h3 {
-		font-size: 22px; font-size: 2.2rem;
-		line-height: 24px;
-		width: 100%;
-	}
-	
-	#accueil .thumb {
-		background: #95a5a6;
-	    display: block;
-	    margin-left: 3%;
-	    max-width: 80%;
-	    padding: 3%;
-	}
-	
-	#expositions .table th, #expositions .table td {
-    	font-size: 11px; font-size: 1.1rem;
-	}
-}
-.intro{
-	display: table-cell;
-	vertical-align: middle;
-}
-
-.sep{
-	width: 100%;
-	clear: both;
-	height: 60px;
-	background-repeat: no-repeat;
-	background-position: center;
-	&.r3{
-		background-image: url('../img/sep3.png');
-	}
-}
-
-.expo{
-	color: @grey;
-}
-
-.red{color: @red;}
-
-.superdiv{
-	text-align: center;
-	display: table-cell;
-	vertical-align: middle;
-	width: 400px;
-	color: @grey;
-	height: 350px;
-	font-size: 14px;
-	.red{
-		font-size: 18px;
-		text-transform: uppercase;
-	}
-	em{
-		font-size: 13px;
-		line-height: 11px;
-	}
-	a{
-		color: @grey;
-		text-decoration: underline;
-	}
-}
-
-.credits_photo{
-	text-align: center;
-	color: #999;
-	background: #FFF;
-	padding: 10px;
-	font-size: 13px;
-	bottom: 0;
-	margin: 0 auto;
-	width: 300px;
-	margin-bottom: 30px;
-	position: absolute;
-}
-
-#myCarousel{
-	position: relative;
-	.carousel-indicators{
-		margin-left: 40%;
-		bottom: -30px;
-		position: absolute;
-		li{
-			display: inline-block;
-			display:block;float:left;width:5px;height:5px;padding:0px;margin-left:5px;text-indent:-999px;background-color:@dark;border-radius:5px;
-			&.active{
-				background-color: @red;
-			}
-		}
-	}
-	.carousel-control{
-		position:absolute;
-		top:12%;
-		width:48%;
-		height: 100%;
-		margin-top:-20px;
-		font-size:60px;
-		font-weight:100;
-		line-height:30px;
-		color:#ffffff;
-		text-align:center;
-	}
-		.carousel-control.right{left:auto;right:15px;}
 }
 
