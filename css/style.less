@@ -164,29 +164,6 @@ a:hover {
 	background-attachment: scroll;
 	background-position: center top;
 	position: relative;
-	z-index: 10;
-	.buenard;
-	font-size: 18px;
-	&.light{
-		color: @dark;
-	}
-	&.dark{
-		color: @white;
-	}
-	.container-fluid{
-		position: relative;
-		z-index: 20;
-	}
-}
-
-.section h2 {
-	display: inline-block;
-    font-size: 16px;
-    font-weight: 300;
-    color: #ebece9;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 40px 40px 0px;
 }
 
 .section h3 {
@@ -198,115 +175,8 @@ a:hover {
   .buenard;
 }
 
-.section h4 {
-    font-size: 18px; font-size: 2rem;
-    font-weight: 400;
-    .buenard;
-    line-height: 28px;
-    margin: 0 0 20px;
-    padding-bottom: 5px;
-}
-
-.section h5 {
-    font-size: 19px; font-size: 1.9rem;
-    font-weight: 500;
-    line-height: 24px;
-    margin: 0 0 20px;
-    padding-bottom: 5px;
-}
-
-.section .desc {
-	margin-top: 20px;
-}
-
-.section .content {
-	margin-top: 75px;
-}
-
 .container-fluid {
 	margin: 0 auto;
-}
-
-.control-group .controls input, .control-group .controls textarea {
-	background: #F1F1F1;
-	border-radius: 0px;
-	min-height: 36px;
-}
-
-.control-group .controls input:focus, .control-group .controls textarea:focus {
-	border-color: rgba(144, 144, 144, 0.9);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(144, 144, 144, 0.9);
-}
-
-.alert, .alert-error {
-	border-radius: 0px;
-}
-
-.btn-default {
-	background: none #F1F1F1;
-    color: #151515;
-    margin-top: 75px;
-}
-
-.btn-inverse {
-	background: none #c0392b;
-    color: #F1F1F1;
-    margin-top: 25px;
-}
-
-.btn-default, .btn-inverse {
-	border: medium none;
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Montserrat",sans-serif;
-    font-size: 14px; font-size: 1.4rem;
-    font-weight: 300;
-    line-height: 20px;
-    padding: 8px 14px;
-    text-align: left;
-    text-transform: uppercase;
-    width: 190px;
-}
-
-.btn-inverse span, .btn-default span {
-	font-weight: 700;
-}
-
-.btn-inverse.alt, .btn-default.alt {
-	text-align: right;
-}
-
-.btn-inverse i, .btn-default i {
-	float: right;
-	line-height: 20px;
-}
-
-.btn-inverse.alt i, .btn-default.alt i {
-	float: left;
-}
-
-.read-more {
-	cursor: pointer;
-	font-weight: 500;
-	margin-top: 20px;
-	padding-right: 10px;
-}
-
-.table th, .table td {
-    border-top: 1px solid #151515;
-    line-height: 20px;
-    padding: 10px 2px;
-    text-align: left;
-    vertical-align: top;
-}
-
-.table-striped tbody tr:nth-child(odd) td,
-.table-striped tbody tr:nth-child(odd) th {
-	background-color: rgba(60, 60, 60, 0.4);
-}
-.table-hover tbody tr:hover td,
-.table-hover tbody tr:hover th {
-	background-color: rgba(75, 75, 75, 0.4);
 }
 
 .card {
@@ -319,6 +189,7 @@ a:hover {
       position: absolute;
       left: 0;
       right: 0;
+      .buenard;
     }
   }
   >* {
@@ -333,92 +204,20 @@ a:hover {
 
 /* Section 1 */ 
 
-#accueil {
-                   background: url(../img/1700LAPOSTE.jpg) 50% 0 no-repeat fixed; 
-	/* background-image:url(../img/1700LAPOSTE.jpg);
-	-webkit-background-size: 100% auto;
-	-moz-background-size: 100% auto;
-	-o-background-size: 100% auto;
-	background-size: cover;
-	background-repeat: no-repeat; */
-}
+#accueil { background: url(../img/1700LAPOSTE.jpg) 50% 0 no-repeat fixed; }
 
 /* Section 2 */ 
 
-#a-propos{
-                 background: url(../img/img2.jpg) 50% 0 no-repeat fixed;
-	/* background-image:url(../img/img2.jpg);
-	-webkit-background-size: 100% auto;
-	-moz-background-size: 100% auto;
-	-o-background-size: 100% auto;
-	background-size: cover;
-	background-repeat: no-repeat; */
-}
+#a-propos{ background: url(../img/img2.jpg) 50% 0 no-repeat fixed; }
 
 
 /* Section 3 */ 
 
-#expositions {
-                   background: url(../img/lpb_bg.jpg) 50% 0 no-repeat fixed;      
-	/* background-image:url(../img/lpb_bg.jpg);
-	-webkit-background-size: 100% auto;
-	-moz-background-size: 100% auto;
-	-o-background-size: 100% auto;
-	background-size: cover;
-	background-repeat: no-repeat; */
-	h3{
-		text-align: center;
-		margin: 0;
-	}
-	small{
-		text-align: center;
-		display: block;
-		width: 100%;
-		margin-bottom: 40px;
-		margin-top: 20px;
-	}
-	.expo{
-		text-align: right;
-		margin: 40px 40px 40px 0px;
-		font-size: 16px;
-	}
-	hgroup{
-		span{
-			display: block;
-			text-align: center;
-			font-size: 14px;
-		}
-	}
-	#myCarousel{
-		height: 920px;
-		margin: 40px 40px 120px 40px;
-		figcaption{
-			small{
-				text-transform: uppercase;
-				font-size: 12px;
-				.open;
-				padding: 10px 0px;
-				display: block;
-				text-align: right;
-			}
-		}
-	}
-}
+#expositions { background: url(../img/lpb_bg.jpg) 50% 0 no-repeat fixed; }  
 
 /* Section 4 */
 
-#contact{
-                   background: url(../img/img3.jpg) 50% 0 no-repeat fixed;  
-	/* background-image:url(../img/img3.jpg); */
-	.intro{
-		background-color: @cream;
-		padding: 30px;
-		color: @dark;
-	}
-	.bloc{
-		padding-bottom: 80px;
-	}
-}
+#contact{ background: url(../img/img3.jpg) 50% 0 no-repeat fixed; }
 
 /* Section 5 */
 
