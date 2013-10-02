@@ -14,7 +14,7 @@ $(document).ready(function ($) {
 		
 	// Waypoints Scrolling
 	
-	var links = $('.navigation').find('.niv');
+	var links = $('.navbar').find('.niv');
 	var button = $('.intro button');
     var section = $('section');
     var mywindow = $(window);
@@ -26,19 +26,19 @@ $(document).ready(function ($) {
         var datasection = $(this).attr('data-section');
 
         if (direction === 'down') {
-            $('.navigation li.niv[data-section="' + datasection + '"]').addClass('active').siblings().removeClass('active');
+            $('.navbar li.niv[data-section="' + datasection + '"]').addClass('active').siblings().removeClass('active');
         }
         else {
         	var newsection = parseInt(datasection) - 1;
-            $('.navigation li.niv[data-section="' + newsection + '"]').addClass('active').siblings().removeClass('active');
+            $('.navbar li.niv[data-section="' + newsection + '"]').addClass('active').siblings().removeClass('active');
         }
 
     });
     
     mywindow.scroll(function () {
         if (mywindow.scrollTop() == 0) {
-            $('.navigation li[data-section="1"]').addClass('active');
-            $('.navigation li[data-section="2"]').removeClass('active');
+            $('.navbar li[data-section="1"]').addClass('active');
+            $('.navbar li[data-section="2"]').removeClass('active');
         }
     });
     
@@ -87,7 +87,7 @@ $(document).ready(function ($) {
 	// Cache the Window object
 	$window = $(window);
                 
-   $('#section1').each(function(){
+   $('#accueil').each(function(){
      var $bgobj = $(this); // assigning the object
                   
             $(window).scroll(function() {
@@ -108,7 +108,7 @@ $(document).ready(function ($) {
 
  	});	
  
-    $('#section2').each(function(){
+    $('#a-propos').each(function(){
         var $bgobj = $(this); // assigning the object
                     
             $(window).scroll(function() {
@@ -129,7 +129,7 @@ $(document).ready(function ($) {
 
 	 });
 
- 	$('#section3').each(function(){
+ 	$('#expositions').each(function(){
  		var $bgobj = $(this); // assigning the object
                 
             $(window).scroll(function() {
@@ -163,26 +163,26 @@ $(document).ready(function ($) {
 	function centerSection2() {
 	  vph = $(window).innerHeight(); 
 	  calcul = vph / 6;
-	  $('#section2 > .container-fluid > .row-fluid').css({'margin': calcul + 'px auto'});
+	  $('#a-propos > .container-fluid > .row-fluid').css({'margin': calcul + 'px auto'});
 	}
 
 	function centerSection3() {
 	  vph = $(window).innerHeight(); 
 	  calcul = vph / 6;
-	  $('#section3 > .container-fluid > .row-fluid').css({'margin': calcul + 'px auto'});
+	  $('#expositions > .container-fluid > .row-fluid').css({'margin': calcul + 'px auto'});
 	}
 
 	function centerSection4() {
 	  vph = $(window).innerHeight(); 
-	  vh = $('#section4 > .container-fluid > .row-fluid > .span3 > .row-fluid > .span1').outerHeight();
+	  vh = $('#contact > .container-fluid > .row-fluid > .span3 > .row-fluid > .span1').outerHeight();
 	  calcul2 = (vph - vh) / 2;
-	  $('#section4 > .container-fluid > .row-fluid').css({'margin': calcul2 + 'px 0px'});
+	  $('#contact > .container-fluid > .row-fluid').css({'margin': calcul2 + 'px 0px'});
 	}
 
 	function resizeScreen() {
 	  vph = $(window).innerHeight(); 
 	  $('.section').css({'min-height': vph + 'px'});
-	  $('#section4').css({'min-height': vph + 'px'});
+	  $('#contact').css({'min-height': vph + 'px'});
 
 	  centerLogo();
 	  centerSection2();
@@ -190,7 +190,7 @@ $(document).ready(function ($) {
 	  centerSection4();
 	}
 
-	$('#section2').affix({
+	$('#a-propos').affix({
 	   // offset:{ y: 300}
 	})
 

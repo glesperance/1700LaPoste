@@ -59,7 +59,7 @@
 	
 	</head>
 
-	<body>
+	<body data-spy="scroll" data-target=".navbar">
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
@@ -69,19 +69,19 @@
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 		<div id="wrapper">
-			<nav id="nav" class="navigation" role="navigation">
-				<ul>
-					<li><a href="#">1700 LaP0ste</a></li>
-					<li><a href="#">À Propos</a></li>
-					<li><a href="#">Expositions</a></li>
+			<nav id="nav" class="navbar" role="navigation">
+				<ul class='nav'>
+					<li><a href="#accueil">1700 LaP0ste</a></li>
+					<li><a href="#a-propos">À Propos</a></li>
+					<li><a href="#expositions">Expositions</a></li>
 					<li><a href="#">Vidéos</a></li>
 					<li><a href="#">Presse</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="#contact">Contact</a></li>
 				</ul>
 			</nav>
 			<div id="container">
 										
-				<section class="section" id="section1" data-section="1" data-speed="8" data-type="background">
+				<section class="section" id="accueil" data-section="1" data-speed="8" data-type="background">
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div id="logo">
@@ -100,7 +100,7 @@
 					</div>
 				</section><!-- /section -->
 
-				<section class="section dark" id="section2" data-section="2" data-speed="4" data-type="background">
+				<section class="section dark" id="a-propos" data-section="2" data-speed="4" data-type="background">
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div class="span3 segbloc">
@@ -125,7 +125,7 @@
 					</div><!-- /container -->
 				</section><!-- /section -->	
 				
-				<section class="section light" id="section3" data-section="3" data-speed="6" data-type="background" data-offsetY="250">
+				<section class="section light" id="expositions" data-section="3" data-speed="6" data-type="background" data-offsetY="250">
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div class="span3 segbloc">
@@ -188,7 +188,7 @@
 					</div><!-- /container -->
 				</section><!-- /section -->
 
-				<section class="section dark" id="section4" data-section="4" data-speed="8" data-type="background" data-offsetY="250">
+				<section class="section dark" id="contact" data-section="4" data-speed="8" data-type="background" data-offsetY="250">
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div class="span3">
@@ -250,7 +250,6 @@
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
-                                    <script type="text/javascript" src="js/parallax.js"></script>
-
+  	<script type="text/javascript" src="js/parallax.js"></script>
 	</body>
 </html>
