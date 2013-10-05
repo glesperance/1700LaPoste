@@ -1,3 +1,6 @@
+/**********
+ * This file was modified from its original. Please do not update.
+ */
 (function( $ ) {
 
     $.fn.scrollsnap = function( options ) {
