@@ -1,5 +1,9 @@
 
 $(function ($) {
+
+  // Set jQuery special scroll events latency to 700ms
+  jQuery.event.special.scrollstop.latency = 700
+
   // Redirect external links	
 	$("a[rel='external']").click(function (){ this.target = "_blank"; }); 	
 

@@ -35,7 +35,7 @@
     };
  
     special.scrollstop = {
-        latency: 700,
+        latency: 300,
         setup: function() {
  
             var timer,
