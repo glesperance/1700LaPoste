@@ -10,12 +10,14 @@ $(function ($) {
 	    });
 	}
 
+  // Callback to be called on window resize.
 	function onResize() {
 	  // Properly sizes all sections
     var viewPortheight    = $('#fixed-border-left').height()
-      , borderAdjustment  =  $('#fixed-border-left').css('border-right-width').slice(0, -"px".length)
+      , borderAdjustment  = $('#fixed-border-left').css('border-right-width').slice(0, -"px".length)
+      , sectionsHeight    = (viewPortheight - borderAdjustment)
 
-	  $('.section').css({'height': (viewPortheight - borderAdjustment) + 'px'});
+	  $('.section').css({'height': sectionsHeight + 'px'});
 
     // Sizes letter back elements. 
     // This is needed since borders do not support percentages (%) as width
@@ -29,10 +31,19 @@ $(function ($) {
         , 'border-left-width'   : $this.parent().width()  * (1 - 1/2)
       })
     })
+
+     $(document).scrollsnap({
+        snaps     : '.section'
+      , proximity : sectionsHeight / 2
+    });
 	}
 
+  // Setup onResize callback
   $(window).resize(onResize)
 
+  // Hacks for Firefox not having the element sized properly after load
+  // This is perhaps due to LESS beign compiled on-the-fly... 
+  // this should be investigated further.
 	setTimeout(onResize, 0);
   setTimeout(onResize, 100);
 
