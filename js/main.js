@@ -17,7 +17,7 @@ $(function ($) {
   // Callback to be called on window resize.
 	function onResize() {
 	  // Properly sizes all sections
-    var viewPortheight    = $('#fixed-border-left').height()
+    var viewPortheight    = $(window).innerHeight()
       , borderAdjustment  = $('#fixed-border-left').css('border-right-width').slice(0, -"px".length)
       , sectionsHeight    = (viewPortheight - borderAdjustment)
 
