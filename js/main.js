@@ -154,8 +154,12 @@ $(function ($) {
 */
 
 	function onResize() {
-	  var vph = $('#fixed-border-left').height() - $('#fixed-border-left').css('border-right-width').slice(0, -"px".length); 
-	  $('.section').css({'height': vph + 'px'});
+	  // Properly sizes all sections
+    var viewPortheight    = $('#fixed-border-left').height()
+      , borderAdjustment  =  $('#fixed-border-left').css('border-right-width').slice(0, -"px".length)
+
+	  $('.section').css({'height': (viewPortheight - borderAdjustment) + 'px'});
+
     // Sizes letter back elements. 
     // This is needed since borders do not support percentages (%) as width
     var $letterBacks = $('.section .letter-back')
