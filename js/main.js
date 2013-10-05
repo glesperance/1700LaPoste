@@ -153,51 +153,29 @@ $(document).ready(function ($) {
     });
 */
 
-	function centerLogo() {
-	  vph = $(window).innerHeight();
-	  vh = $('#logo').outerHeight();
-	  calcul = (vph - 300) / 2;
-	  $('#logo').css({'margin': calcul + 'px auto'});
-	}
-
-	function centerSection2() {
-	  vph = $(window).innerHeight(); 
-	  calcul = vph / 6;
-	  $('#a-propos > .container-fluid > .row-fluid').css({'margin': calcul + 'px auto'});
-	}
-
-	function centerSection3() {
-	  vph = $(window).innerHeight(); 
-	  calcul = vph / 6;
-	  $('#expositions > .container-fluid > .row-fluid').css({'margin': calcul + 'px auto'});
-	}
-
-	function centerSection4() {
-	  vph = $(window).innerHeight(); 
-	  vh = $('#contact > .container-fluid > .row-fluid > .span3 > .row-fluid > .span1').outerHeight();
-	  calcul2 = (vph - vh) / 2;
-	  $('#contact > .container-fluid > .row-fluid').css({'margin': calcul2 + 'px 0px'});
-	}
-
-	function resizeScreen() {
-	  vph = $(window).innerHeight(); 
+	function onResize() {
+	  var vph = $('#fixed-border-left').height() - $('#fixed-border-left').css('border-right-width').slice(0, -"px".length); 
 	  $('.section').css({'min-height': vph + 'px'});
-	  $('#contact').css({'min-height': vph + 'px'});
-
-	  centerLogo();
-	  centerSection2();
-	  centerSection3();
-	  centerSection4();
+    // Sizes letter back elements. 
+    // This is needed since borders do not support percentages (%) as width
+    var $letterBacks = $('.section .letter-back')
+    $letterBacks.each(function () {
+      var $this = $(this)
+      $this.css({
+          'border-top-width'    : $this.parent().height() * 1/ 4
+        , 'border-right-width'  : $this.parent().width()  * 1/ 2
+        , 'border-bottom-width' : $this.parent().height() * (1 - 1/4)
+        , 'border-left-width'   : $this.parent().width()  * (1 - 1/2)
+      })
+    })
 	}
 
-	$('#a-propos').affix({
-	   // offset:{ y: 300}
-	})
+	// $('#a-propos').affix({
+	//    // offset:{ y: 300}
+	// })
 
-	resizeScreen();
+  $(window).resize(onResize)
 
-	window.onresize = function(event) {
-  resizeScreen();
-}
+	onResize();
 
 });
