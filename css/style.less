@@ -57,9 +57,6 @@ a:hover {
 	text-decoration: none;
 }
 
-
-/* navbar */
-
 #logo {
     text-align: center;
     width: 300px;
@@ -97,59 +94,7 @@ a:hover {
     }
 }
 
-.navbar {
-
-  width: 100%;
-  height: 75px;
-  position: fixed;
-  background: hsla(0, 0%, 0%, 0.2);
-  z-index: 10;
-  text-align: center;
-
-  >.nav {
-    display: table;
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-    text-align: left;
-    height: 100%;
-    float: none;
-
-    >li {
-      display: table-cell;
-      text-transform: uppercase;
-      vertical-align: middle;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 0 15px;
-      background: none;
-      float: none;
-
-      >a, >a:active, >a:hover, &.active>a, &.active>a:hover{
-        color: white;
-        padding: 0;
-        background: none;
-        text-shadow: none;
-                box-shadow: none;
-        -webkit-box-shadow: none;
-           -moz-box-shadow: none;
-      }
-      >a:active, >a:hover, &.active>a, &.active>a:hover {
-        text-decoration: underline;
-      }
-    }
-
-  }
-
-}
-
 /* General Styling */ 
-
-#wrapper {
-	overflow: hidden;
-	position: relative;
-	width: 100%;
-}
 
 #container {
 	backface-visibility: hidden;
@@ -200,6 +145,130 @@ a:hover {
     background: hsl(0, 100%, 100%);
   }
 }
+
+/* Fixed-Borders & Wrapper Style*/
+@outer-border-size: 19px;
+@inner-margin: 2px;
+@inner-border-size: 5px;
+
+#wrapper {
+  overflow: hidden;
+  position: absolute;
+  top: @outer-border-size;
+  left: @outer-border-size;
+  right: @outer-border-size;
+}
+
+.fixed-border {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  background: transparent;
+  border-width: @outer-border-size;
+  border-color: white;
+  border-style: none;
+
+  z-index: 20;
+
+  > div {
+    position: fixed;
+    background: white;
+    top: @outer-border-size + @inner-margin;
+    right: @outer-border-size + @inner-margin;
+    bottom: @outer-border-size + @inner-margin;
+    left: @outer-border-size + @inner-margin;
+  }
+}
+
+#fixed-border-top {
+  bottom: initial;
+  border-top-style: solid;
+  > div {
+    height: @inner-border-size;
+    bottom: initial;
+  }
+}
+
+#fixed-border-right {
+  left: initial;
+  border-right-style: solid;
+  > div {
+    width: @inner-border-size;
+    left: initial;
+  }
+}
+
+#fixed-border-bottom {
+  top: initial;
+  border-top-style: solid;
+  > div {
+    height: @inner-border-size;
+    top: initial;
+  }
+}
+
+#fixed-border-left {
+  right: initial;
+  border-right-style: solid;
+  > div {
+    width: @inner-border-size;
+    right: initial;
+  }
+}
+
+/* navbar */
+
+.navbar {
+
+  width: 100%;
+  height: 75px;
+  position: fixed;
+  background: hsla(0, 0%, 0%, 0.2);
+  z-index: 10;
+  text-align: center;
+  top:  @outer-border-size + @inner-margin + @inner-border-size;
+
+  >.nav {
+    display: table;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    text-align: left;
+    height: 100%;
+    float: none;
+
+    >li {
+      display: table-cell;
+      text-transform: uppercase;
+      vertical-align: middle;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 0 15px;
+      background: none;
+      float: none;
+
+      >a, >a:active, >a:hover, &.active>a, &.active>a:hover{
+        color: white;
+        padding: 0;
+        background: none;
+        text-shadow: none;
+                box-shadow: none;
+        -webkit-box-shadow: none;
+           -moz-box-shadow: none;
+      }
+      >a:active, >a:hover, &.active>a, &.active>a:hover {
+        text-decoration: underline;
+      }
+    }
+
+  }
+
+}
+
 
 /* SPECIAL SECTIONS*/
 
