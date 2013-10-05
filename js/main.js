@@ -1,5 +1,5 @@
 
-$(document).ready(function ($) {
+$(function ($) {
 
 	$('.carousel').carousel({
 	  interval: 3000
@@ -155,7 +155,7 @@ $(document).ready(function ($) {
 
 	function onResize() {
 	  var vph = $('#fixed-border-left').height() - $('#fixed-border-left').css('border-right-width').slice(0, -"px".length); 
-	  $('.section').css({'min-height': vph + 'px'});
+	  $('.section').css({'height': vph + 'px'});
     // Sizes letter back elements. 
     // This is needed since borders do not support percentages (%) as width
     var $letterBacks = $('.section .letter-back')
@@ -176,6 +176,7 @@ $(document).ready(function ($) {
 
   $(window).resize(onResize)
 
-	onResize();
+	setTimeout(onResize, 0);
+  setTimeout(onResize, 100);
 
 });
