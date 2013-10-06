@@ -107,7 +107,7 @@ a:hover {
   z-index: 0
 }
 
-.section{
+.section {
 	background-attachment: scroll;
 	background-position: center top;
 	position: relative;
@@ -117,15 +117,23 @@ a:hover {
   .buenard;
   font-size: 13px;
   word-wrap: break-word;
+  overflow: hidden;
+
+  position: relative;
+
+  h3 {
+    color: hsl(0, 100%, 100%);
+    font-size: 50px;
+    font-weight: 500;
+    text-transform: uppercase;
+    white-space: nowrap;
+    .buenard;
+  }
 }
 
-.section h3 {
-  color: hsl(0, 100%, 100%);
-  font-size: 50px;
-  font-weight: 500;
-  text-transform: uppercase;
-  white-space: nowrap;
-  .buenard;
+.container-fluid-scroller {
+  display: table; 
+  position: absolute;
 }
 
 .container-fluid {
@@ -136,11 +144,18 @@ a:hover {
   > .row-fluid {
     max-width: 1024px;
     margin: 0 auto;
+    text-align: center;
   }
 }
 
 .card {
   border: 10px solid hsl(0, 100%, 100%);
+
+
+  color: hsl(50, 6%, 18%);
+  .buenard;
+  text-align: center;
+
   &.fixed-height {
     position: relative;
     > * {
@@ -149,15 +164,56 @@ a:hover {
       position: absolute;
       left: 0;
       right: 0;
-      .buenard;
     }
   }
-  >* {
+
+  &:only-child {
+    display: inline-block;
+    margin: 0 auto;
+    float: none;
+  }
+
+  > * {
     padding: 13px;
     font-size: 13px;
     margin: 1px;
     background: hsl(0, 100%, 100%);
   }
+
+  h3 {
+    .buenard;
+    font-size: 20px;
+    text-transform: none;
+    color: hsl(50, 6%, 18%);
+    white-space: normal;
+    line-height: 20px;
+    margin: 20px 0;
+  }
+
+  p {
+    margin: 0 0 20px 0;
+  }
+
+  .notes  {
+    .open;
+    font-size: 11px;
+    font-weight: 500;
+    color: hsl(0, 0%, 28%);
+  }
+
+  .footer {
+    a {
+      &:link, &:visited {
+        color: red;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      &:hover, &:active {
+        text-decoration: underline;
+      }
+    }
+  }
+
 }
 
 /* Fixed-Borders & Wrapper Style*/

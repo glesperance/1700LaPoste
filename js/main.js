@@ -21,7 +21,7 @@ $(function ($) {
       , borderAdjustment  = $('#fixed-border-left').css('border-right-width').slice(0, -"px".length)
       , sectionsHeight    = (viewPortheight - borderAdjustment)
 
-	  $('.section').css({'height': sectionsHeight + 'px'});
+	  $('.section, .section > .container-fluid-scroller').css({ 'height': sectionsHeight + 'px' });
 
     // Sizes .letter-back elements. 
     // This is needed since borders do not support percentages (%) as width
@@ -41,6 +41,26 @@ $(function ($) {
       , proximity : sectionsHeight / 2
     });
 	}
+
+  // Setup Scrollers
+  $('.container-fluid-scroller').each(function () {
+    var $this                 = $(this)
+      , scrollerLength        = $this.children().length - $this.children('.half-slide').length
+      , scrollerLengthPercent = scrollerLength * 100
+
+    $this.css({ 'width' : scrollerLengthPercent + '%' })
+
+    $this.children().each(function () {
+      var $child      = $(this)
+        , childWidth  = $child.hasClass('half-slide')
+                          ? 0.5
+                          : 1
+      var childWidthPercent = childWidth / scrollerLength * 100
+      $child.css({ 'width' : childWidthPercent + '%' })
+    })
+
+  })
+
 
   // Setup onResize callback
   $(window).resize(onResize)
