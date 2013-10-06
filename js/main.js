@@ -23,7 +23,7 @@ $(function ($) {
 
 	  $('.section').css({'height': sectionsHeight + 'px'});
 
-    // Sizes letter back elements. 
+    // Sizes .letter-back elements. 
     // This is needed since borders do not support percentages (%) as width
     var $letterBacks = $('.section .letter-back')
     $letterBacks.each(function () {
