@@ -128,12 +128,49 @@ a:hover {
     text-transform: uppercase;
     white-space: nowrap;
     .buenard;
+    text-align: left;
   }
 }
+.scroller-control {
+  top: 50%;
+  position: absolute;
+  
+  height: 30px;
+  width: 30px;
 
+  background: hsl(0, 0%, 18%);
+  color: white;
+
+  font-weight: bold;
+  font-size: 27px;
+  line-height: 22px;
+  text-align: center;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;  
+
+  cursor: pointer;
+
+  &.prev {
+    left: 20px;
+  }
+
+  &.next {
+    right: 20px;
+  }
+}
 .container-fluid-scroller {
   display: table; 
   position: absolute;
+  .transition(left, 0.5s, ease);
+
+  &[slide-first="true"] ~ .scroller-control.prev,  &[slide-last="true"] ~ .scroller-control.next {
+    display: none;
+  }
 }
 
 .container-fluid {
@@ -141,17 +178,38 @@ a:hover {
   display: table-cell;
   vertical-align: middle;
 
+  background-size: cover;
+  background-position: center;
+
   > .row-fluid {
     max-width: 1024px;
     margin: 0 auto;
     text-align: center;
   }
+
+  &.citation {
+    background: hsl(0, 0%, 11%);
+    color: hsl(0, 0%, 84%);
+    font-size: 27px;
+    line-height: 1.5;
+
+    em {
+      font-style: normal;
+      color: hsl(347, 100%, 41%);
+    }
+
+    .footer {
+      font-weight: bold;
+      margin-top: 25px;
+      font-size: 11px;
+      .open;
+    }
+  }
 }
 
 .card {
   border: 10px solid hsl(0, 100%, 100%);
-
-
+  margin-bottom: 20px;
   color: hsl(50, 6%, 18%);
   .buenard;
   text-align: center;
@@ -167,7 +225,7 @@ a:hover {
     }
   }
 
-  &:only-child {
+  &.center {
     display: inline-block;
     margin: 0 auto;
     float: none;
@@ -188,6 +246,8 @@ a:hover {
     white-space: normal;
     line-height: 20px;
     margin: 20px 0;
+    text-align: center;
+    font-weight: bold;
   }
 
   p {
@@ -373,7 +433,7 @@ a:hover {
 
 /* Section 2 */ 
 
-#a-propos{ background: url(../img/img2.jpg) 50% 0 no-repeat fixed; }
+// #a-propos{ background: url(../img/img2.jpg) 50% 0 no-repeat fixed; }
 
 
 /* Section 3 */ 

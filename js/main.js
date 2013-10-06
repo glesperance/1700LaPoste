@@ -44,13 +44,13 @@ $(function ($) {
 
   // Setup Scrollers
   $('.container-fluid-scroller').each(function () {
-    var $this                 = $(this)
-      , scrollerLength        = $this.children().length - $this.children('.half-slide').length
+    var $scroller             = $(this)
+      , scrollerLength        = $scroller.children().length - $scroller.children('.half-slide').length * 0.5
       , scrollerLengthPercent = scrollerLength * 100
 
-    $this.css({ 'width' : scrollerLengthPercent + '%' })
+    $scroller.css({ 'width' : scrollerLengthPercent + '%' })
 
-    $this.children().each(function () {
+    $scroller.children().each(function () {
       var $child      = $(this)
         , childWidth  = $child.hasClass('half-slide')
                           ? 0.5
@@ -59,8 +59,51 @@ $(function ($) {
       $child.css({ 'width' : childWidthPercent + '%' })
     })
 
-  })
+    function getDistance($slide) {
+      var distance = -1
+      $scroller.children().each(function () {
+        distance += $(this).hasClass('half-slide') ? 0.5 : 1
+        if ($slide.is(this)) return false
+      })
+      return distance
+    }
 
+    function scroll(options) {
+      if (!options) options = {}
+
+      var $currentSlide = $scroller.children('.current')
+      if (!$currentSlide.length) $currentSlide = $scroller.children().first()
+      
+      var $slide
+      if (options.prev) {
+        $slide = $currentSlide.prev()
+        if (!$slide.length) $slide = $scroller.children().last()
+      } 
+      else {
+        $slide = $currentSlide.next()
+        if (!$slide.length) $slide = $scroller.children().first()
+      }
+
+      var distance = getDistance($slide)
+
+      $slide.addClass('current')
+      $slide.siblings().removeClass('current')
+
+      $scroller.attr('slide-first', !$slide.prev().length)
+      $scroller.attr('slide-last', !$slide.next().length)
+
+      $scroller.css({ 'left' : '-' + distance * 100 + '%' })
+    }
+
+    $scroller.find('.next').click(function () { scroll() })
+    $scroller.find('.prev').click(function () { scroll({ prev : true }) })
+
+    $scroller.siblings('.next').click(function () { scroll() })
+    $scroller.siblings('.prev').click(function () { scroll({ prev : true }) })
+
+    $scroller.attr('slide-first', true)
+
+  })
 
   // Setup onResize callback
   $(window).resize(onResize)
