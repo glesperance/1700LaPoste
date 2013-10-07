@@ -21,7 +21,9 @@ $(function ($) {
       , borderAdjustment  = $('#fixed-border-left').css('border-right-width').slice(0, -"px".length)
       , sectionsHeight    = (viewPortheight - borderAdjustment)
 
-	  $('.section, .section > .container-fluid-scroller').css({ 'height': sectionsHeight + 'px' });
+	  $('.section').css({ 'height': sectionsHeight + 'px' });
+    $('.section.scroller').css({ 'min-height': sectionsHeight + 'px', 'height' : 'initial' });
+    $('.section > .container-fluid-scroller').css({ 'height' : sectionsHeight + 'px' })
 
     // Sizes .letter-back elements. 
     // This is needed since borders do not support percentages (%) as width

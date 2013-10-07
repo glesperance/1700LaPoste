@@ -175,7 +175,7 @@ a:hover {
 }
 .container-fluid-scroller {
   display: table; 
-  position: absolute;
+  position: relative;
   .transition(left, 0.5s, ease);
 }
 
@@ -194,6 +194,9 @@ a:hover {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  padding-top: 100px; 
+  padding-bottom: 100px;
 
   > .row-fluid {
     max-width: 1024px;
