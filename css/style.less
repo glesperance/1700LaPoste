@@ -165,19 +165,18 @@ a:hover {
 }
 .scroller {
   display: block;
+  &[slide-first="true"] .scroller-control.prev,  &[slide-last="true"] .scroller-control.next {
+    display: none;
+  }
 }
 .container-fluid-scroller {
   display: table; 
   position: absolute;
   .transition(left, 0.5s, ease);
-
-  &[slide-first="true"] ~ .scroller-control.prev,  &[slide-last="true"] ~ .scroller-control.next {
-    display: none;
-  }
 }
 
 [data-type="background"] {
-  background-size: auto;
+  background-size: auto !important;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;

@@ -40,48 +40,72 @@ $(function ($) {
         snaps     : '.section'
       , proximity : sectionsHeight / 2
     });
+
+    $('iframe[width][height]').each(function () {
+      var $iframe = $(this)
+      $iframe.css({ 'height' : $iframe.attr('height') / $iframe.attr('width') * $iframe.width() })
+    })
+
 	}
 
   // Setup Scrollers
   $('.scroller').each(function () {
-    var $scroller             = $(this).children('.container-fluid-scroller')
-      , scrollerLength        = $scroller.children().length - $scroller.children('.half-slide').length * 0.5
-      , scrollerLengthPercent = scrollerLength * 100
+    var $scroller = $(this)
+    var scrollerMarginLeft = $scroller.attr('scroller-margin-left') || 0
+    var $containerFluidScroller = $(this).children('.container-fluid-scroller')
+    
+    var scrollerLength = 0
 
-    $scroller.css({ 'width' : scrollerLengthPercent + '%' })
+    $containerFluidScroller.children().each(function () {
+      var $child = $(this)
+      scrollerLength += (+$child.attr('slide-width') || 1)
+    })
 
-    $scroller.children().each(function () {
+    var scrollerLengthPercent = scrollerLength * (100-scrollerMarginLeft)
+
+    $containerFluidScroller.css({ 
+        'width'       : scrollerLengthPercent + '%'
+      , 'margin-left' : scrollerMarginLeft + '%'
+    })
+
+    $containerFluidScroller.children().each(function () {
       var $child      = $(this)
-        , childWidth  = $child.hasClass('half-slide')
-                          ? 0.5
-                          : 1
-      var childWidthPercent = childWidth / scrollerLength * 100
+        , childWidth  = +$child.attr('slide-width') || 1
+
+      var childWidthPercent = childWidth / scrollerLength * (100-scrollerMarginLeft)
       $child.css({ 'width' : childWidthPercent + '%' })
     })
 
     function getDistance($slide) {
-      var distance = -1
-      $scroller.children().each(function () {
-        distance += $(this).hasClass('half-slide') ? 0.5 : 1
+      var alignLeft = $scroller.attr('slide-align')
+      var distance = alignLeft ? 0 : -1
+
+      $containerFluidScroller.children().each(function () {
+        
+        if (alignLeft && $slide.is(this)) return false
+        
+        distance += +$(this).attr('slide-width') || 1
+        
         if ($slide.is(this)) return false
       })
-      return distance
+
+      return Math.max(distance, 0)
     }
 
     function scroll(options) {
       if (!options) options = {}
 
-      var $currentSlide = $scroller.children('.current')
-      if (!$currentSlide.length) $currentSlide = $scroller.children().first()
+      var $currentSlide = $containerFluidScroller.children('.current')
+      if (!$currentSlide.length) $currentSlide = $containerFluidScroller.children().first()
       
       var $slide
       if (options.prev) {
         $slide = $currentSlide.prev()
-        if (!$slide.length) $slide = $scroller.children().last()
+        if (!$slide.length) $slide = $containerFluidScroller.children().last()
       } 
       else {
         $slide = $currentSlide.next()
-        if (!$slide.length) $slide = $scroller.children().first()
+        if (!$slide.length) $slide = $containerFluidScroller.children().first()
       }
 
       var distance = getDistance($slide)
@@ -92,17 +116,16 @@ $(function ($) {
       $scroller.attr('slide-first', !$slide.prev().length)
       $scroller.attr('slide-last', !$slide.next().length)
 
-      $scroller.css({ 'left' : '-' + distance * 100 + '%' })
+      $containerFluidScroller.css({ 'left' : '-' + distance * (100-scrollerMarginLeft) + '%' })
     }
 
-    $scroller.find('.next').click(function () { scroll() })
-    $scroller.find('.prev').click(function () { scroll({ prev : true }) })
+    $containerFluidScroller.find('.next').click(function () { scroll() })
+    $containerFluidScroller.find('.prev').click(function () { scroll({ prev : true }) })
 
-    $scroller.siblings('.next').click(function () { scroll() })
-    $scroller.siblings('.prev').click(function () { scroll({ prev : true }) })
+    $containerFluidScroller.siblings('.next').click(function () { scroll() })
+    $containerFluidScroller.siblings('.prev').click(function () { scroll({ prev : true }) })
 
     $scroller.attr('slide-first', true)
-
   })
 
   // Setup onResize callback
