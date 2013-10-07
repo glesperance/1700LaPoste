@@ -252,6 +252,31 @@ a:hover {
   .buenard;
   text-align: center;
 
+  .hover-zone {
+    .primary, .secondary {
+      .transition(opacity, 200ms, 0s);
+    }
+    .primary {
+      position: absolute;
+      top: 24%;
+      left: 10px;
+      right: 10px;
+    }
+    .secondary {
+      float: left;
+      opacity: 0;
+    }
+
+    &:hover {
+      .primary {
+        opacity: 0;
+      }
+      .secondary {
+        opacity: 1.0;
+      }
+    }
+  }
+
   a {
     &:link, &:visited {
       color: inherit;
@@ -284,6 +309,7 @@ a:hover {
     font-size: 13px;
     margin: 1px;
     background: hsl(0, 100%, 100%);
+    position: relative;
   }
 }
 
