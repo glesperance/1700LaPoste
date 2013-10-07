@@ -138,7 +138,7 @@ $(function ($) {
     if ($secondary.length)
       $menu.hover(function () {
         $menu.addClass('show-secondary')
-        $anchor.css({ 'padding-right': $secondary.width() + 10 + 'px' })
+        $anchor.css({ 'padding-right': $secondary.width() + 20 + 'px' })
       }, function () {
         $menu.removeClass('show-secondary')
         $anchor.css({ 'padding-right': 0 })
