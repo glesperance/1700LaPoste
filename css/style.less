@@ -454,6 +454,7 @@ a:hover {
     >li {
       display: table-cell;
       text-transform: uppercase;
+      position: relative;
       vertical-align: middle;
       font-size: 16px;
       font-weight: 600;
@@ -461,7 +462,18 @@ a:hover {
       background: none;
       float: none;
 
-      >a, >a:active, >a:hover, &.active>a, &.active>a:hover{
+      >a {
+        color: white;
+        background: none;
+        text-shadow: none;
+                box-shadow: none;
+        -webkit-box-shadow: none;
+           -moz-box-shadow: none;
+      }
+
+      >a, a:active, >a:hover, &.active>a, &.active>a:hover{
+        display: table-cell;
+        float: left;
         color: white;
         padding: 0;
         background: none;
@@ -472,6 +484,21 @@ a:hover {
       }
       >a:active, >a:hover, &.active>a, &.active>a:hover {
         text-decoration: underline;
+      }
+      &.show-secondary {
+        .secondary { display: table-cell; }
+      }
+      .secondary {
+        padding: 0;
+        display: none;
+        list-style: none;
+        right: 10px;
+        font-size: 10px;
+        position: absolute;
+
+        a:active, a:hover, .active>a, .active>a:hover {
+          text-decoration: underline;
+        }
       }
     }
 

@@ -129,6 +129,23 @@ $(function ($) {
     $scroller.attr('slide-first', true)
   })
 
+  // Setup nav bar secondary menuu
+  $('.nav > li').each(function () {
+    var $menu = $(this)
+    var $anchor = $menu.children('a')
+    var $secondary = $menu.children('.secondary')
+
+    if ($secondary.length)
+      $menu.hover(function () {
+        $menu.addClass('show-secondary')
+        $anchor.css({ 'padding-right': $secondary.width() + 10 + 'px' })
+      }, function () {
+        $menu.removeClass('show-secondary')
+        $anchor.css({ 'padding-right': 0 })
+      })
+
+  })
+
   // Setup onResize callback
   $(window).resize(onResize)
 
