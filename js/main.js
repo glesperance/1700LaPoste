@@ -43,8 +43,8 @@ $(function ($) {
 	}
 
   // Setup Scrollers
-  $('.container-fluid-scroller').each(function () {
-    var $scroller             = $(this)
+  $('.scroller').each(function () {
+    var $scroller             = $(this).children('.container-fluid-scroller')
       , scrollerLength        = $scroller.children().length - $scroller.children('.half-slide').length * 0.5
       , scrollerLengthPercent = scrollerLength * 100
 

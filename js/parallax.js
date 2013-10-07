@@ -3,7 +3,7 @@ $(document).ready(function(){
   $window = $(window);
 
   // For each element that has a data-type attribute
-  $('section[data-type="background"]').each(function(){
+  $('[data-type="background"]').each(function(){
 
           // Store some variables based on where we are
           var $self = $(this),
@@ -20,11 +20,6 @@ $(document).ready(function(){
                           // Scroll the background at var speed
                           // the yPos is a negative value because we're scrolling it UP!                              
                           var yPos = -($window.scrollTop() / $self.data('speed')); 
-
-                          // If this element has a Y offset then add it on
-                          //if ($self.data('offsetY')) {
-                            //      yPos += $self.data('offsetY');
-                          //}
 
                           // Put together our final background position
                           var coords = '50% '+ yPos + 'px';

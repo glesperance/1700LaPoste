@@ -163,6 +163,9 @@ a:hover {
     right: 20px;
   }
 }
+.scroller {
+  display: block;
+}
 .container-fluid-scroller {
   display: table; 
   position: absolute;
@@ -173,6 +176,13 @@ a:hover {
   }
 }
 
+[data-type="background"] {
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .container-fluid {
 	margin: 0 auto;
   display: table-cell;
@@ -180,6 +190,7 @@ a:hover {
 
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 
   > .row-fluid {
     max-width: 1024px;
@@ -192,6 +203,14 @@ a:hover {
     color: hsl(0, 0%, 84%);
     font-size: 27px;
     line-height: 1.5;
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    .small {
+      font-size: 16px;
+    }
 
     em {
       font-style: normal;
@@ -423,31 +442,6 @@ a:hover {
     }
   }
 }
-
-
-/* SPECIAL SECTIONS*/
-
-/* Section 1 */ 
-
-#accueil { background: url(../img/1700LAPOSTE.jpg) 50% 0 no-repeat fixed; }
-
-/* Section 2 */ 
-
-// #a-propos{ background: url(../img/img2.jpg) 50% 0 no-repeat fixed; }
-
-
-/* Section 3 */ 
-
-#expositions { background: url(../img/lpb_bg.jpg) 50% 0 no-repeat fixed; }  
-
-/* Section 4 */
-
-#contact{ 
-  background: url(../img/img3.jpg) 50% 0 no-repeat fixed; 
-  text-align: center;
-}
-
-/* Section 5 */
 
 /* Media Queries */
 
