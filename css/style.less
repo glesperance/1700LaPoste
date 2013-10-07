@@ -168,6 +168,10 @@ a:hover {
   &[slide-first="true"] .scroller-control.prev,  &[slide-last="true"] .scroller-control.next {
     display: none;
   }
+
+  &.no-slide-padding-left .container-fluid {
+    padding-left: 0;
+  }
 }
 .container-fluid-scroller {
   display: table; 
@@ -225,6 +229,19 @@ a:hover {
   }
 }
 
+.video-card {
+  margin-bottom: 20px;
+  color: hsl(50, 6%, 18%);
+  .buenard;
+  text-align: center;
+  background: hsl(0, 100%, 100%);
+  padding: 14px;
+
+  h3 { 
+    text-decoration: underline;
+  }
+}
+
 .card {
   border: 10px solid hsl(0, 100%, 100%);
   margin-bottom: 20px;
@@ -255,7 +272,9 @@ a:hover {
     margin: 1px;
     background: hsl(0, 100%, 100%);
   }
+}
 
+.card, .video-card {
   h3 {
     .buenard;
     font-size: 20px;
@@ -439,6 +458,16 @@ a:hover {
       color: hsl(50, 6%, 18%);
       text-decoration: underline;
     }
+  }
+}
+
+/* Section Specific Styles */
+#videos {
+  .title {
+    top: 50%;
+    position: absolute;
+    left: 10%;
+    margin-top: -50px;
   }
 }
 
