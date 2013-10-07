@@ -249,6 +249,16 @@ a:hover {
   .buenard;
   text-align: center;
 
+  a {
+    &:link, &:visited {
+      color: inherit;
+      text-decoration: underline;
+    }
+    &:hover, &:active {
+      text-decoration: none;
+    }
+  }
+
   &.fixed-height {
     position: relative;
     > * {
@@ -285,6 +295,11 @@ a:hover {
     margin: 20px 0;
     text-align: center;
     font-weight: bold;
+  }
+
+  h3 + a {
+    top: -15px;
+    position: relative;
   }
 
   p {
@@ -468,6 +483,21 @@ a:hover {
     position: absolute;
     left: 10%;
     margin-top: -50px;
+  }
+
+  .container-fluid {
+    padding-left: 0;
+  }
+
+  .container-fluid-scroller {
+    margin-left: 25%;
+  }
+}
+
+#presse {
+  .card .separator {
+    font-style: italic;
+    color: hsl(0, 100%, 33%);
   }
 }
 

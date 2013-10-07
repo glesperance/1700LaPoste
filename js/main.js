@@ -51,7 +51,7 @@ $(function ($) {
   // Setup Scrollers
   $('.scroller').each(function () {
     var $scroller = $(this)
-    var scrollerMarginLeft = $scroller.attr('scroller-margin-left') || 0
+    var scrollerWidth = $scroller.attr('scroller-width') || 100
     var $containerFluidScroller = $(this).children('.container-fluid-scroller')
     
     var scrollerLength = 0
@@ -61,18 +61,17 @@ $(function ($) {
       scrollerLength += (+$child.attr('slide-width') || 1)
     })
 
-    var scrollerLengthPercent = scrollerLength * (100-scrollerMarginLeft)
+    var scrollerLengthPercent = scrollerLength * (scrollerWidth)
 
     $containerFluidScroller.css({ 
         'width'       : scrollerLengthPercent + '%'
-      , 'margin-left' : scrollerMarginLeft + '%'
     })
 
     $containerFluidScroller.children().each(function () {
       var $child      = $(this)
         , childWidth  = +$child.attr('slide-width') || 1
 
-      var childWidthPercent = childWidth / scrollerLength * (100-scrollerMarginLeft)
+      var childWidthPercent = childWidth / scrollerLength * (scrollerWidth)
       $child.css({ 'width' : childWidthPercent + '%' })
     })
 
@@ -116,7 +115,7 @@ $(function ($) {
       $scroller.attr('slide-first', !$slide.prev().length)
       $scroller.attr('slide-last', !$slide.next().length)
 
-      $containerFluidScroller.css({ 'left' : '-' + distance * (100-scrollerMarginLeft) + '%' })
+      $containerFluidScroller.css({ 'left' : '-' + distance * (scrollerWidth) + '%' })
     }
 
     $containerFluidScroller.find('.next').click(function () { scroll() })
