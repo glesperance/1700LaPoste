@@ -38,10 +38,10 @@ $(function ($) {
       })
     })
 
-    // $(document).scrollsnap({
-    //     snaps     : '.section'
-    //   , proximity : sectionsHeight / 2
-    // });
+    $(document).scrollsnap({
+        snaps     : '.section'
+      , proximity : sectionsHeight / 2
+    });
 
     $('iframe[width][height]').each(function () {
       var $iframe = $(this)
