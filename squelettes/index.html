@@ -1,0 +1,155 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/fr_CA/all.js#xfbml=1&appId=379519748840776";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div id="wrapper">
+	<nav id="nav" class="navbar" role="navigation">
+		<ul class='nav'>
+			<li><a href="#section40" class="scroll">Accueil</a></li>
+			<BOUCLE_rubrique(RUBRIQUES){racine}{tout}{par num titre, titre}>
+			<li><a href="#section#ID_RUBRIQUE" data-speed="1000" class="scroll">#TITRE</a></li>
+			</BOUCLE_rubrique>
+			<li><a href="#section30" class="scroll">Contact</a></li>
+		</ul>
+	</nav>
+	<div id="container">
+
+	<section class="section" id="40" style="background-image: url(#CHEMIN{img/1700LAPOSTE.jpg})" data-section="1" data-speed="0.2" data-type="background">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div id="logo" class="card fixed-height">
+					<div class="inner-logo">
+						<img src="#CHEMIN{img/1700_logo.svg}" width="200" alt="1700 La Poste">
+						<div class="geo">
+							1700, rue Notre-Dame Ouest<br>
+							Montréal (Qc) H3J 1M3<br>
+							<br>
+							T. 438.384.1700<br>
+							F. 438.384.1600<br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- /section -->
+
+	<BOUCLE_racinerubrique(RUBRIQUES){tout}{par num titre, titre}>
+		<section class="section scroller" id="section#ID_RUBRIQUE" data-section="#ID_RUBRIQUE" data-name="[(#TITRE|entites_html|strtolower)]">
+			<div class="container-fluid-scroller">
+
+				[<div class="container-fluid"[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"] data-speed="0.2" data-type="background" slide-width="1">
+					<div class="row-fluid">
+						<div class="span1"><h2>#TITRE</h2></div>
+						<div class="span1 card">
+							<div>
+								<div class='hover-zone'>
+									<div class="primary">
+										(#DESCRIPTIF)
+									</div>
+									[<div class="secondary">
+										(#TEXTE)
+									</div>]
+								</div>
+								<p class="footer"><a href="javascript:void(0)" class="next">Découvrez l'exposition &gt;</a></p>
+							</div>
+						</div>
+					</div><!-- /row-fluid -->
+				</div><!-- /container -->]
+				[(#DESCRIPTIF|non)
+				<div class="container-fluid"[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"] data-speed="0.2" data-type="background" slide-width="0.5">
+					<div class="row-fluid">
+						<div class="span1"><h2>#TITRE</h2></div>
+					</div><!-- /row-fluid -->
+				</div><!-- /container -->
+				]
+
+				<BOUCLE_items(DATA){par ordre}{source JSON, #URL_SITE_SPIP/?page=moulinet.json&id_rubrique=#ID_RUBRIQUE}{datapath object}>
+				<INCLURE{fond=template/triage, id_objet=#VALEUR{id}, objet=#VALEUR{type}}>
+				</BOUCLE_items>
+
+			</div><!-- /container-fluid-scroller -->
+			<div class='scroller-control prev'><img src="#CHEMIN{img/chevl.png}" alt="&lt;" title="Page précédente"></div>
+			<div class='scroller-control next'><img src="#CHEMIN{img/chevr.png}" alt="&gt;" title="Prochaine page"></div>
+		</section><!-- /section -->
+	</BOUCLE_racinerubrique>
+		
+		<section class="section" id="contact" data-section="30" style="background-image: url(#CHEMIN{img/1700LAPOSTE.jpg})">
+			<div class="letter-back"></div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span1 spacetop">
+						<h2>Contact</h2>
+					</div>
+					<div class="span2 spacetop">
+						<form>
+							<div><p>Abonnez vous à notre infolettre</p></div>
+							<div>
+								<input type="text" placeholder="Votre Nom"/>
+								<input type="text" placeholder="Votre courriel"/>
+								<input type="submit" value="Soumettre"/>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<img src="img/1700_logo.svg" alt="1700 la poste" title="1700 la poste" width="170">
+				</div>
+				<div class="row-fluid">
+					<div class="span1">
+						<p>
+							<b>Heures d'ouverture*</b><br>
+							Mercredi au samedi, de 11 h à 17 h<br>
+							Ou sur rendez-vous<br>
+							<br>
+							<b>Entrée libre</b><br>
+							<br>
+							<em>*Pour les visites de groupe, veuillez nous contacter au 438.384.1700 ou via <a href="mailto:info@1700laposte.com" target="_blank">info@1700laposte.com.</a></em>
+						</p>
+					</div><!-- /span1 -->
+					<div class="span1">
+						<p>
+							1700, rue Notre-Dame Ouest<br>
+							Montréal (Qc) H3J 1M3<br>
+							<br>
+							T. 438.384.1700<br>
+							F. 438.384.1600<br>
+							<br>
+							<b>Rosemonde Gingras</b><br>
+							Relationiste<br>
+							<a href="mailto:rosemonde@rosemondecommunication.com" target="_blank">rosemonde@rosemondecommunication.com</a><br>
+						</p>
+					</div><!-- /span1 -->
+					<div class="span1">
+						<p class>
+							<b>Isabelle de Mévius</b><br>
+							Directrice générale et artistique<br>
+							<a href="mailto:isabelle@1700laposte.com" target="_blank">isabelle@1700laposte.com</a><br>
+							<br>
+							<b>Roger Lupien</b><br>
+							Directeur administratif<br>
+							<a href="mailto:roger@1700laposte.com" target="_blank">roger@1700laposte.com</a><br>
+							<br>
+							<b>Annie Lafleur</b><br>
+							Adjointe à la coordination<br>
+							<a href="mailto:annie@1700laposte.com" target="_blank">annie@1700laposte.com</a><br>
+						</p>
+					</div><!-- /span1 -->
+				</div>						
+			</div><!-- /container -->
+		</section><!-- /section -->	
+		<div class="container-fluid" id="wave">
+			<div class="row-fluid">
+					<div id="thepng"></div>
+			</div>
+		</div>
+		
+	</div><!-- /container -->	
+</div><!-- /wrapper -->
+<div id='fixed-border-top' class='fixed-border'><div><!-- Div used for styling / do not remove --></div></div>
+<div id='fixed-border-right' class='fixed-border'><div><!-- Div used for styling / do not remove --></div></div>
+<div id='fixed-border-bottom' class='fixed-border'><div><!-- Div used for styling / do not remove --></div></div>
+<div id='fixed-border-left' class='fixed-border'><div><!-- Div used for styling / do not remove --></div></div>

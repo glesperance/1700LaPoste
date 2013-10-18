@@ -1,0 +1,36 @@
+[(#SET{defaut_tri,#ARRAY{
+	premier_champs,1, 
+	id_fact,1,
+	points,-1
+}})]<B_liste_facts>
+#ANCRE_PAGINATION
+<div class="liste-objets facts">
+<table class='spip liste'>
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{fact:info_1_fact,fact:info_nb_facts}})</strong></caption>]
+	<thead>
+		<tr class='first_row'>
+			<th class='picto' scope='col'></th>
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='premier_champs' scope='col'>[(#TRI{premier_champs,<:fact:label_premier_champs:>,ajax})]</th>
+			<th class='id' scope='col'>[(#TRI{id_fact,<:info_numero_abbreviation:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_facts(FACTS){id_rubrique?}{id_secteur?}{id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num premier_champs},#GET{defaut_tri}}{par premier_champs}{pagination #ENV{nb,10}}>
+		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+			<td class='picto'>[(#CHEMIN_IMAGE{fact-16.png}|balise_img)]</td>
+			<td class='statut'>[(#STATUT|puce_statut{fact,#ID_FACT,#ID_RUBRIQUE})]</td> 
+			<td class='premier_champs principale'>[(#LOGO_FACT|image_reduire{20,26})]<a href="[(#ID_FACT|generer_url_entite{fact})]" title="<:info_numero_abbreviation|attribut_html:> #ID_FACT">[(#RANG). ]#PREMIER_CHAMPS</a></td>
+			<td class='id'>[(#AUTORISER{modifier,fact,#ID_FACT}|?{
+				<a href="[(#URL_ECRIRE{fact_edit,id_fact=#ID_FACT})]">#ID_FACT</a>,
+				#ID_FACT
+			})]</td>
+		</tr>
+	</BOUCLE_liste_facts>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_facts>[
+<div class="liste-objets facts caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_facts>

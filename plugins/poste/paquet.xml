@@ -1,0 +1,37 @@
+<paquet
+	prefix="poste"
+	categorie="outil"
+	version="1.0.0"
+	etat="dev"
+	compatibilite="[3.0.11;3.0.*]"
+	logo=""
+	documentation=""
+	schema="1.0.0" 
+>
+	<!--
+		Paquet genere le 2013-10-16 01:26:21
+	-->
+
+	<nom>MilleSeptCent</nom>
+
+	<auteur>Malik Khoubbane</auteur>
+
+	<licence>GNU/GPL</licence>
+	<necessite nom="saisies" compatibilite="[1.24.0;]" /> 
+
+	<pipeline nom="autoriser" inclure="poste_autorisations.php" /> 
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/poste.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/poste.php" /> 
+        
+        <pipeline nom="objet_compte_enfants" inclure="poste_pipelines.php" /> 
+        
+	<menu nom="videos" titre="video:titre_videos" parent="menu_edition" icone="images/video-16.png" action="videos" /> 
+	<menu nom="video_creer" titre="video:icone_creer_video" parent="outils_rapides" icone="images/video-new-16.png" action="video_edit" parametres="new=oui" /> 
+	<menu nom="textes" titre="texte:titre_textes" parent="menu_edition" icone="images/texte-16.png" action="textes" /> 
+	<menu nom="texte_creer" titre="texte:icone_creer_texte" parent="outils_rapides" icone="images/texte-new-16.png" action="texte_edit" parametres="new=oui" /> 
+	<menu nom="images" titre="image:titre_images" parent="menu_edition" icone="images/image-16.png" action="images" /> 
+	<menu nom="image_creer" titre="image:icone_creer_image" parent="outils_rapides" icone="images/image-new-16.png" action="image_edit" parametres="new=oui" /> 
+	<menu nom="citations" titre="citation:titre_citations" parent="menu_edition" icone="images/citation-16.png" action="citations" /> 
+	<menu nom="citation_creer" titre="citation:icone_creer_citation" parent="outils_rapides" icone="images/citation-new-16.png" action="citation_edit" parametres="new=oui" /> 
+</paquet>

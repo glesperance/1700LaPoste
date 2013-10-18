@@ -1,0 +1,13 @@
+<BOUCLE_image(IMAGES){id_image}{statut?}>
+
+[<div class="champ contenu_titre[ (#TITRE*|strlen|?{'',vide})]">
+	<label><:image:label_titre:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{titre} titre'>(#TITRE)</span>
+</div>]
+
+[<div class="champ contenu_description[ (#DESCRIPTION*|strlen|?{'',vide})]">
+	<label><:image:label_description:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{description} description'>(#DESCRIPTION)</span>
+</div>]
+
+</BOUCLE_image>

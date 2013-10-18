@@ -1,0 +1,36 @@
+[(#SET{defaut_tri,#ARRAY{
+	auteur,1, 
+	id_citation,1,
+	points,-1
+}})]<B_liste_citations>
+#ANCRE_PAGINATION
+<div class="liste-objets citations">
+<table class='spip liste'>
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{citation:info_1_citation,citation:info_nb_citations}})</strong></caption>]
+	<thead>
+		<tr class='first_row'>
+			<th class='picto' scope='col'></th>
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='auteur' scope='col'>[(#TRI{auteur,<:citation:label_auteur:>,ajax})]</th>
+			<th class='id' scope='col'>[(#TRI{id_citation,<:info_numero_abbreviation:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_citations(CITATIONS){id_rubrique?}{id_secteur?}{id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num auteur},#GET{defaut_tri}}{par auteur}{pagination #ENV{nb,10}}>
+		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+			<td class='picto'>[(#CHEMIN_IMAGE{citation-16.png}|balise_img)]</td>
+			<td class='statut'>[(#STATUT|puce_statut{citation,#ID_CITATION,#ID_RUBRIQUE})]</td> 
+			<td class='auteur principale'>[(#LOGO_CITATION|image_reduire{20,26})]<a href="[(#ID_CITATION|generer_url_entite{citation})]" title="<:info_numero_abbreviation|attribut_html:> #ID_CITATION">[(#RANG). ]#AUTEUR</a></td>
+			<td class='id'>[(#AUTORISER{modifier,citation,#ID_CITATION}|?{
+				<a href="[(#URL_ECRIRE{citation_edit,id_citation=#ID_CITATION})]">#ID_CITATION</a>,
+				#ID_CITATION
+			})]</td>
+		</tr>
+	</BOUCLE_liste_citations>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_citations>[
+<div class="liste-objets citations caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_citations>

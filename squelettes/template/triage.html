@@ -1,0 +1,6 @@
+[(#ENV{objet}|=={texte}|oui)<INCLURE{fond=template/texte, id_texte=#ENV{id_objet}}>]
+[(#ENV{objet}|=={article}|oui)<INCLURE{fond=template/article, id_article=#ENV{id_objet}}>]
+[(#ENV{objet}|=={citation}|oui)<INCLURE{fond=template/citation, id_citation=#ENV{id_objet}}>]
+[(#ENV{objet}|=={image}|oui)<INCLURE{fond=template/image, id_image=#ENV{id_objet}}>]
+[(#ENV{objet}|=={video}|oui)<INCLURE{fond=template/video, id_video=#ENV{id_objet}}>]
+[(#ENV{objet}|=={revue}|oui)<INCLURE{fond=template/revue, id_revue=#ENV{id_objet}}>]

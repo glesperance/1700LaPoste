@@ -1,0 +1,23 @@
+<BOUCLE_texte(TEXTES){id_texte}{statut?}>
+
+[<div class="champ contenu_titre[ (#TITRE*|strlen|?{'',vide})]">
+	<label><:texte:label_titre:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{titre} titre'>(#TITRE)</span>
+</div>]
+
+[<div class="champ contenu_description[ (#DESCRIPTION*|strlen|?{'',vide})]">
+	<label><:texte:label_description:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{description} description'>(#DESCRIPTION)</span>
+</div>]
+
+[<div class="champ contenu_texte[ (#TEXTE*|strlen|?{'',vide})]">
+	<label><:texte:label_texte:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{texte} texte'>(#TEXTE)</span>
+</div>]
+
+[<div class="champ contenu_url_video[ (#URL_VIDEO*|strlen|?{'',vide})]">
+	<label><:texte:label_url_video:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{url_video} url_video'>(#URL_VIDEO)</span>
+</div>]
+
+</BOUCLE_texte>

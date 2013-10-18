@@ -1,0 +1,23 @@
+<BOUCLE_contact(CONTACTS){id_contact}{statut?}>
+
+[<div class="champ contenu_nom[ (#NOM*|strlen|?{'',vide})]">
+	<label><:contact:label_nom:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{nom} nom'>(#NOM)</span>
+</div>]
+
+[<div class="champ contenu_poste[ (#POSTE*|strlen|?{'',vide})]">
+	<label><:contact:label_poste:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{poste} poste'>(#POSTE)</span>
+</div>]
+
+[<div class="champ contenu_courriel[ (#COURRIEL*|strlen|?{'',vide})]">
+	<label><:contact:label_courriel:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{courriel} courriel'>(#COURRIEL)</span>
+</div>]
+
+[<div class="champ contenu_telephone[ (#TELEPHONE*|strlen|?{'',vide})]">
+	<label><:contact:label_telephone:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{telephone} telephone'>(#TELEPHONE)</span>
+</div>]
+
+</BOUCLE_contact>

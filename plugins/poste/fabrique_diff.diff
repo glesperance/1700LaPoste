@@ -1,0 +1,323 @@
+Fichiers supprimés : 
+- formulaires/editer_contact.html
+- formulaires/editer_contact.php
+- formulaires/editer_fact.html
+- formulaires/editer_fact.php
+- lang/contact_fr.php
+- lang/fact_fr.php
+- prive/objets/contenu/contact.html
+- prive/objets/contenu/fact.html
+- prive/objets/liste/contacts.html
+- prive/objets/liste/facts.html
+
+Fichiers modifiés : 
+
+
+base/poste.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\BASE\poste.php et ..\TMP\CACHE\FABRIQUE\POSTE\BASE\POSTE.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\BASE\poste.php
+   29:          $interfaces['table_des_tables']['citations'] = 'citations';
+   30:          $interfaces['table_des_tables']['facts'] = 'facts';
+   31:          $interfaces['table_des_tables']['contacts'] = 'contacts';
+   32:
+***** ..\TMP\CACHE\FABRIQUE\POSTE\BASE\POSTE.PHP
+   29:          $interfaces['table_des_tables']['citations'] = 'citations';
+   30:
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\BASE\poste.php
+  232:          $tables['spip_facts'] = array(
+  233:                  'type' => 'fact',
+  234:                  'principale' => "oui",
+  235:                  'field'=> array(
+  236:                          "id_fact"            => "bigint(21) NOT NULL",
+  237:                          "id_rubrique"        => "bigint(21) NOT NULL DEFAULT 0",
+  238:                          "id_secteur"         => "bigint(21) NOT NULL DEFAULT 0",
+  239:                          "premier_champs"     => "tinytext NOT NULL DEFAULT ''",
+  240:                          "deuxieme_champs"    => "tinytext NOT NULL DEFAULT ''",
+  241:                          "statut"             => "varchar(20)  DEFAULT '0' NOT NULL",
+  242:                          "maj"                => "TIMESTAMP"
+  243:                  ),
+  244:                  'key' => array(
+  245:                          "PRIMARY KEY"        => "id_fact",
+  246:                          "KEY id_rubrique"    => "id_rubrique",
+  247:                          "KEY id_secteur"     => "id_secteur",
+  248:                          "KEY statut"         => "statut",
+  249:                  ),
+  250:                  'titre' => "premier_champs AS titre, '' AS lang",
+  251:                   #'date' => "",
+  252:                  'champs_editables'  => array('premier_champs', 'deuxieme_champs'),
+  253:                  'champs_versionnes' => array('premier_champs', 'deuxieme_champs'),
+  254:                  'rechercher_champs' => array("premier_champs" => 8, "deuxieme_champs" => 8),
+  255:                  'tables_jointures'  => array(),
+  256:                  'statut_textes_instituer' => array(
+  257:                          'prepa'    => 'texte_statut_en_cours_redaction',
+  258:                          'prop'     => 'texte_statut_propose_evaluation',
+  259:                          'publie'   => 'texte_statut_publie',
+  260:                          'refuse'   => 'texte_statut_refuse',
+  261:                          'poubelle' => 'texte_statut_poubelle',
+  262:                  ),
+  263:                  'statut'=> array(
+  264:                          array(
+  265:                                  'champ'     => 'statut',
+  266:                                  'publie'    => 'publie',
+  267:                                  'previsu'   => 'publie,prop,prepa',
+  268:                                  'post_date' => 'date',
+  269:                                  'exception' => array('statut','tout')
+  270:                          )
+  271:                  ),
+  272:                  'texte_changer_statut' => 'fact:texte_changer_statut_fact',
+  273:
+  274:
+  275:          );
+  276:
+  277:          $tables['spip_contacts'] = array(
+  278:                  'type' => 'contact',
+  279:                  'principale' => "oui",
+  280:                  'field'=> array(
+  281:                          "id_contact"         => "bigint(21) NOT NULL",
+  282:                          "id_rubrique"        => "bigint(21) NOT NULL DEFAULT 0",
+  283:                          "id_secteur"         => "bigint(21) NOT NULL DEFAULT 0",
+  284:                          "nom"                => "tinytext NOT NULL DEFAULT ''",
+  285:                          "poste"              => "tinytext NOT NULL DEFAULT ''",
+  286:                          "Courriel"           => "tinytext NOT NULL DEFAULT ''",
+  287:                          "telephone"          => "tinytext NOT NULL DEFAULT ''",
+  288:                          "statut"             => "varchar(20)  DEFAULT '0' NOT NULL",
+  289:                          "maj"                => "TIMESTAMP"
+  290:                  ),
+  291:                  'key' => array(
+  292:                          "PRIMARY KEY"        => "id_contact",
+  293:                          "KEY id_rubrique"    => "id_rubrique",
+  294:                          "KEY id_secteur"     => "id_secteur",
+  295:                          "KEY statut"         => "statut",
+  296:                  ),
+  297:                  'titre' => "nom AS titre, '' AS lang",
+  298:                   #'date' => "",
+  299:                  'champs_editables'  => array('nom', 'poste', 'Courriel', 'telephone'),
+  300:                  'champs_versionnes' => array('nom', 'poste', 'Courriel', 'telephone'),
+  301:                  'rechercher_champs' => array("nom" => 10, "poste" => 8, "Courriel" => 8),
+  302:                  'tables_jointures'  => array(),
+  303:                  'statut_textes_instituer' => array(
+  304:                          'prepa'    => 'texte_statut_en_cours_redaction',
+  305:                          'prop'     => 'texte_statut_propose_evaluation',
+  306:                          'publie'   => 'texte_statut_publie',
+  307:                          'refuse'   => 'texte_statut_refuse',
+  308:                          'poubelle' => 'texte_statut_poubelle',
+  309:                  ),
+  310:                  'statut'=> array(
+  311:                          array(
+  312:                                  'champ'     => 'statut',
+  313:                                  'publie'    => 'publie',
+  314:                                  'previsu'   => 'publie,prop,prepa',
+  315:                                  'post_date' => 'date',
+  316:                                  'exception' => array('statut','tout')
+  317:                          )
+  318:                  ),
+  319:                  'texte_changer_statut' => 'contact:texte_changer_statut_contact',
+  320:
+  321:
+  322:          );
+  323:
+  324:          return $tables;
+  325:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE\BASE\POSTE.PHP
+  230:          return $tables;
+  231:  }
+*****
+
+
+
+paquet.xml :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\paquet.xml et ..\TMP\CACHE\FABRIQUE\POSTE\PAQUET.XML
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\paquet.xml
+   11:          <!--
+   12:                  Paquet genere le 2013-10-15 01:59:29
+   13:          -->
+***** ..\TMP\CACHE\FABRIQUE\POSTE\PAQUET.XML
+   11:          <!--
+   12:                  Paquet genere le 2013-10-16 01:26:21
+   13:          -->
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\paquet.xml
+   39:  png" action="citation_edit" parametres="new=oui" />
+   40:          <menu nom="facts" titre="fact:titre_facts" parent="menu_edition" icone="images/fact-16.png" action="facts" />
+   41:          <menu nom="fact_creer" titre="fact:icone_creer_fact" parent="outils_rapides" icone="images/fact-new-16.png" action="fac
+   42:  t_edit" parametres="new=oui" />
+   43:          <menu nom="contacts" titre="contact:titre_contacts" parent="menu_edition" icone="images/contact-16.png" action="contact
+   44:  s" />
+   45:          <menu nom="contact_creer" titre="contact:icone_creer_contact" parent="outils_rapides" icone="images/contact-new-16.png"
+   46:   action="contact_edit" parametres="new=oui" />
+   47:  </paquet>
+***** ..\TMP\CACHE\FABRIQUE\POSTE\PAQUET.XML
+   39:  png" action="citation_edit" parametres="new=oui" />
+   40:  </paquet>
+*****
+
+
+
+poste_administrations.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_administrations.php et ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_ADMINISTRATIONS.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_administrations.php
+   26:
+   27:          $maj['create'] = array(array('maj_tables', array('spip_videos', 'spip_textes', 'spip_images', 'spip_citations', 'spip_f
+   28:  acts', 'spip_contacts')));
+   29:
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_ADMINISTRATIONS.PHP
+   26:
+   27:          $maj['create'] = array(array('maj_tables', array('spip_videos', 'spip_textes', 'spip_images', 'spip_citations')));
+   28:
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_administrations.php
+   47:          sql_drop_table("spip_citations");
+   48:          sql_drop_table("spip_facts");
+   49:          sql_drop_table("spip_contacts");
+   50:
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_ADMINISTRATIONS.PHP
+   46:          sql_drop_table("spip_citations");
+   47:
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_administrations.php
+   51:          # Nettoyer les versionnages et forums
+   52:          sql_delete("spip_versions",              sql_in("objet", array('video', 'texte', 'image', 'citation', 'fact', 'contact'
+   53:  )));
+   54:          sql_delete("spip_versions_fragments",    sql_in("objet", array('video', 'texte', 'image', 'citation', 'fact', 'contact'
+   55:  )));
+   56:          sql_delete("spip_forum",                 sql_in("objet", array('video', 'texte', 'image', 'citation', 'fact', 'contact'
+   57:  )));
+   58:
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_ADMINISTRATIONS.PHP
+   48:          # Nettoyer les versionnages et forums
+   49:          sql_delete("spip_versions",              sql_in("objet", array('video', 'texte', 'image', 'citation')));
+   50:          sql_delete("spip_versions_fragments",    sql_in("objet", array('video', 'texte', 'image', 'citation')));
+   51:          sql_delete("spip_forum",                 sql_in("objet", array('video', 'texte', 'image', 'citation')));
+   52:
+*****
+
+
+
+poste_autorisations.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php et ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
+  380:
+  381:  // -----------------
+  382:  // Objet facts
+  383:
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
+  380:
+  381:
+*****
+
+�chec de la resynchronisation. Les fichiers sont trop diff�rents.
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
+  384:
+  385:  /**
+  386:   * Autorisation de voir un élément de menu (facts)
+  387:   *
+  388:   * @param  string $faire Action demandée
+  389:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  390:   * @param  int    $id    Identifiant de l'objet
+  391:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  392:   * @param  array  $opt   Options de cette autorisation
+  393:   * @return bool          true s'il a le droit, false sinon
+  394:  **/
+  395:  function autoriser_facts_menu_dist($faire, $type, $id, $qui, $opt){
+  396:          return true;
+  397:  }
+  398:
+  399:
+  400:  /**
+  401:   * Autorisation de voir le bouton d'accès rapide de création (fact)
+  402:   *
+  403:   * @param  string $faire Action demandée
+  404:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  405:   * @param  int    $id    Identifiant de l'objet
+  406:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  407:   * @param  array  $opt   Options de cette autorisation
+  408:   * @return bool          true s'il a le droit, false sinon
+  409:  **/
+  410:  function autoriser_factcreer_menu_dist($faire, $type, $id, $qui, $opt){
+  411:          return autoriser('creer', 'fact', '', $qui, $opt);
+  412:  }
+  413:
+  414:  /**
+  415:   * Autorisation de créer (fact)
+  416:   *
+  417:   * @param  string $faire Action demandée
+  418:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  419:   * @param  int    $id    Identifiant de l'objet
+  420:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  421:   * @param  array  $opt   Options de cette autorisation
+  422:   * @return bool          true s'il a le droit, false sinon
+  423:  **/
+  424:  function autoriser_fact_creer_dist($faire, $type, $id, $qui, $opt) {
+  425:          return (in_array($qui['statut'], array('0minirezo', '1comite')) AND sql_countsel('spip_rubriques')>0);
+  426:  }
+  427:
+  428:  /**
+  429:   * Autorisation de voir (fact)
+  430:   *
+  431:   * @param  string $faire Action demandée
+  432:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  433:   * @param  int    $id    Identifiant de l'objet
+  434:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  435:   * @param  array  $opt   Options de cette autorisation
+  436:   * @return bool          true s'il a le droit, false sinon
+  437:  **/
+  438:  function autoriser_fact_voir_dist($faire, $type, $id, $qui, $opt) {
+  439:          return true;
+  440:  }
+  441:
+  442:  /**
+  443:   * Autorisation de modifier (fact)
+  444:   *
+  445:   * @param  string $faire Action demandée
+  446:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  447:   * @param  int    $id    Identifiant de l'objet
+  448:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  449:   * @param  array  $opt   Options de cette autorisation
+  450:   * @return bool          true s'il a le droit, false sinon
+  451:  **/
+  452:  function autoriser_fact_modifier_dist($faire, $type, $id, $qui, $opt) {
+  453:          return in_array($qui['statut'], array('0minirezo', '1comite'));
+  454:  }
+  455:
+  456:  /**
+  457:   * Autorisation de supprimer (fact)
+  458:   *
+  459:   * @param  string $faire Action demandée
+  460:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  461:   * @param  int    $id    Identifiant de l'objet
+  462:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  463:   * @param  array  $opt   Options de cette autorisation
+  464:   * @return bool          true s'il a le droit, false sinon
+  465:  **/
+  466:  function autoriser_fact_supprimer_dist($faire, $type, $id, $qui, $opt) {
+  467:          return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+  468:  }
+  469:
+  470:
+  471:  // -----------------
+  472:  // Objet contacts
+  473:
+  474:
+  475:  /**
+  476:   * Autorisation de voir un élément de menu (contacts)
+  477:   *
+  478:   * @param  string $faire Action demandée
+  479:   * @param  string $type  Type d'objet sur lequel appliquer l'action
+  480:   * @param  int    $id    Identifiant de l'objet
+  481:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
+  482:   * @param  array  $opt   Options de cette autorisation
+  483:   * @return bool          true s'il a le droit, false sinon
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
+  382:
+  383:  ?>
+*****
+

@@ -1,0 +1,28 @@
+Fichiers créés : 
+- poste_deux_administrations.php
+
+Fichiers modifiés : 
+
+
+paquet.xml :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\paquet.xml et ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\PAQUET.XML
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\paquet.xml
+    8:          documentation=""
+    9:  >
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\PAQUET.XML
+    8:          documentation=""
+    9:          schema="1.0.0"
+   10:  >
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\paquet.xml
+   10:          <!--
+   11:                  Paquet genere le 2013-10-16 01:41:49
+   12:          -->
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\PAQUET.XML
+   11:          <!--
+   12:                  Paquet genere le 2013-10-16 01:47:01
+   13:          -->
+*****
+

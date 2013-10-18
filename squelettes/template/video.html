@@ -1,0 +1,13 @@
+<BOUCLE_this(VIDEOS){id_video}>
+<div class="container-fluid" slide-width="0.75" data-type="video"[ style="background-image: url('(#LOGO_VIDEO|extraire_attribut{src}|url_absolue)');"] data-speed="0.2" data-type="background">
+	<div class="row-fluid">
+		<div class="span3 video-card">
+			<iframe src="//player.vimeo.com/video/[(#URL|getVimeoID)]?title=0&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" style="width: 100%; height: 375px;"></iframe>
+			<h3[ class="#EDIT{titre}"]>#TITRE</h3>
+			<div class="texte[ (#EDIT{texte})]">
+			#TEXTE
+			</div>
+		</div>
+	</div><!-- /row-fluid -->
+</div><!-- /container -->
+</BOUCLE_this>

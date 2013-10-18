@@ -1,0 +1,36 @@
+[(#SET{defaut_tri,#ARRAY{
+	titre,1, 
+	id_video,1,
+	points,-1
+}})]<B_liste_videos>
+#ANCRE_PAGINATION
+<div class="liste-objets videos">
+<table class='spip liste'>
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{video:info_1_video,video:info_nb_videos}})</strong></caption>]
+	<thead>
+		<tr class='first_row'>
+			<th class='picto' scope='col'></th>
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='titre' scope='col'>[(#TRI{titre,<:video:label_titre:>,ajax})]</th>
+			<th class='id' scope='col'>[(#TRI{id_video,<:info_numero_abbreviation:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_videos(VIDEOS){id_rubrique?}{id_secteur?}{id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num titre},#GET{defaut_tri}}{par titre}{pagination #ENV{nb,10}}>
+		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+			<td class='picto'>[(#CHEMIN_IMAGE{video-16.png}|balise_img)]</td>
+			<td class='statut'>[(#STATUT|puce_statut{video,#ID_VIDEO,#ID_RUBRIQUE})]</td> 
+			<td class='titre principale'>[(#LOGO_VIDEO|image_reduire{20,26})]<a href="[(#ID_VIDEO|generer_url_entite{video})]" title="<:info_numero_abbreviation|attribut_html:> #ID_VIDEO">[(#RANG). ]#TITRE</a></td>
+			<td class='id'>[(#AUTORISER{modifier,video,#ID_VIDEO}|?{
+				<a href="[(#URL_ECRIRE{video_edit,id_video=#ID_VIDEO})]">#ID_VIDEO</a>,
+				#ID_VIDEO
+			})]</td>
+		</tr>
+	</BOUCLE_liste_videos>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_videos>[
+<div class="liste-objets videos caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_videos>

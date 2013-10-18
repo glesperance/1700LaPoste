@@ -1,0 +1,69 @@
+#HTTP_HEADER{Content-Type: application/json; charset=utf-8}
+#HTTP_HEADER{Content-Type: application/json; charset=utf-8}
+
+{"object" : [
+    <B_vid>
+    
+        <BOUCLE_vid(VIDEOS){id_rubrique = #ENV{id_rubrique}}{','}>
+            {"type" : "video", "id" : "#ID_VIDEO", "ordre": "[(#TITRE*|couper{3})]"}
+        </BOUCLE_vid>
+        ,
+    </B_vid>
+        {},
+    <//B_vid>
+    <B_txt>
+        
+        <BOUCLE_txt(TEXTES){id_rubrique = #ENV{id_rubrique}}{','}>
+            {"type" : "texte", "id" : "#ID_TEXTE", "ordre": "[(#TITRE*|couper{3})]"}
+        </BOUCLE_txt>
+        ,
+    </B_txt>
+        {},
+    <//B_txt>
+    <B_art>
+        
+        <BOUCLE_art(ARTICLES){id_rubrique = #ENV{id_rubrique}}{','}>
+            {"type" : "article", "id" : "#ID_ARTICLE", "ordre": "[(#TITRE*|couper{3})]"}
+        </BOUCLE_art>
+        ,
+    </B_art>
+        {},
+    <//B_art>
+    <B_img>
+        
+        <BOUCLE_img(IMAGES){id_rubrique = #ENV{id_rubrique}}{','}>
+            {"type" : "image", "id" : "#ID_IMAGE", "ordre": "[(#TITRE*|couper{3})]"}
+        </BOUCLE_img>
+        ,
+    </B_img>
+        {},
+    <//B_img>
+    <B_cit>
+        
+        <BOUCLE_cit(CITATIONS){id_rubrique = #ENV{id_rubrique}}{','}>
+            {"type" : "citation", "id" : "#ID_CITATION", "ordre": "[(#TITRE*|couper{3})]"}
+        </BOUCLE_cit>
+        ,
+    </B_cit>
+        {},
+    <//B_cit>
+    <B_fac>
+        
+        <BOUCLE_fac(FACTS){id_rubrique = #ENV{id_rubrique}}{','}>
+            {"type" : "fact", "id" : "#ID_FACT", "ordre": "[(#TITRE*|couper{3})]"}
+        </BOUCLE_fac>
+        ,
+    </B_fac>
+        {},
+    <//B_fac>
+    <B_cont>
+        
+        <BOUCLE_cont(CONTACTS){id_rubrique = #ENV{id_rubrique}}{','}>
+            {"type" : "contact", "id" : #ID_CONTACT, "ordre": "[(#TITRE*|couper{3})]"}
+        </BOUCLE_cont>
+        
+    </B_cont>
+        {}
+    <//B_cont>
+    ]
+}
