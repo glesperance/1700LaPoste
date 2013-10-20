@@ -416,6 +416,14 @@ a:hover {
   text-align: center;
   top: 26px;
 }
+.navbar > .responsive-menu-button {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 45px;
+  margin-top: -12px;
+  font-size: 22px;
+}
 .navbar > .nav {
   display: table;
   list-style: none;
@@ -647,6 +655,12 @@ a:hover {
   }
   #section5 .span8 {
     margin-top: 30px;
+  }
+  .navbar .nav {
+    display: none;
+  }
+  .navbar .responsive-menu-button {
+    display: inline-block;
   }
 }
 @media screen and (min-width: 481px) and (max-width: 649px) {

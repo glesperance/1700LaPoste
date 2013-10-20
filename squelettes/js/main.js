@@ -38,6 +38,9 @@ $(function ($) {
       })
     })
 
+    // Setup Responsive Sidr Menu
+    $('.responsive-menu-button').sidr({ source: '#nav' })
+
     $(document).scrollsnap({
         snaps     : '.section'
       , proximity : sectionsHeight / 2

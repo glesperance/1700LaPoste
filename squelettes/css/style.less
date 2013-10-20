@@ -470,6 +470,15 @@ a:hover {
   text-align: center;
   top:  @outer-border-size + @inner-margin + @inner-border-size;
 
+  >.responsive-menu-button {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 45px;
+    margin-top: -12px;
+    font-size: 22px;
+  }
+
   >.nav {
     display: table;
     list-style: none;
@@ -743,15 +752,22 @@ a:hover {
 	}
 	
 	#expositions .content img {
-    	margin-top: 30px;
-    	padding: 1.5%;
-    }
+  	margin-top: 30px;
+  	padding: 1.5%;
+  }
         
-    #section5 .span8 {
-	    margin-top: 30px;
-    }
+  #section5 .span8 {
+    margin-top: 30px;
+  }
     
-	
+  .navbar .nav {
+    display: none;
+  }
+
+  .navbar .responsive-menu-button {
+    display: inline-block;
+  }
+
 }
 
 @media screen and (min-width: 481px) and (max-width: 649px) {
