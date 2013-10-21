@@ -132,7 +132,7 @@ $(function ($) {
     $scroller.attr('slide-first', true)
   })
 
-  // Setup nav bar secondary menuu
+  // Setup nav bar secondary menu
   $('.nav > li').each(function () {
     var $menu = $(this)
     var $anchor = $menu.children('a')
