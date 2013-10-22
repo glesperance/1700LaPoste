@@ -53,11 +53,18 @@ $(function ($) {
 
 	}
 
+  $('#section1').addClass('sticky')
+  $('#section1 .container-fluid-scroller > :first-child .row-fluid > :first-child').addClass('current-only')
+  $('#section1 .container-fluid-scroller > :first-child .row-fluid > .card .footer').addClass('current-only')
+
   // Setup Scrollers
   $('.scroller').each(function () {
     var $scroller = $(this)
     var scrollerWidth = $scroller.attr('scroller-width') || 100
     var $containerFluidScroller = $(this).children('.container-fluid-scroller')
+    
+    var isSticky = $scroller.hasClass('sticky')
+    var $firstSlide = $containerFluidScroller.find('> :first-child')
     
     var scrollerLength = 0
 
@@ -99,7 +106,7 @@ $(function ($) {
     function scroll(options) {
       if (!options) options = {}
 
-      var $currentSlide = $containerFluidScroller.children('.current')
+      var $currentSlide = $containerFluidScroller.children('[current=true]')
       if (!$currentSlide.length) $currentSlide = $containerFluidScroller.children().first()
       
       var $slide
@@ -114,13 +121,22 @@ $(function ($) {
 
       var distance = getDistance($slide)
 
-      $slide.addClass('current')
-      $slide.siblings().removeClass('current')
+      $slide.attr('current', true)
+      $slide.siblings().attr('current', false)
 
       $scroller.attr('slide-first', !$slide.prev().length)
       $scroller.attr('slide-last', !$slide.next().length)
 
-      $containerFluidScroller.css({ 'left' : '-' + distance * (scrollerWidth) + '%' })
+      var scrollPositionPercent =  distance * (scrollerWidth)
+      $containerFluidScroller.css({ 'left' : '-' + scrollPositionPercent +  '%' })
+
+      if (isSticky) {
+        var relativeSizeAdjustment = $firstSlide.outerWidth() / $firstSlide.width()
+        $firstSlide.find('> .row-fluid').css({
+          left : scrollPositionPercent * relativeSizeAdjustment  + '%'
+          // 'left' : scrollPositionPercent * $firstSlide.attr('slide-width') / scrollerLength + '%'
+        })
+      }
     }
 
     $containerFluidScroller.find('.next').click(function () { scroll() })

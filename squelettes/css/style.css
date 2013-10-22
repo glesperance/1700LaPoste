@@ -29,7 +29,7 @@
   background-position: 0 100%;
 }
 #contact[scrollsnap-current="true"] ~ #wave #thepng {
-  background-position: 0 0; 
+  background-position: 0 0;
 }
 /* Global */
 *,
@@ -52,7 +52,6 @@ body {
   font-weight: 300;
   line-height: 22px;
   /* margin-top: 60px; */
-
 }
 h1,
 h2,
@@ -116,7 +115,8 @@ a:hover {
   -o-transition: opacity 400ms 200ms;
   transition: opacity 400ms 200ms;
 }
-/* General Styling */#container {
+/* General Styling */
+#container {
   backface-visibility: hidden;
   position: relative;
   transform: translate3d(0px, 0px, 0px);
@@ -182,7 +182,7 @@ a:hover {
 .scroller.no-slide-padding-left .container-fluid {
   padding-left: 0;
 }
-.container-fluid-scroller {
+.scroller .container-fluid-scroller {
   display: table;
   position: relative;
   -webkit-transition: left 0.5s ease;
@@ -190,6 +190,25 @@ a:hover {
   -o-transition: left 0.5s ease;
   transition: left 0.5s ease;
   background-color: #232323;
+}
+.scroller.sticky .container-fluid-scroller > .container-fluid:first-child[current=false] .current-only {
+  width: 0;
+  opacity: 0;
+  height: 0;
+}
+.scroller.sticky .container-fluid-scroller > .container-fluid:first-child .row-fluid {
+  z-index: 11;
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+  -o-transition: left 0.5s ease;
+  transition: left 0.5s ease;
+}
+.scroller.sticky .container-fluid-scroller > .container-fluid:first-child .row-fluid .current-only {
+  overflow: hidden;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 [data-type="background"] {
   background-size: auto !important;
@@ -328,7 +347,8 @@ a:hover {
 }
 .card p,
 .video-card p {
-  margin: 0 0 20px 0;
+  margin: 10px 0 0px 0;
+  display: inline-block;
 }
 .card .notes,
 .video-card .notes {
@@ -503,7 +523,6 @@ a:hover {
   right: -1px;
   left: -1px;
   /* Edge Smoothing hack */
-
   -webkit-transform: rotate(0.05deg);
   -moz-transform: scale(1.0001);
   -o-transform: rotate(0.005deg);
@@ -578,15 +597,6 @@ a:hover {
   margin-top: -1px;
 }
 /* Media Queries */
-@media screen and (min-width: 1800px) {
-  
-}
-@media screen and (max-width: 1320px) {
-  
-}
-@media screen and (min-width: 1200px) {
-  
-}
 @media screen and (max-width: 1199px) {
   .section h2 {
     font-size: 18px;
@@ -666,13 +676,4 @@ a:hover {
   .navbar .responsive-menu-button {
     display: inline-block;
   }
-}
-@media screen and (min-width: 481px) and (max-width: 649px) {
-  
-}
-@media screen and (min-width: 481px) {
-  
-}
-@media screen and (max-width: 480px) {
-  
 }
