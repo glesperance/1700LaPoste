@@ -87,6 +87,10 @@ $(function ($) {
       $child.css({ 'width' : childWidthPercent + '%' })
     })
 
+    $(window).resize(function () {
+      scroll({ refresh : true })
+    })
+
     function getDistance($slide) {
       var alignLeft = $scroller.attr('slide-align')
       var distance = alignLeft ? 0 : -1
@@ -110,7 +114,10 @@ $(function ($) {
       if (!$currentSlide.length) $currentSlide = $containerFluidScroller.children().first()
       
       var $slide
-      if (options.prev) {
+      if (options.refresh) {
+        $slide = $currentSlide
+      }
+      else if (options.prev) {
         $slide = $currentSlide.prev()
         if (!$slide.length) $slide = $containerFluidScroller.children().last()
       } 
@@ -133,8 +140,7 @@ $(function ($) {
       if (isSticky) {
         var relativeSizeAdjustment = $firstSlide.outerWidth() / $firstSlide.width()
         $firstSlide.find('> .row-fluid').css({
-          left : scrollPositionPercent * relativeSizeAdjustment  + '%'
-          // 'left' : scrollPositionPercent * $firstSlide.attr('slide-width') / scrollerLength + '%'
+          'left' : Math.ceil(scrollPositionPercent * relativeSizeAdjustment)  + '%'
         })
       }
     }

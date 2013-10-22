@@ -191,6 +191,9 @@ a:hover {
   transition: left 0.5s ease;
   background-color: #232323;
 }
+.scroller.sticky {
+  word-break: break-word;
+}
 .scroller.sticky .container-fluid-scroller > .container-fluid:first-child[current=false] .current-only {
   width: 0;
   opacity: 0;
