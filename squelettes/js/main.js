@@ -19,7 +19,7 @@ $(function ($) {
 	  // Properly sizes all sections
     var viewPortheight    = $(window).innerHeight()
       , borderAdjustment  = $('#fixed-border-left').css('border-right-width').slice(0, -"px".length)
-      , sectionsHeight    = (viewPortheight - borderAdjustment)
+      , sectionsHeight    = (viewPortheight)
 
 	  $('.section').css({ 'height': sectionsHeight + 'px' });
     $('.section.scroller').css({ 'min-height': sectionsHeight + 'px', 'height' : 'initial' });
