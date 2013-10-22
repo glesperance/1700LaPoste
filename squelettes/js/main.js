@@ -53,9 +53,13 @@ $(function ($) {
 
 	}
 
+  /****************************************************************************
+   * Sticky Section Demo Code. Add to templates and remove in Prod.
+   */
   $('#section1').addClass('sticky')
   $('#section1 .container-fluid-scroller > :first-child .row-fluid > :first-child').addClass('current-only')
   $('#section1 .container-fluid-scroller > :first-child .row-fluid > .card .footer').addClass('current-only')
+  /***************************************************************************/
 
   // Setup Scrollers
   $('.scroller').each(function () {
@@ -140,16 +144,21 @@ $(function ($) {
       if (isSticky) {
         var $rowFluid = $firstSlide.find('> .row-fluid')
         var isFireFox = !!window.sidebar
-        var relativeSizeAdjustment = ($firstSlide.outerWidth() / $rowFluid.width())
+        
+        var relativeSizeAdjustment
 
-        if (isFireFox)  
+        if (isFireFox)  {
+          relativeSizeAdjustment = ($firstSlide.outerWidth() / $rowFluid.width())
           $rowFluid.css({
             'transform' : 'translate3d(' + Math.ceil(scrollPositionPercent * relativeSizeAdjustment)  + '%' + ', 0, 0)'
           })
-        else
+        }
+        else {
+          relativeSizeAdjustment = ($firstSlide.outerWidth() / $firstSlide.width())
           $rowFluid.css({
             'left' : Math.ceil(scrollPositionPercent * relativeSizeAdjustment)  + '%'
           })
+        }
       }
     }
 
