@@ -52,7 +52,6 @@ body {
   font-weight: 300;
   line-height: 22px;
   /* margin-top: 60px; */
-
 }
 h1,
 h2,
@@ -116,7 +115,8 @@ a:hover {
   -o-transition: opacity 400ms 200ms;
   transition: opacity 400ms 200ms;
 }
-/* General Styling */#container {
+/* General Styling */
+#container {
   backface-visibility: hidden;
   position: relative;
   transform: translate3d(0px, 0px, 0px);
@@ -144,6 +144,10 @@ a:hover {
   white-space: nowrap;
   font-family: 'Buenard', 'Time New Roman', serif;
   text-align: left;
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  margin-top: -0.13em;
 }
 .scroller-control {
   top: 50%;
@@ -271,7 +275,6 @@ a:hover {
 }
 .card {
   border: 10px solid #ffffff;
-  margin-bottom: 20px;
   color: #31302b;
   font-family: 'Buenard', 'Time New Roman', serif;
   text-align: center;
@@ -526,7 +529,6 @@ a:hover {
   right: -1px;
   left: -1px;
   /* Edge Smoothing hack */
-
   -webkit-transform: rotate(0.05deg);
   -moz-transform: scale(1.0001);
   -o-transform: rotate(0.005deg);
@@ -601,21 +603,11 @@ a:hover {
   margin-top: -1px;
 }
 /* Media Queries */
-@media screen and (min-width: 1800px) {
-  
-}
-@media screen and (max-width: 1320px) {
-  
-}
-@media screen and (min-width: 1200px) {
-  
-}
 @media screen and (max-width: 1199px) {
   .section h2 {
-    font-size: 18px;
+    font-size: 32px;
     text-align: center;
     line-height: 32px;
-    margin: 20px auto;
   }
   .container-fluid {
     padding-left: 75px;
@@ -664,6 +656,10 @@ a:hover {
   .section .content .pull-right {
     float: left;
   }
+  .section h2 {
+    margin: 20px auto;
+    position: relative;
+  }
   .section h4 {
     margin-top: 30px;
   }
@@ -689,13 +685,4 @@ a:hover {
   .navbar .responsive-menu-button {
     display: inline-block;
   }
-}
-@media screen and (min-width: 481px) and (max-width: 649px) {
-  
-}
-@media screen and (min-width: 481px) {
-  
-}
-@media screen and (max-width: 480px) {
-  
 }

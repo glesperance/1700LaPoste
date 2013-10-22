@@ -154,6 +154,11 @@ a:hover {
     white-space: nowrap;
     .buenard;
     text-align: left;
+
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    margin-top: -0.13em;
   }
 }
 .scroller-control {
@@ -287,7 +292,6 @@ a:hover {
 }
 
 .video-card {
-  margin-bottom: 20px;
   color: hsl(50, 6%, 18%);
   .buenard;
   text-align: center;
@@ -301,7 +305,6 @@ a:hover {
 
 .card {
   border: 10px solid hsl(0, 100%, 100%);
-  margin-bottom: 20px;
   color: hsl(50, 6%, 18%);
   .buenard;
   text-align: center;
@@ -692,10 +695,9 @@ a:hover {
 @media screen and (max-width: 1199px) {
 
 	.section h2 {
-	    font-size: 18px;
+	    font-size: 32px;
 	    text-align: center;
 	    line-height: 32px;
-	    margin: 20px auto;
 	}
 
   .container-fluid {
@@ -762,7 +764,10 @@ a:hover {
 	.section .content .pull-right {
     	float:left;
     }
-	
+	.section h2 {
+    margin: 20px auto;
+    position: relative;
+  }
 	.section h4 {
 		margin-top: 30px;
 	}
