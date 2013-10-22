@@ -43,6 +43,10 @@
                     });
 
                     if (matchingEl) {
+
+                        $(matchingEl).siblings('[scrollsnap-current=true]').attr('scrollsnap-current', false);
+                        $(matchingEl).attr('scrollsnap-current', true);
+
                         var endScroll = matchingEl['offset'+leftOrTop] + self.scrollsnapSettings.offset,
                             animateProp = {};
                         animateProp['scroll'+leftOrTop] = endScroll;
@@ -70,6 +74,9 @@
                     });
 
                     if (matchingEl) {
+                        $(matchingEl).siblings('[scrollsnap-current=true]').attr('scrollsnap-current', false);
+                        $(matchingEl).attr('scrollsnap-current', true);
+
                         var endScroll = $(matchingEl).offset()[leftOrTop.toLowerCase()] + self.scrollsnapSettings.offset,
                             animateProp = {};
                         animateProp['scroll'+leftOrTop] = endScroll;

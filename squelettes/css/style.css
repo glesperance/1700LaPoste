@@ -26,6 +26,10 @@
   width: 560px;
   display: block;
   margin: 0 auto;
+  background-position: 0 100%;
+}
+#contact[scrollsnap-current="true"] ~ #wave #thepng {
+  background-position: 0 0; 
 }
 /* Global */
 *,
