@@ -205,10 +205,10 @@ a:hover {
 }
 .scroller.sticky .container-fluid-scroller > .container-fluid:first-child .row-fluid {
   z-index: 11;
-  -webkit-transition: left 0.5s ease;
-  -moz-transition: left 0.5s ease;
-  -o-transition: left 0.5s ease;
-  transition: left 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 .scroller.sticky .container-fluid-scroller > .container-fluid:first-child .row-fluid .current-only {
   overflow: hidden;
@@ -263,7 +263,6 @@ a:hover {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .video-card {
-  margin-bottom: 20px;
   color: #31302b;
   font-family: 'Buenard', 'Time New Roman', serif;
   text-align: center;

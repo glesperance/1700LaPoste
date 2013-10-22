@@ -138,10 +138,18 @@ $(function ($) {
       $containerFluidScroller.css({ 'left' : '-' + scrollPositionPercent +  '%' })
 
       if (isSticky) {
-        var relativeSizeAdjustment = $firstSlide.outerWidth() / $firstSlide.width()
-        $firstSlide.find('> .row-fluid').css({
-          'left' : Math.ceil(scrollPositionPercent * relativeSizeAdjustment)  + '%'
-        })
+        var $rowFluid = $firstSlide.find('> .row-fluid')
+        var isFireFox = !!window.sidebar
+        var relativeSizeAdjustment = ($firstSlide.outerWidth() / $rowFluid.width())
+
+        if (isFireFox)  
+          $rowFluid.css({
+            'transform' : 'translate3d(' + Math.ceil(scrollPositionPercent * relativeSizeAdjustment)  + '%' + ', 0, 0)'
+          })
+        else
+          $rowFluid.css({
+            'left' : Math.ceil(scrollPositionPercent * relativeSizeAdjustment)  + '%'
+          })
       }
     }
 
