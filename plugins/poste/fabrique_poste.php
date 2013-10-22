@@ -2,7 +2,7 @@
 
 /**
  *  Fichier généré par la Fabrique de plugin v5
- *   le 2013-10-16 01:26:21
+ *   le 2013-10-22 04:07:14
  *
  *  Ce fichier de sauvegarde peut servir à recréer
  *  votre plugin avec le plugin «Fabrique» qui a servi à le créer.
@@ -135,6 +135,7 @@ $data = array (
       array (
         0 => 'id_rubrique',
         1 => 'id_secteur',
+        2 => 'vue_rubrique',
       ),
       'champ_date' => '',
       'statut' => 'on',
@@ -162,6 +163,12 @@ $data = array (
       'roles' => '',
       'auteurs_liens' => '',
       'vue_auteurs_liens' => '',
+      'echafaudages' => 
+      array (
+        0 => 'prive/squelettes/contenu/objets.html',
+        1 => 'prive/objets/infos/objet.html',
+        2 => 'prive/squelettes/contenu/objet.html',
+      ),
       'autorisations' => 
       array (
         'objet_creer' => '',
@@ -254,6 +261,7 @@ $data = array (
       array (
         0 => 'id_rubrique',
         1 => 'id_secteur',
+        2 => 'vue_rubrique',
       ),
       'champ_date' => '',
       'statut' => 'on',
@@ -281,6 +289,12 @@ $data = array (
       'roles' => '',
       'auteurs_liens' => '',
       'vue_auteurs_liens' => '',
+      'echafaudages' => 
+      array (
+        0 => 'prive/squelettes/contenu/objets.html',
+        1 => 'prive/objets/infos/objet.html',
+        2 => 'prive/squelettes/contenu/objet.html',
+      ),
       'autorisations' => 
       array (
         'objet_creer' => '',
@@ -343,6 +357,7 @@ $data = array (
       array (
         0 => 'id_rubrique',
         1 => 'id_secteur',
+        2 => 'vue_rubrique',
       ),
       'champ_date' => '',
       'statut' => 'on',
@@ -370,6 +385,12 @@ $data = array (
       'roles' => '',
       'auteurs_liens' => '',
       'vue_auteurs_liens' => '',
+      'echafaudages' => 
+      array (
+        0 => 'prive/squelettes/contenu/objets.html',
+        1 => 'prive/objets/infos/objet.html',
+        2 => 'prive/squelettes/contenu/objet.html',
+      ),
       'autorisations' => 
       array (
         'objet_creer' => '',
@@ -447,6 +468,7 @@ $data = array (
       array (
         0 => 'id_rubrique',
         1 => 'id_secteur',
+        2 => 'vue_rubrique',
       ),
       'champ_date' => '',
       'statut' => 'on',
@@ -474,6 +496,12 @@ $data = array (
       'roles' => '',
       'auteurs_liens' => '',
       'vue_auteurs_liens' => '',
+      'echafaudages' => 
+      array (
+        0 => 'prive/squelettes/contenu/objets.html',
+        1 => 'prive/objets/infos/objet.html',
+        2 => 'prive/squelettes/contenu/objet.html',
+      ),
       'autorisations' => 
       array (
         'objet_creer' => '',

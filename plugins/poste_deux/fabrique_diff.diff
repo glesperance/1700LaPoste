@@ -1,28 +1,783 @@
+Fichiers supprimés : 
+- prive/objets/liste/contacts_associer.html
+- prive/objets/liste/contacts_associer_fonctions.php
+- prive/objets/liste/contacts_lies.html
+- prive/objets/liste/contacts_lies_fonctions.php
+- prive/objets/liste/facts_associer.html
+- prive/objets/liste/facts_associer_fonctions.php
+- prive/objets/liste/facts_lies.html
+- prive/objets/liste/facts_lies_fonctions.php
+- prive/objets/liste/revues_associer.html
+- prive/objets/liste/revues_associer_fonctions.php
+- prive/objets/liste/revues_lies.html
+- prive/objets/liste/revues_lies_fonctions.php
+- prive/squelettes/contenu/contact_edit.html
+- prive/squelettes/contenu/fact_edit.html
+- prive/squelettes/contenu/revue_edit.html
+
 Fichiers créés : 
-- poste_deux_administrations.php
+- prive/objets/infos
+- prive/objets/infos/contact.html
+- prive/objets/infos/fact.html
+- prive/objets/infos/revue.html
+- prive/squelettes/contenu/contact.html
+- prive/squelettes/contenu/contacts.html
+- prive/squelettes/contenu/fact.html
+- prive/squelettes/contenu/facts.html
+- prive/squelettes/contenu/revue.html
+- prive/squelettes/contenu/revues.html
 
 Fichiers modifiés : 
+
+
+base/poste_deux.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\BASE\poste_deux.php et ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\BASE\POSTE_DEUX.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\BASE\poste_deux.php
+   67:                  'rechercher_champs' => array("premier_champs" => 10, "deuxieme_champs" => 10),
+   68:                  'tables_jointures'  => array('spip_facts_liens'),
+   69:                  'statut_textes_instituer' => array(
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\BASE\POSTE_DEUX.PHP
+   67:                  'rechercher_champs' => array("premier_champs" => 10, "deuxieme_champs" => 10),
+   68:                  'tables_jointures'  => array(),
+   69:                  'statut_textes_instituer' => array(
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\BASE\poste_deux.php
+  114:                  'rechercher_champs' => array("nom" => 10, "poste" => 8, "courriel" => 8),
+  115:                  'tables_jointures'  => array('spip_contacts_liens'),
+  116:                  'statut_textes_instituer' => array(
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\BASE\POSTE_DEUX.PHP
+  114:                  'rechercher_champs' => array("nom" => 10, "poste" => 8, "courriel" => 8),
+  115:                  'tables_jointures'  => array(),
+  116:                  'statut_textes_instituer' => array(
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\BASE\poste_deux.php
+  161:                  'rechercher_champs' => array("titre" => 10, "extrait" => 8, "media" => 8),
+  162:                  'tables_jointures'  => array('spip_revues_liens'),
+  163:                  'statut_textes_instituer' => array(
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\BASE\POSTE_DEUX.PHP
+  161:                  'rechercher_champs' => array("titre" => 10, "extrait" => 8, "media" => 8),
+  162:                  'tables_jointures'  => array(),
+  163:                  'statut_textes_instituer' => array(
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\BASE\poste_deux.php
+  187:
+  188:  /**
+  189:   * Déclaration des tables secondaires (liaisons)
+  190:   *
+  191:   * @pipeline declarer_tables_auxiliaires
+  192:   * @param array $tables
+  193:   *     Description des tables
+  194:   * @return array
+  195:   *     Description complétée des tables
+  196:   */
+  197:  function poste_deux_declarer_tables_auxiliaires($tables) {
+  198:
+  199:          $tables['spip_facts_liens'] = array(
+  200:                  'field' => array(
+  201:                          "id_fact"            => "bigint(21) DEFAULT '0' NOT NULL",
+  202:                          "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+  203:                          "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+  204:                          "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+  205:                  ),
+  206:                  'key' => array(
+  207:                          "PRIMARY KEY"        => "id_fact,id_objet,objet",
+  208:                          "KEY id_fact"        => "id_fact"
+  209:                  )
+  210:          );
+  211:          $tables['spip_contacts_liens'] = array(
+  212:                  'field' => array(
+  213:                          "id_contact"         => "bigint(21) DEFAULT '0' NOT NULL",
+  214:                          "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+  215:                          "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+  216:                          "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+  217:                  ),
+  218:                  'key' => array(
+  219:                          "PRIMARY KEY"        => "id_contact,id_objet,objet",
+  220:                          "KEY id_contact"     => "id_contact"
+  221:                  )
+  222:          );
+  223:          $tables['spip_revues_liens'] = array(
+  224:                  'field' => array(
+  225:                          "id_revue"           => "bigint(21) DEFAULT '0' NOT NULL",
+  226:                          "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+  227:                          "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+  228:                          "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+  229:                  ),
+  230:                  'key' => array(
+  231:                          "PRIMARY KEY"        => "id_revue,id_objet,objet",
+  232:                          "KEY id_revue"       => "id_revue"
+  233:                  )
+  234:          );
+  235:
+  236:          return $tables;
+  237:  }
+  238:
+  239:
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\BASE\POSTE_DEUX.PHP
+  187:
+  188:
+*****
+
+
+
+formulaires/editer_contact.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_contact.php et ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_CONTACT.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_contact.php
+   25:   *     URL de redirection après le traitement
+   26:   * @param string $associer_objet
+   27:   *     Éventuel `objet|x` indiquant de lier le contact créé à cet objet,
+   28:   *     tel que `article|3`
+   29:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_CONTACT.PHP
+   25:   *     URL de redirection après le traitement
+   26:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_contact.php
+   39:   */
+   40:  function formulaires_editer_contact_identifier_dist($id_contact='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_tr
+   41:  ad=0, $config_fonc='', $row=array(), $hidden=''){
+   42:          return serialize(array(intval($id_contact), $associer_objet));
+   43:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_CONTACT.PHP
+   36:   */
+   37:  function formulaires_editer_contact_identifier_dist($id_contact='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='
+   38:  ', $row=array(), $hidden=''){
+   39:          return serialize(array(intval($id_contact)));
+   40:  }
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_contact.php
+   57:   *     URL de redirection après le traitement
+   58:   * @param string $associer_objet
+   59:   *     Éventuel `objet|x` indiquant de lier le contact créé à cet objet,
+   60:   *     tel que `article|3`
+   61:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_CONTACT.PHP
+   54:   *     URL de redirection après le traitement
+   55:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_contact.php
+   71:   */
+   72:  function formulaires_editer_contact_charger_dist($id_contact='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=
+   73:  0, $config_fonc='', $row=array(), $hidden=''){
+   74:          $valeurs = formulaires_editer_objet_charger('contact',$id_contact,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hi
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_CONTACT.PHP
+   65:   */
+   66:  function formulaires_editer_contact_charger_dist($id_contact='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='',
+   67:  $row=array(), $hidden=''){
+   68:          $valeurs = formulaires_editer_objet_charger('contact',$id_contact,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hi
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_contact.php
+   91:   *     URL de redirection après le traitement
+   92:   * @param string $associer_objet
+   93:   *     Éventuel `objet|x` indiquant de lier le contact créé à cet objet,
+   94:   *     tel que `article|3`
+   95:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_CONTACT.PHP
+   85:   *     URL de redirection après le traitement
+   86:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_contact.php
+  105:   */
+  106:  function formulaires_editer_contact_verifier_dist($id_contact='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad
+  107:  =0, $config_fonc='', $row=array(), $hidden=''){
+  108:          return formulaires_editer_objet_verifier('contact',$id_contact);
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_CONTACT.PHP
+   96:   */
+   97:  function formulaires_editer_contact_verifier_dist($id_contact='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='',
+   98:   $row=array(), $hidden=''){
+   99:          return formulaires_editer_objet_verifier('contact',$id_contact);
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_contact.php
+  123:   *     URL de redirection après le traitement
+  124:   * @param string $associer_objet
+  125:   *     Éventuel `objet|x` indiquant de lier le contact créé à cet objet,
+  126:   *     tel que `article|3`
+  127:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_CONTACT.PHP
+  114:   *     URL de redirection après le traitement
+  115:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_contact.php
+  137:   */
+  138:  function formulaires_editer_contact_traiter_dist($id_contact='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=
+  139:  0, $config_fonc='', $row=array(), $hidden=''){
+  140:          $res = formulaires_editer_objet_traiter('contact',$id_contact,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden
+  141:  );
+  142:
+  143:          // Un lien a prendre en compte ?
+  144:          if ($associer_objet AND $id_contact = $res['id_contact']) {
+  145:                  list($objet, $id_objet) = explode('|', $associer_objet);
+  146:
+  147:                  if ($objet AND $id_objet AND autoriser('modifier', $objet, $id_objet)) {
+  148:                          include_spip('action/editer_liens');
+  149:                          objet_associer(array('contact' => $id_contact), array($objet => $id_objet));
+  150:                          if (isset($res['redirect'])) {
+  151:                                  $res['redirect'] = parametre_url ($res['redirect'], "id_lien_ajoute", $id_contact, '&');
+  152:                          }
+  153:                  }
+  154:          }
+  155:          return $res;
+  156:
+  157:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_CONTACT.PHP
+  125:   */
+  126:  function formulaires_editer_contact_traiter_dist($id_contact='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='',
+  127:  $row=array(), $hidden=''){
+  128:          return formulaires_editer_objet_traiter('contact',$id_contact,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden
+  129:  );
+  130:  }
+*****
+
+
+
+formulaires/editer_fact.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_fact.php et ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_FACT.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_fact.php
+   25:   *     URL de redirection après le traitement
+   26:   * @param string $associer_objet
+   27:   *     Éventuel `objet|x` indiquant de lier le fact créé à cet objet,
+   28:   *     tel que `article|3`
+   29:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_FACT.PHP
+   25:   *     URL de redirection après le traitement
+   26:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_fact.php
+   39:   */
+   40:  function formulaires_editer_fact_identifier_dist($id_fact='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0,
+   41:  $config_fonc='', $row=array(), $hidden=''){
+   42:          return serialize(array(intval($id_fact), $associer_objet));
+   43:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_FACT.PHP
+   36:   */
+   37:  function formulaires_editer_fact_identifier_dist($id_fact='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $ro
+   38:  w=array(), $hidden=''){
+   39:          return serialize(array(intval($id_fact)));
+   40:  }
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_fact.php
+   57:   *     URL de redirection après le traitement
+   58:   * @param string $associer_objet
+   59:   *     Éventuel `objet|x` indiquant de lier le fact créé à cet objet,
+   60:   *     tel que `article|3`
+   61:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_FACT.PHP
+   54:   *     URL de redirection après le traitement
+   55:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_fact.php
+   71:   */
+   72:  function formulaires_editer_fact_charger_dist($id_fact='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $co
+   73:  nfig_fonc='', $row=array(), $hidden=''){
+   74:          $valeurs = formulaires_editer_objet_charger('fact',$id_fact,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_FACT.PHP
+   65:   */
+   66:  function formulaires_editer_fact_charger_dist($id_fact='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row=a
+   67:  rray(), $hidden=''){
+   68:          $valeurs = formulaires_editer_objet_charger('fact',$id_fact,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_fact.php
+   90:   *     URL de redirection après le traitement
+   91:   * @param string $associer_objet
+   92:   *     Éventuel `objet|x` indiquant de lier le fact créé à cet objet,
+   93:   *     tel que `article|3`
+   94:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_FACT.PHP
+   84:   *     URL de redirection après le traitement
+   85:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_fact.php
+  104:   */
+  105:  function formulaires_editer_fact_verifier_dist($id_fact='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $c
+  106:  onfig_fonc='', $row=array(), $hidden=''){
+  107:          return formulaires_editer_objet_verifier('fact',$id_fact);
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_FACT.PHP
+   95:   */
+   96:  function formulaires_editer_fact_verifier_dist($id_fact='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row=
+   97:  array(), $hidden=''){
+   98:          return formulaires_editer_objet_verifier('fact',$id_fact);
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_fact.php
+  122:   *     URL de redirection après le traitement
+  123:   * @param string $associer_objet
+  124:   *     Éventuel `objet|x` indiquant de lier le fact créé à cet objet,
+  125:   *     tel que `article|3`
+  126:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_FACT.PHP
+  113:   *     URL de redirection après le traitement
+  114:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_fact.php
+  136:   */
+  137:  function formulaires_editer_fact_traiter_dist($id_fact='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $co
+  138:  nfig_fonc='', $row=array(), $hidden=''){
+  139:          $res = formulaires_editer_objet_traiter('fact',$id_fact,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+  140:
+  141:          // Un lien a prendre en compte ?
+  142:          if ($associer_objet AND $id_fact = $res['id_fact']) {
+  143:                  list($objet, $id_objet) = explode('|', $associer_objet);
+  144:
+  145:                  if ($objet AND $id_objet AND autoriser('modifier', $objet, $id_objet)) {
+  146:                          include_spip('action/editer_liens');
+  147:                          objet_associer(array('fact' => $id_fact), array($objet => $id_objet));
+  148:                          if (isset($res['redirect'])) {
+  149:                                  $res['redirect'] = parametre_url ($res['redirect'], "id_lien_ajoute", $id_fact, '&');
+  150:                          }
+  151:                  }
+  152:          }
+  153:          return $res;
+  154:
+  155:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_FACT.PHP
+  124:   */
+  125:  function formulaires_editer_fact_traiter_dist($id_fact='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row=a
+  126:  rray(), $hidden=''){
+  127:          return formulaires_editer_objet_traiter('fact',$id_fact,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+  128:  }
+*****
+
+
+
+formulaires/editer_revue.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_revue.php et ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_REVUE.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_revue.php
+   25:   *     URL de redirection après le traitement
+   26:   * @param string $associer_objet
+   27:   *     Éventuel `objet|x` indiquant de lier le revue créé à cet objet,
+   28:   *     tel que `article|3`
+   29:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_REVUE.PHP
+   25:   *     URL de redirection après le traitement
+   26:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_revue.php
+   39:   */
+   40:  function formulaires_editer_revue_identifier_dist($id_revue='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0
+   41:  , $config_fonc='', $row=array(), $hidden=''){
+   42:          return serialize(array(intval($id_revue), $associer_objet));
+   43:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_REVUE.PHP
+   36:   */
+   37:  function formulaires_editer_revue_identifier_dist($id_revue='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $
+   38:  row=array(), $hidden=''){
+   39:          return serialize(array(intval($id_revue)));
+   40:  }
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_revue.php
+   57:   *     URL de redirection après le traitement
+   58:   * @param string $associer_objet
+   59:   *     Éventuel `objet|x` indiquant de lier le revue créé à cet objet,
+   60:   *     tel que `article|3`
+   61:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_REVUE.PHP
+   54:   *     URL de redirection après le traitement
+   55:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_revue.php
+   71:   */
+   72:  function formulaires_editer_revue_charger_dist($id_revue='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $
+   73:  config_fonc='', $row=array(), $hidden=''){
+   74:          $valeurs = formulaires_editer_objet_charger('revue',$id_revue,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_REVUE.PHP
+   65:   */
+   66:  function formulaires_editer_revue_charger_dist($id_revue='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row
+   67:  =array(), $hidden=''){
+   68:          $valeurs = formulaires_editer_objet_charger('revue',$id_revue,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_revue.php
+   91:   *     URL de redirection après le traitement
+   92:   * @param string $associer_objet
+   93:   *     Éventuel `objet|x` indiquant de lier le revue créé à cet objet,
+   94:   *     tel que `article|3`
+   95:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_REVUE.PHP
+   85:   *     URL de redirection après le traitement
+   86:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_revue.php
+  105:   */
+  106:  function formulaires_editer_revue_verifier_dist($id_revue='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0,
+  107:  $config_fonc='', $row=array(), $hidden=''){
+  108:          return formulaires_editer_objet_verifier('revue',$id_revue);
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_REVUE.PHP
+   96:   */
+   97:  function formulaires_editer_revue_verifier_dist($id_revue='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $ro
+   98:  w=array(), $hidden=''){
+   99:          return formulaires_editer_objet_verifier('revue',$id_revue);
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_revue.php
+  123:   *     URL de redirection après le traitement
+  124:   * @param string $associer_objet
+  125:   *     Éventuel `objet|x` indiquant de lier le revue créé à cet objet,
+  126:   *     tel que `article|3`
+  127:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_REVUE.PHP
+  114:   *     URL de redirection après le traitement
+  115:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\FORMULAIRES\editer_revue.php
+  137:   */
+  138:  function formulaires_editer_revue_traiter_dist($id_revue='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $
+  139:  config_fonc='', $row=array(), $hidden=''){
+  140:          $res = formulaires_editer_objet_traiter('revue',$id_revue,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+  141:
+  142:          // Un lien a prendre en compte ?
+  143:          if ($associer_objet AND $id_revue = $res['id_revue']) {
+  144:                  list($objet, $id_objet) = explode('|', $associer_objet);
+  145:
+  146:                  if ($objet AND $id_objet AND autoriser('modifier', $objet, $id_objet)) {
+  147:                          include_spip('action/editer_liens');
+  148:                          objet_associer(array('revue' => $id_revue), array($objet => $id_objet));
+  149:                          if (isset($res['redirect'])) {
+  150:                                  $res['redirect'] = parametre_url ($res['redirect'], "id_lien_ajoute", $id_revue, '&');
+  151:                          }
+  152:                  }
+  153:          }
+  154:          return $res;
+  155:
+  156:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\FORMULAIRES\EDITER_REVUE.PHP
+  125:   */
+  126:  function formulaires_editer_revue_traiter_dist($id_revue='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row
+  127:  =array(), $hidden=''){
+  128:          return formulaires_editer_objet_traiter('revue',$id_revue,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+  129:  }
+*****
+
 
 
 paquet.xml :
 --------------------------------------------------------------------
 Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\paquet.xml et ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\PAQUET.XML
 ***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\paquet.xml
-    8:          documentation=""
-    9:  >
+   11:          <!--
+   12:                  Paquet genere le 2013-10-17 03:56:35
+   13:          -->
 ***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\PAQUET.XML
-    8:          documentation=""
-    9:          schema="1.0.0"
-   10:  >
+   11:          <!--
+   12:                  Paquet genere le 2013-10-22 03:59:18
+   13:          -->
 *****
 
 ***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\paquet.xml
-   10:          <!--
-   11:                  Paquet genere le 2013-10-16 01:41:49
-   12:          -->
+   25:          <pipeline nom="declarer_tables_interfaces" inclure="base/poste_deux.php" />
+   26:          <pipeline nom="declarer_tables_auxiliaires" inclure="base/poste_deux.php" />
+   27:          <pipeline nom="affiche_milieu" inclure="poste_deux_pipelines.php" />
+   28:          <pipeline nom="affiche_auteurs_interventions" inclure="poste_deux_pipelines.php" />
+   29:          <pipeline nom="optimiser_base_disparus" inclure="poste_deux_pipelines.php" />
+   30:
 ***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\PAQUET.XML
-   11:          <!--
-   12:                  Paquet genere le 2013-10-16 01:47:01
-   13:          -->
+   25:          <pipeline nom="declarer_tables_interfaces" inclure="base/poste_deux.php" />
+   26:          <pipeline nom="affiche_enfants" inclure="poste_deux_pipelines.php" />
+   27:
+*****
+
+
+
+poste_deux_administrations.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_administrations.php et ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_ADMINISTRATIONS.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_administrations.php
+   26:
+   27:          $maj['create'] = array(array('maj_tables', array('spip_facts', 'spip_facts_liens', 'spip_contacts', 'spip_contacts_lien
+   28:  s', 'spip_revues', 'spip_revues_liens')));
+   29:
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_ADMINISTRATIONS.PHP
+   26:
+   27:          $maj['create'] = array(array('maj_tables', array('spip_facts', 'spip_contacts', 'spip_revues')));
+   28:
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_administrations.php
+   44:          sql_drop_table("spip_facts");
+   45:          sql_drop_table("spip_facts_liens");
+   46:          sql_drop_table("spip_contacts");
+   47:          sql_drop_table("spip_contacts_liens");
+   48:          sql_drop_table("spip_revues");
+   49:          sql_drop_table("spip_revues_liens");
+   50:
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_ADMINISTRATIONS.PHP
+   43:          sql_drop_table("spip_facts");
+   44:          sql_drop_table("spip_contacts");
+   45:          sql_drop_table("spip_revues");
+   46:
+*****
+
+
+
+poste_deux_autorisations.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_autorisations.php et ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_AUTORISATIONS.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_autorisations.php
+  109:
+  110:
+  111:  /**
+  112:   * Autorisation de lier/délier l'élément (facts)
+  113:   *
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_AUTORISATIONS.PHP
+  109:
+  110:  /**
+  111:   * Autorisation de créer l'élément (fact) dans une rubrique
+  112:   *
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_autorisations.php
+  120:  **/
+  121:  function autoriser_associerfacts_dist($faire, $type, $id, $qui, $opt) {
+  122:          return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+  123:  }
+  124:  // -----------------
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_AUTORISATIONS.PHP
+  119:  **/
+  120:  function autoriser_rubrique_creerfactdans_dist($faire, $type, $id, $qui, $opt) {
+  121:          return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','fact', $id));
+  122:  }
+  123:
+  124:  // -----------------
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_autorisations.php
+  212:
+  213:
+  214:  /**
+  215:   * Autorisation de lier/délier l'élément (contacts)
+  216:   *
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_AUTORISATIONS.PHP
+  212:
+  213:  /**
+  214:   * Autorisation de créer l'élément (contact) dans une rubrique
+  215:   *
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_autorisations.php
+  223:  **/
+  224:  function autoriser_associercontacts_dist($faire, $type, $id, $qui, $opt) {
+  225:          return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+  226:  }
+  227:  // -----------------
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_AUTORISATIONS.PHP
+  222:  **/
+  223:  function autoriser_rubrique_creercontactdans_dist($faire, $type, $id, $qui, $opt) {
+  224:          return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','contact', $id));
+  225:  }
+  226:
+  227:  // -----------------
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_autorisations.php
+  315:
+  316:
+  317:  /**
+  318:   * Autorisation de lier/délier l'élément (revues)
+  319:   *
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_AUTORISATIONS.PHP
+  315:
+  316:  /**
+  317:   * Autorisation de créer l'élément (revue) dans une rubrique
+  318:   *
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_autorisations.php
+  326:  **/
+  327:  function autoriser_associerrevues_dist($faire, $type, $id, $qui, $opt) {
+  328:          return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+  329:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_AUTORISATIONS.PHP
+  325:  **/
+  326:  function autoriser_rubrique_creerrevuedans_dist($faire, $type, $id, $qui, $opt) {
+  327:          return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','revue', $id));
+  328:  }
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_autorisations.php
+  331:
+  332:  ?>
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_AUTORISATIONS.PHP
+  330:
+  331:
+  332:  ?>
+*****
+
+
+
+poste_deux_pipelines.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_pipelines.php et ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_PIPELINES.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_pipelines.php
+   14:
+   15:
+   16:  /**
+   17:   * Ajout de contenu sur certaines pages,
+   18:   * notamment des formulaires de liaisons entre objets
+   19:   *
+   20:   * @pipeline affiche_milieu
+   21:   * @param  array $flux Données du pipeline
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_PIPELINES.PHP
+   14:
+   15:  /**
+   16:   * Ajouter les objets sur les vues de rubriques
+   17:   *
+   18:   * @pipeline affiche_enfants
+   19:   * @param  array $flux Données du pipeline
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_pipelines.php
+   22:   * @return array       Données du pipeline
+   23:   */
+   24:  function poste_deux_affiche_milieu($flux) {
+   25:          $texte = "";
+   26:          $e = trouver_objet_exec($flux['args']['exec']);
+   27:
+   28:
+   29:
+   30:          // facts sur les rubriques
+   31:          if (!$e['edition'] AND in_array($e['type'], array('rubrique'))) {
+   32:                  $texte .= recuperer_fond('prive/objets/editer/liens', array(
+   33:                          'table_source' => 'facts',
+   34:                          'objet' => $e['type'],
+   35:                          'id_objet' => $flux['args'][$e['id_table_objet']]
+   36:                  ));
+   37:          }
+   38:          // contacts sur les rubriques
+   39:          if (!$e['edition'] AND in_array($e['type'], array('rubrique'))) {
+   40:                  $texte .= recuperer_fond('prive/objets/editer/liens', array(
+   41:                          'table_source' => 'contacts',
+   42:                          'objet' => $e['type'],
+   43:                          'id_objet' => $flux['args'][$e['id_table_objet']]
+   44:                  ));
+   45:          }
+   46:          // revues sur les rubriques
+   47:          if (!$e['edition'] AND in_array($e['type'], array('rubrique'))) {
+   48:                  $texte .= recuperer_fond('prive/objets/editer/liens', array(
+   49:                          'table_source' => 'revues',
+   50:                          'objet' => $e['type'],
+   51:                          'id_objet' => $flux['args'][$e['id_table_objet']]
+   52:                  ));
+   53:          }
+   54:
+   55:          if ($texte) {
+   56:                  if ($p=strpos($flux['data'],"<!--affiche_milieu-->"))
+   57:                          $flux['data'] = substr_replace($flux['data'],$texte,$p,0);
+   58:                  else
+   59:                          $flux['data'] .= $texte;
+   60:          }
+   61:
+   62:          return $flux;
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_PIPELINES.PHP
+   20:   * @return array       Données du pipeline
+   21:  **/
+   22:  function poste_deux_affiche_enfants($flux) {
+   23:          if ($e = trouver_objet_exec($flux['args']['exec'])
+   24:                  AND $e['type'] == 'rubrique'
+   25:                  AND $e['edition'] == false) {
+   26:
+   27:                  $id_rubrique = $flux['args']['id_rubrique'];
+   28:                  $lister_objets = charger_fonction('lister_objets', 'inc');
+   29:
+   30:                  $bouton = '';
+   31:                  if (autoriser('creerfactdans', 'rubrique', $id_rubrique)) {
+   32:                          $bouton .= icone_verticale(_T("fact:icone_creer_fact"), generer_url_ecrire("fact_edit", "id_rubrique=$i
+   33:  d_rubrique"), "fact-24.png", "new", "right")
+   34:                                          . "<br class='nettoyeur' />";
+   35:                  }
+   36:
+   37:                  $flux['data'] .= $lister_objets('facts', array('titre'=>_T('fact:titre_facts_rubrique') , 'id_rubrique'=>$id_ru
+   38:  brique, 'par'=>'premier_champs'));
+   39:                  $flux['data'] .= $bouton;
+   40:
+   41:                  $bouton = '';
+   42:                  if (autoriser('creercontactdans', 'rubrique', $id_rubrique)) {
+   43:                          $bouton .= icone_verticale(_T("contact:icone_creer_contact"), generer_url_ecrire("contact_edit", "id_ru
+   44:  brique=$id_rubrique"), "contact-24.png", "new", "right")
+   45:                                          . "<br class='nettoyeur' />";
+   46:                  }
+   47:
+   48:                  $flux['data'] .= $lister_objets('contacts', array('titre'=>_T('contact:titre_contacts_rubrique') , 'id_rubrique
+   49:  '=>$id_rubrique, 'par'=>'nom'));
+   50:                  $flux['data'] .= $bouton;
+   51:
+   52:                  $bouton = '';
+   53:                  if (autoriser('creerrevuedans', 'rubrique', $id_rubrique)) {
+   54:                          $bouton .= icone_verticale(_T("revue:icone_creer_revue"), generer_url_ecrire("revue_edit", "id_rubrique
+   55:  =$id_rubrique"), "revue-24.png", "new", "right")
+   56:                                          . "<br class='nettoyeur' />";
+   57:                  }
+   58:
+   59:                  $flux['data'] .= $lister_objets('revues', array('titre'=>_T('revue:titre_revues_rubrique') , 'id_rubrique'=>$id
+   60:  _rubrique, 'par'=>'titre'));
+   61:                  $flux['data'] .= $bouton;
+   62:
+   63:          }
+   64:          return $flux;
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE_DEUX\poste_deux_pipelines.php
+   65:
+   66:  /**
+   67:   * Ajout de liste sur la vue d'un auteur
+   68:   *
+   69:   * @pipeline affiche_auteurs_interventions
+   70:   * @param  array $flux Données du pipeline
+   71:   * @return array       Données du pipeline
+   72:   */
+   73:  function poste_deux_affiche_auteurs_interventions($flux) {
+   74:          if ($id_auteur = intval($flux['args']['id_auteur'])) {
+   75:
+   76:                  $flux['data'] .= recuperer_fond('prive/objets/liste/contacts', array(
+   77:                          'id_auteur' => $id_auteur,
+   78:                          'titre' => _T('contact:info_contacts_auteur')
+   79:                  ), array('ajax' => true));
+   80:
+   81:          }
+   82:          return $flux;
+   83:  }
+   84:
+   85:
+   86:  /**
+   87:   * Optimiser la base de données en supprimant les liens orphelins
+   88:   * de l'objet vers quelqu'un et de quelqu'un vers l'objet.
+   89:   *
+   90:   * @pipeline optimiser_base_disparus
+   91:   * @param  array $flux Données du pipeline
+   92:   * @return array       Données du pipeline
+   93:   */
+   94:  function poste_deux_optimiser_base_disparus($flux){
+   95:          include_spip('action/editer_liens');
+   96:          $flux['data'] += objet_optimiser_liens(array('fact'=>'*', 'contact'=>'*', 'revue'=>'*'),'*');
+   97:          return $flux;
+   98:  }
+   99:
+  100:  ?>
+***** ..\TMP\CACHE\FABRIQUE\POSTE_DEUX\POSTE_DEUX_PIPELINES.PHP
+   67:
+   68:  ?>
 *****
 

@@ -10,18 +10,14 @@
  *  Pour plus de details voir le fichier COPYING.txt ou l'aide en ligne.   *
 \***************************************************************************/
 
-// never use the cache 
-// and don't even create the cache files
-define('_NO_CACHE', -1); 
-
 # ou est l'espace prive ?
 if (!defined('_DIR_RESTREINT_ABS')) define('_DIR_RESTREINT_ABS', 'ecrire/');
 include_once _DIR_RESTREINT_ABS.'inc_version.php';
 
 # rediriger les anciens URLs de la forme page.php3fond=xxx
 if (isset($_GET['fond'])) {
-  include_spip('inc/headers');
-  redirige_par_entete(generer_url_public($_GET['fond']));
+	include_spip('inc/headers');
+	redirige_par_entete(generer_url_public($_GET['fond']));
  }
 
 # au travail...

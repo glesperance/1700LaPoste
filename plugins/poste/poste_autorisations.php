@@ -107,6 +107,19 @@ function autoriser_video_supprimer_dist($faire, $type, $id, $qui, $opt) {
 	return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
 }
 
+/**
+ * Autorisation de créer l'élément (video) dans une rubrique
+ *
+ * @param  string $faire Action demandée
+ * @param  string $type  Type d'objet sur lequel appliquer l'action
+ * @param  int    $id    Identifiant de l'objet
+ * @param  array  $qui   Description de l'auteur demandant l'autorisation
+ * @param  array  $opt   Options de cette autorisation
+ * @return bool          true s'il a le droit, false sinon
+**/
+function autoriser_rubrique_creervideodans_dist($faire, $type, $id, $qui, $opt) {
+	return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','video', $id));
+}
 
 // -----------------
 // Objet textes
@@ -197,6 +210,19 @@ function autoriser_texte_supprimer_dist($faire, $type, $id, $qui, $opt) {
 	return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
 }
 
+/**
+ * Autorisation de créer l'élément (texte) dans une rubrique
+ *
+ * @param  string $faire Action demandée
+ * @param  string $type  Type d'objet sur lequel appliquer l'action
+ * @param  int    $id    Identifiant de l'objet
+ * @param  array  $qui   Description de l'auteur demandant l'autorisation
+ * @param  array  $opt   Options de cette autorisation
+ * @return bool          true s'il a le droit, false sinon
+**/
+function autoriser_rubrique_creertextedans_dist($faire, $type, $id, $qui, $opt) {
+	return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','texte', $id));
+}
 
 // -----------------
 // Objet images
@@ -287,6 +313,19 @@ function autoriser_image_supprimer_dist($faire, $type, $id, $qui, $opt) {
 	return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
 }
 
+/**
+ * Autorisation de créer l'élément (image) dans une rubrique
+ *
+ * @param  string $faire Action demandée
+ * @param  string $type  Type d'objet sur lequel appliquer l'action
+ * @param  int    $id    Identifiant de l'objet
+ * @param  array  $qui   Description de l'auteur demandant l'autorisation
+ * @param  array  $opt   Options de cette autorisation
+ * @return bool          true s'il a le droit, false sinon
+**/
+function autoriser_rubrique_creerimagedans_dist($faire, $type, $id, $qui, $opt) {
+	return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','image', $id));
+}
 
 // -----------------
 // Objet citations
@@ -377,6 +416,19 @@ function autoriser_citation_supprimer_dist($faire, $type, $id, $qui, $opt) {
 	return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
 }
 
+/**
+ * Autorisation de créer l'élément (citation) dans une rubrique
+ *
+ * @param  string $faire Action demandée
+ * @param  string $type  Type d'objet sur lequel appliquer l'action
+ * @param  int    $id    Identifiant de l'objet
+ * @param  array  $qui   Description de l'auteur demandant l'autorisation
+ * @param  array  $opt   Options de cette autorisation
+ * @return bool          true s'il a le droit, false sinon
+**/
+function autoriser_rubrique_creercitationdans_dist($faire, $type, $id, $qui, $opt) {
+	return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','citation', $id));
+}
 
 
 

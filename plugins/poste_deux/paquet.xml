@@ -9,7 +9,7 @@
 	schema="1.0.0" 
 >
 	<!--
-		Paquet genere le 2013-10-16 01:47:01
+		Paquet genere le 2013-10-22 03:59:18
 	-->
 
 	<nom>MilleSeptCentDeux</nom>
@@ -23,10 +23,13 @@
 
 	<pipeline nom="declarer_tables_objets_sql" inclure="base/poste_deux.php" /> 
 	<pipeline nom="declarer_tables_interfaces" inclure="base/poste_deux.php" /> 
-	<pipeline nom="affiche_auteurs_interventions" inclure="poste_deux_pipelines.php" /> 
-        <pipeline nom="objet_compte_enfants" inclure="poste_deux_pipelines.php" /> 
+	<pipeline nom="affiche_enfants" inclure="poste_deux_pipelines.php" /> 
+	<pipeline nom="calculer_rubriques" inclure="poste_deux_pipelines.php" /> 
+	
 	<menu nom="facts" titre="fact:titre_facts" parent="menu_edition" icone="images/fact-16.png" action="facts" /> 
 	<menu nom="fact_creer" titre="fact:icone_creer_fact" parent="outils_rapides" icone="images/fact-new-16.png" action="fact_edit" parametres="new=oui" /> 
 	<menu nom="contacts" titre="contact:titre_contacts" parent="menu_edition" icone="images/contact-16.png" action="contacts" /> 
 	<menu nom="contact_creer" titre="contact:icone_creer_contact" parent="outils_rapides" icone="images/contact-new-16.png" action="contact_edit" parametres="new=oui" /> 
+	<menu nom="revues" titre="revue:titre_revues" parent="menu_edition" icone="images/revue-16.png" action="revues" /> 
+	<menu nom="revue_creer" titre="revue:icone_creer_revue" parent="outils_rapides" icone="images/revue-new-16.png" action="revue_edit" parametres="new=oui" /> 
 </paquet>

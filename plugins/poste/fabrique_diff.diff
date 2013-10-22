@@ -1,14 +1,39 @@
 Fichiers supprimés : 
-- formulaires/editer_contact.html
-- formulaires/editer_contact.php
-- formulaires/editer_fact.html
-- formulaires/editer_fact.php
-- lang/contact_fr.php
-- lang/fact_fr.php
-- prive/objets/contenu/contact.html
-- prive/objets/contenu/fact.html
-- prive/objets/liste/contacts.html
-- prive/objets/liste/facts.html
+- prive/objets/liste/citations_associer.html
+- prive/objets/liste/citations_associer_fonctions.php
+- prive/objets/liste/citations_lies.html
+- prive/objets/liste/citations_lies_fonctions.php
+- prive/objets/liste/images_associer.html
+- prive/objets/liste/images_associer_fonctions.php
+- prive/objets/liste/images_lies.html
+- prive/objets/liste/images_lies_fonctions.php
+- prive/objets/liste/textes_associer.html
+- prive/objets/liste/textes_associer_fonctions.php
+- prive/objets/liste/textes_lies.html
+- prive/objets/liste/textes_lies_fonctions.php
+- prive/objets/liste/videos_associer.html
+- prive/objets/liste/videos_associer_fonctions.php
+- prive/objets/liste/videos_lies.html
+- prive/objets/liste/videos_lies_fonctions.php
+- prive/squelettes/contenu/citation_edit.html
+- prive/squelettes/contenu/image_edit.html
+- prive/squelettes/contenu/texte_edit.html
+- prive/squelettes/contenu/video_edit.html
+
+Fichiers créés : 
+- prive/objets/infos
+- prive/objets/infos/citation.html
+- prive/objets/infos/image.html
+- prive/objets/infos/texte.html
+- prive/objets/infos/video.html
+- prive/squelettes/contenu/citation.html
+- prive/squelettes/contenu/citations.html
+- prive/squelettes/contenu/image.html
+- prive/squelettes/contenu/images.html
+- prive/squelettes/contenu/texte.html
+- prive/squelettes/contenu/textes.html
+- prive/squelettes/contenu/video.html
+- prive/squelettes/contenu/videos.html
 
 Fichiers modifiés : 
 
@@ -17,113 +42,580 @@ base/poste.php :
 --------------------------------------------------------------------
 Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\BASE\poste.php et ..\TMP\CACHE\FABRIQUE\POSTE\BASE\POSTE.PHP
 ***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\BASE\poste.php
-   29:          $interfaces['table_des_tables']['citations'] = 'citations';
-   30:          $interfaces['table_des_tables']['facts'] = 'facts';
-   31:          $interfaces['table_des_tables']['contacts'] = 'contacts';
-   32:
+   69:                  'rechercher_champs' => array("titre" => 10, "description" => 8),
+   70:                  'tables_jointures'  => array('spip_videos_liens'),
+   71:                  'statut_textes_instituer' => array(
 ***** ..\TMP\CACHE\FABRIQUE\POSTE\BASE\POSTE.PHP
-   29:          $interfaces['table_des_tables']['citations'] = 'citations';
-   30:
+   69:                  'rechercher_champs' => array("titre" => 10, "description" => 8),
+   70:                  'tables_jointures'  => array(),
+   71:                  'statut_textes_instituer' => array(
 *****
 
 ***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\BASE\poste.php
-  232:          $tables['spip_facts'] = array(
-  233:                  'type' => 'fact',
-  234:                  'principale' => "oui",
-  235:                  'field'=> array(
-  236:                          "id_fact"            => "bigint(21) NOT NULL",
-  237:                          "id_rubrique"        => "bigint(21) NOT NULL DEFAULT 0",
-  238:                          "id_secteur"         => "bigint(21) NOT NULL DEFAULT 0",
-  239:                          "premier_champs"     => "tinytext NOT NULL DEFAULT ''",
-  240:                          "deuxieme_champs"    => "tinytext NOT NULL DEFAULT ''",
-  241:                          "statut"             => "varchar(20)  DEFAULT '0' NOT NULL",
-  242:                          "maj"                => "TIMESTAMP"
-  243:                  ),
-  244:                  'key' => array(
-  245:                          "PRIMARY KEY"        => "id_fact",
-  246:                          "KEY id_rubrique"    => "id_rubrique",
-  247:                          "KEY id_secteur"     => "id_secteur",
-  248:                          "KEY statut"         => "statut",
-  249:                  ),
-  250:                  'titre' => "premier_champs AS titre, '' AS lang",
-  251:                   #'date' => "",
-  252:                  'champs_editables'  => array('premier_champs', 'deuxieme_champs'),
-  253:                  'champs_versionnes' => array('premier_champs', 'deuxieme_champs'),
-  254:                  'rechercher_champs' => array("premier_champs" => 8, "deuxieme_champs" => 8),
-  255:                  'tables_jointures'  => array(),
-  256:                  'statut_textes_instituer' => array(
-  257:                          'prepa'    => 'texte_statut_en_cours_redaction',
-  258:                          'prop'     => 'texte_statut_propose_evaluation',
-  259:                          'publie'   => 'texte_statut_publie',
-  260:                          'refuse'   => 'texte_statut_refuse',
-  261:                          'poubelle' => 'texte_statut_poubelle',
-  262:                  ),
-  263:                  'statut'=> array(
-  264:                          array(
-  265:                                  'champ'     => 'statut',
-  266:                                  'publie'    => 'publie',
-  267:                                  'previsu'   => 'publie,prop,prepa',
-  268:                                  'post_date' => 'date',
-  269:                                  'exception' => array('statut','tout')
-  270:                          )
-  271:                  ),
-  272:                  'texte_changer_statut' => 'fact:texte_changer_statut_fact',
-  273:
-  274:
-  275:          );
-  276:
-  277:          $tables['spip_contacts'] = array(
-  278:                  'type' => 'contact',
-  279:                  'principale' => "oui",
-  280:                  'field'=> array(
-  281:                          "id_contact"         => "bigint(21) NOT NULL",
-  282:                          "id_rubrique"        => "bigint(21) NOT NULL DEFAULT 0",
-  283:                          "id_secteur"         => "bigint(21) NOT NULL DEFAULT 0",
-  284:                          "nom"                => "tinytext NOT NULL DEFAULT ''",
-  285:                          "poste"              => "tinytext NOT NULL DEFAULT ''",
-  286:                          "Courriel"           => "tinytext NOT NULL DEFAULT ''",
-  287:                          "telephone"          => "tinytext NOT NULL DEFAULT ''",
-  288:                          "statut"             => "varchar(20)  DEFAULT '0' NOT NULL",
-  289:                          "maj"                => "TIMESTAMP"
-  290:                  ),
-  291:                  'key' => array(
-  292:                          "PRIMARY KEY"        => "id_contact",
-  293:                          "KEY id_rubrique"    => "id_rubrique",
-  294:                          "KEY id_secteur"     => "id_secteur",
-  295:                          "KEY statut"         => "statut",
-  296:                  ),
-  297:                  'titre' => "nom AS titre, '' AS lang",
-  298:                   #'date' => "",
-  299:                  'champs_editables'  => array('nom', 'poste', 'Courriel', 'telephone'),
-  300:                  'champs_versionnes' => array('nom', 'poste', 'Courriel', 'telephone'),
-  301:                  'rechercher_champs' => array("nom" => 10, "poste" => 8, "Courriel" => 8),
-  302:                  'tables_jointures'  => array(),
-  303:                  'statut_textes_instituer' => array(
-  304:                          'prepa'    => 'texte_statut_en_cours_redaction',
-  305:                          'prop'     => 'texte_statut_propose_evaluation',
-  306:                          'publie'   => 'texte_statut_publie',
-  307:                          'refuse'   => 'texte_statut_refuse',
-  308:                          'poubelle' => 'texte_statut_poubelle',
-  309:                  ),
-  310:                  'statut'=> array(
-  311:                          array(
-  312:                                  'champ'     => 'statut',
-  313:                                  'publie'    => 'publie',
-  314:                                  'previsu'   => 'publie,prop,prepa',
-  315:                                  'post_date' => 'date',
-  316:                                  'exception' => array('statut','tout')
-  317:                          )
-  318:                  ),
-  319:                  'texte_changer_statut' => 'contact:texte_changer_statut_contact',
-  320:
-  321:
-  322:          );
-  323:
-  324:          return $tables;
-  325:  }
+  116:                  'rechercher_champs' => array("titre" => 10, "description" => 8, "texte" => 8),
+  117:                  'tables_jointures'  => array('spip_textes_liens'),
+  118:                  'statut_textes_instituer' => array(
 ***** ..\TMP\CACHE\FABRIQUE\POSTE\BASE\POSTE.PHP
-  230:          return $tables;
-  231:  }
+  116:                  'rechercher_champs' => array("titre" => 10, "description" => 8, "texte" => 8),
+  117:                  'tables_jointures'  => array(),
+  118:                  'statut_textes_instituer' => array(
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\BASE\poste.php
+  161:                  'rechercher_champs' => array("titre" => 10, "description" => 8),
+  162:                  'tables_jointures'  => array('spip_images_liens'),
+  163:                  'statut_textes_instituer' => array(
+***** ..\TMP\CACHE\FABRIQUE\POSTE\BASE\POSTE.PHP
+  161:                  'rechercher_champs' => array("titre" => 10, "description" => 8),
+  162:                  'tables_jointures'  => array(),
+  163:                  'statut_textes_instituer' => array(
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\BASE\poste.php
+  207:                  'rechercher_champs' => array("auteur" => 10, "texte" => 8),
+  208:                  'tables_jointures'  => array('spip_citations_liens'),
+  209:                  'statut_textes_instituer' => array(
+***** ..\TMP\CACHE\FABRIQUE\POSTE\BASE\POSTE.PHP
+  207:                  'rechercher_champs' => array("auteur" => 10, "texte" => 8),
+  208:                  'tables_jointures'  => array(),
+  209:                  'statut_textes_instituer' => array(
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\BASE\poste.php
+  233:
+  234:  /**
+  235:   * Déclaration des tables secondaires (liaisons)
+  236:   *
+  237:   * @pipeline declarer_tables_auxiliaires
+  238:   * @param array $tables
+  239:   *     Description des tables
+  240:   * @return array
+  241:   *     Description complétée des tables
+  242:   */
+  243:  function poste_declarer_tables_auxiliaires($tables) {
+  244:
+  245:          $tables['spip_videos_liens'] = array(
+  246:                  'field' => array(
+  247:                          "id_video"           => "bigint(21) DEFAULT '0' NOT NULL",
+  248:                          "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+  249:                          "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+  250:                          "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+  251:                  ),
+  252:                  'key' => array(
+  253:                          "PRIMARY KEY"        => "id_video,id_objet,objet",
+  254:                          "KEY id_video"       => "id_video"
+  255:                  )
+  256:          );
+  257:          $tables['spip_textes_liens'] = array(
+  258:                  'field' => array(
+  259:                          "id_texte"           => "bigint(21) DEFAULT '0' NOT NULL",
+  260:                          "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+  261:                          "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+  262:                          "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+  263:                  ),
+  264:                  'key' => array(
+  265:                          "PRIMARY KEY"        => "id_texte,id_objet,objet",
+  266:                          "KEY id_texte"       => "id_texte"
+  267:                  )
+  268:          );
+  269:          $tables['spip_images_liens'] = array(
+  270:                  'field' => array(
+  271:                          "id_image"           => "bigint(21) DEFAULT '0' NOT NULL",
+  272:                          "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+  273:                          "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+  274:                          "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+  275:                  ),
+  276:                  'key' => array(
+  277:                          "PRIMARY KEY"        => "id_image,id_objet,objet",
+  278:                          "KEY id_image"       => "id_image"
+  279:                  )
+  280:          );
+  281:          $tables['spip_citations_liens'] = array(
+  282:                  'field' => array(
+  283:                          "id_citation"        => "bigint(21) DEFAULT '0' NOT NULL",
+  284:                          "id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+  285:                          "objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+  286:                          "vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+  287:                  ),
+  288:                  'key' => array(
+  289:                          "PRIMARY KEY"        => "id_citation,id_objet,objet",
+  290:                          "KEY id_citation"    => "id_citation"
+  291:                  )
+  292:          );
+  293:
+  294:          return $tables;
+  295:  }
+  296:
+  297:
+***** ..\TMP\CACHE\FABRIQUE\POSTE\BASE\POSTE.PHP
+  233:
+  234:
+*****
+
+
+
+formulaires/editer_citation.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_citation.php et ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_CITATION.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_citation.php
+   25:   *     URL de redirection après le traitement
+   26:   * @param string $associer_objet
+   27:   *     Éventuel `objet|x` indiquant de lier le citation créé à cet objet,
+   28:   *     tel que `article|3`
+   29:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_CITATION.PHP
+   25:   *     URL de redirection après le traitement
+   26:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_citation.php
+   39:   */
+   40:  function formulaires_editer_citation_identifier_dist($id_citation='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_
+   41:  trad=0, $config_fonc='', $row=array(), $hidden=''){
+   42:          return serialize(array(intval($id_citation), $associer_objet));
+   43:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_CITATION.PHP
+   36:   */
+   37:  function formulaires_editer_citation_identifier_dist($id_citation='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc
+   38:  ='', $row=array(), $hidden=''){
+   39:          return serialize(array(intval($id_citation)));
+   40:  }
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_citation.php
+   57:   *     URL de redirection après le traitement
+   58:   * @param string $associer_objet
+   59:   *     Éventuel `objet|x` indiquant de lier le citation créé à cet objet,
+   60:   *     tel que `article|3`
+   61:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_CITATION.PHP
+   54:   *     URL de redirection après le traitement
+   55:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_citation.php
+   71:   */
+   72:  function formulaires_editer_citation_charger_dist($id_citation='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_tra
+   73:  d=0, $config_fonc='', $row=array(), $hidden=''){
+   74:          $valeurs = formulaires_editer_objet_charger('citation',$id_citation,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_CITATION.PHP
+   65:   */
+   66:  function formulaires_editer_citation_charger_dist($id_citation='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc=''
+   67:  , $row=array(), $hidden=''){
+   68:          $valeurs = formulaires_editer_objet_charger('citation',$id_citation,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_citation.php
+   91:   *     URL de redirection après le traitement
+   92:   * @param string $associer_objet
+   93:   *     Éventuel `objet|x` indiquant de lier le citation créé à cet objet,
+   94:   *     tel que `article|3`
+   95:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_CITATION.PHP
+   85:   *     URL de redirection après le traitement
+   86:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_citation.php
+  105:   */
+  106:  function formulaires_editer_citation_verifier_dist($id_citation='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_tr
+  107:  ad=0, $config_fonc='', $row=array(), $hidden=''){
+  108:          return formulaires_editer_objet_verifier('citation',$id_citation);
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_CITATION.PHP
+   96:   */
+   97:  function formulaires_editer_citation_verifier_dist($id_citation='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='
+   98:  ', $row=array(), $hidden=''){
+   99:          return formulaires_editer_objet_verifier('citation',$id_citation);
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_citation.php
+  123:   *     URL de redirection après le traitement
+  124:   * @param string $associer_objet
+  125:   *     Éventuel `objet|x` indiquant de lier le citation créé à cet objet,
+  126:   *     tel que `article|3`
+  127:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_CITATION.PHP
+  114:   *     URL de redirection après le traitement
+  115:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_citation.php
+  137:   */
+  138:  function formulaires_editer_citation_traiter_dist($id_citation='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_tra
+  139:  d=0, $config_fonc='', $row=array(), $hidden=''){
+  140:          $res = formulaires_editer_objet_traiter('citation',$id_citation,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidd
+  141:  en);
+  142:
+  143:          // Un lien a prendre en compte ?
+  144:          if ($associer_objet AND $id_citation = $res['id_citation']) {
+  145:                  list($objet, $id_objet) = explode('|', $associer_objet);
+  146:
+  147:                  if ($objet AND $id_objet AND autoriser('modifier', $objet, $id_objet)) {
+  148:                          include_spip('action/editer_liens');
+  149:                          objet_associer(array('citation' => $id_citation), array($objet => $id_objet));
+  150:                          if (isset($res['redirect'])) {
+  151:                                  $res['redirect'] = parametre_url ($res['redirect'], "id_lien_ajoute", $id_citation, '&');
+  152:                          }
+  153:                  }
+  154:          }
+  155:          return $res;
+  156:
+  157:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_CITATION.PHP
+  125:   */
+  126:  function formulaires_editer_citation_traiter_dist($id_citation='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc=''
+  127:  , $row=array(), $hidden=''){
+  128:          return formulaires_editer_objet_traiter('citation',$id_citation,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidd
+  129:  en);
+  130:  }
+*****
+
+
+
+formulaires/editer_image.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_image.php et ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_IMAGE.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_image.php
+   25:   *     URL de redirection après le traitement
+   26:   * @param string $associer_objet
+   27:   *     Éventuel `objet|x` indiquant de lier le image créé à cet objet,
+   28:   *     tel que `article|3`
+   29:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_IMAGE.PHP
+   25:   *     URL de redirection après le traitement
+   26:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_image.php
+   39:   */
+   40:  function formulaires_editer_image_identifier_dist($id_image='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0
+   41:  , $config_fonc='', $row=array(), $hidden=''){
+   42:          return serialize(array(intval($id_image), $associer_objet));
+   43:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_IMAGE.PHP
+   36:   */
+   37:  function formulaires_editer_image_identifier_dist($id_image='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $
+   38:  row=array(), $hidden=''){
+   39:          return serialize(array(intval($id_image)));
+   40:  }
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_image.php
+   57:   *     URL de redirection après le traitement
+   58:   * @param string $associer_objet
+   59:   *     Éventuel `objet|x` indiquant de lier le image créé à cet objet,
+   60:   *     tel que `article|3`
+   61:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_IMAGE.PHP
+   54:   *     URL de redirection après le traitement
+   55:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_image.php
+   71:   */
+   72:  function formulaires_editer_image_charger_dist($id_image='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $
+   73:  config_fonc='', $row=array(), $hidden=''){
+   74:          $valeurs = formulaires_editer_objet_charger('image',$id_image,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_IMAGE.PHP
+   65:   */
+   66:  function formulaires_editer_image_charger_dist($id_image='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row
+   67:  =array(), $hidden=''){
+   68:          $valeurs = formulaires_editer_objet_charger('image',$id_image,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_image.php
+   91:   *     URL de redirection après le traitement
+   92:   * @param string $associer_objet
+   93:   *     Éventuel `objet|x` indiquant de lier le image créé à cet objet,
+   94:   *     tel que `article|3`
+   95:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_IMAGE.PHP
+   85:   *     URL de redirection après le traitement
+   86:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_image.php
+  105:   */
+  106:  function formulaires_editer_image_verifier_dist($id_image='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0,
+  107:  $config_fonc='', $row=array(), $hidden=''){
+  108:          return formulaires_editer_objet_verifier('image',$id_image);
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_IMAGE.PHP
+   96:   */
+   97:  function formulaires_editer_image_verifier_dist($id_image='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $ro
+   98:  w=array(), $hidden=''){
+   99:          return formulaires_editer_objet_verifier('image',$id_image);
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_image.php
+  123:   *     URL de redirection après le traitement
+  124:   * @param string $associer_objet
+  125:   *     Éventuel `objet|x` indiquant de lier le image créé à cet objet,
+  126:   *     tel que `article|3`
+  127:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_IMAGE.PHP
+  114:   *     URL de redirection après le traitement
+  115:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_image.php
+  137:   */
+  138:  function formulaires_editer_image_traiter_dist($id_image='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $
+  139:  config_fonc='', $row=array(), $hidden=''){
+  140:          $res = formulaires_editer_objet_traiter('image',$id_image,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+  141:
+  142:          // Un lien a prendre en compte ?
+  143:          if ($associer_objet AND $id_image = $res['id_image']) {
+  144:                  list($objet, $id_objet) = explode('|', $associer_objet);
+  145:
+  146:                  if ($objet AND $id_objet AND autoriser('modifier', $objet, $id_objet)) {
+  147:                          include_spip('action/editer_liens');
+  148:                          objet_associer(array('image' => $id_image), array($objet => $id_objet));
+  149:                          if (isset($res['redirect'])) {
+  150:                                  $res['redirect'] = parametre_url ($res['redirect'], "id_lien_ajoute", $id_image, '&');
+  151:                          }
+  152:                  }
+  153:          }
+  154:          return $res;
+  155:
+  156:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_IMAGE.PHP
+  125:   */
+  126:  function formulaires_editer_image_traiter_dist($id_image='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row
+  127:  =array(), $hidden=''){
+  128:          return formulaires_editer_objet_traiter('image',$id_image,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+  129:  }
+*****
+
+
+
+formulaires/editer_texte.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_texte.php et ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_TEXTE.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_texte.php
+   25:   *     URL de redirection après le traitement
+   26:   * @param string $associer_objet
+   27:   *     Éventuel `objet|x` indiquant de lier le texte créé à cet objet,
+   28:   *     tel que `article|3`
+   29:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_TEXTE.PHP
+   25:   *     URL de redirection après le traitement
+   26:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_texte.php
+   39:   */
+   40:  function formulaires_editer_texte_identifier_dist($id_texte='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0
+   41:  , $config_fonc='', $row=array(), $hidden=''){
+   42:          return serialize(array(intval($id_texte), $associer_objet));
+   43:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_TEXTE.PHP
+   36:   */
+   37:  function formulaires_editer_texte_identifier_dist($id_texte='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $
+   38:  row=array(), $hidden=''){
+   39:          return serialize(array(intval($id_texte)));
+   40:  }
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_texte.php
+   57:   *     URL de redirection après le traitement
+   58:   * @param string $associer_objet
+   59:   *     Éventuel `objet|x` indiquant de lier le texte créé à cet objet,
+   60:   *     tel que `article|3`
+   61:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_TEXTE.PHP
+   54:   *     URL de redirection après le traitement
+   55:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_texte.php
+   71:   */
+   72:  function formulaires_editer_texte_charger_dist($id_texte='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $
+   73:  config_fonc='', $row=array(), $hidden=''){
+   74:          $valeurs = formulaires_editer_objet_charger('texte',$id_texte,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_TEXTE.PHP
+   65:   */
+   66:  function formulaires_editer_texte_charger_dist($id_texte='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row
+   67:  =array(), $hidden=''){
+   68:          $valeurs = formulaires_editer_objet_charger('texte',$id_texte,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_texte.php
+   91:   *     URL de redirection après le traitement
+   92:   * @param string $associer_objet
+   93:   *     Éventuel `objet|x` indiquant de lier le texte créé à cet objet,
+   94:   *     tel que `article|3`
+   95:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_TEXTE.PHP
+   85:   *     URL de redirection après le traitement
+   86:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_texte.php
+  105:   */
+  106:  function formulaires_editer_texte_verifier_dist($id_texte='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0,
+  107:  $config_fonc='', $row=array(), $hidden=''){
+  108:          return formulaires_editer_objet_verifier('texte',$id_texte);
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_TEXTE.PHP
+   96:   */
+   97:  function formulaires_editer_texte_verifier_dist($id_texte='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $ro
+   98:  w=array(), $hidden=''){
+   99:          return formulaires_editer_objet_verifier('texte',$id_texte);
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_texte.php
+  123:   *     URL de redirection après le traitement
+  124:   * @param string $associer_objet
+  125:   *     Éventuel `objet|x` indiquant de lier le texte créé à cet objet,
+  126:   *     tel que `article|3`
+  127:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_TEXTE.PHP
+  114:   *     URL de redirection après le traitement
+  115:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_texte.php
+  137:   */
+  138:  function formulaires_editer_texte_traiter_dist($id_texte='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $
+  139:  config_fonc='', $row=array(), $hidden=''){
+  140:          $res = formulaires_editer_objet_traiter('texte',$id_texte,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+  141:
+  142:          // Un lien a prendre en compte ?
+  143:          if ($associer_objet AND $id_texte = $res['id_texte']) {
+  144:                  list($objet, $id_objet) = explode('|', $associer_objet);
+  145:
+  146:                  if ($objet AND $id_objet AND autoriser('modifier', $objet, $id_objet)) {
+  147:                          include_spip('action/editer_liens');
+  148:                          objet_associer(array('texte' => $id_texte), array($objet => $id_objet));
+  149:                          if (isset($res['redirect'])) {
+  150:                                  $res['redirect'] = parametre_url ($res['redirect'], "id_lien_ajoute", $id_texte, '&');
+  151:                          }
+  152:                  }
+  153:          }
+  154:          return $res;
+  155:
+  156:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_TEXTE.PHP
+  125:   */
+  126:  function formulaires_editer_texte_traiter_dist($id_texte='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row
+  127:  =array(), $hidden=''){
+  128:          return formulaires_editer_objet_traiter('texte',$id_texte,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+  129:  }
+*****
+
+
+
+formulaires/editer_video.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_video.php et ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_VIDEO.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_video.php
+   25:   *     URL de redirection après le traitement
+   26:   * @param string $associer_objet
+   27:   *     Éventuel `objet|x` indiquant de lier le video créé à cet objet,
+   28:   *     tel que `article|3`
+   29:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_VIDEO.PHP
+   25:   *     URL de redirection après le traitement
+   26:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_video.php
+   39:   */
+   40:  function formulaires_editer_video_identifier_dist($id_video='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0
+   41:  , $config_fonc='', $row=array(), $hidden=''){
+   42:          return serialize(array(intval($id_video), $associer_objet));
+   43:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_VIDEO.PHP
+   36:   */
+   37:  function formulaires_editer_video_identifier_dist($id_video='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $
+   38:  row=array(), $hidden=''){
+   39:          return serialize(array(intval($id_video)));
+   40:  }
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_video.php
+   57:   *     URL de redirection après le traitement
+   58:   * @param string $associer_objet
+   59:   *     Éventuel `objet|x` indiquant de lier le video créé à cet objet,
+   60:   *     tel que `article|3`
+   61:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_VIDEO.PHP
+   54:   *     URL de redirection après le traitement
+   55:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_video.php
+   71:   */
+   72:  function formulaires_editer_video_charger_dist($id_video='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $
+   73:  config_fonc='', $row=array(), $hidden=''){
+   74:          $valeurs = formulaires_editer_objet_charger('video',$id_video,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_VIDEO.PHP
+   65:   */
+   66:  function formulaires_editer_video_charger_dist($id_video='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row
+   67:  =array(), $hidden=''){
+   68:          $valeurs = formulaires_editer_objet_charger('video',$id_video,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_video.php
+   91:   *     URL de redirection après le traitement
+   92:   * @param string $associer_objet
+   93:   *     Éventuel `objet|x` indiquant de lier le video créé à cet objet,
+   94:   *     tel que `article|3`
+   95:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_VIDEO.PHP
+   85:   *     URL de redirection après le traitement
+   86:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_video.php
+  105:   */
+  106:  function formulaires_editer_video_verifier_dist($id_video='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0,
+  107:  $config_fonc='', $row=array(), $hidden=''){
+  108:          return formulaires_editer_objet_verifier('video',$id_video);
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_VIDEO.PHP
+   96:   */
+   97:  function formulaires_editer_video_verifier_dist($id_video='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $ro
+   98:  w=array(), $hidden=''){
+   99:          return formulaires_editer_objet_verifier('video',$id_video);
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_video.php
+  123:   *     URL de redirection après le traitement
+  124:   * @param string $associer_objet
+  125:   *     Éventuel `objet|x` indiquant de lier le video créé à cet objet,
+  126:   *     tel que `article|3`
+  127:   * @param int $lier_trad
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_VIDEO.PHP
+  114:   *     URL de redirection après le traitement
+  115:   * @param int $lier_trad
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\FORMULAIRES\editer_video.php
+  137:   */
+  138:  function formulaires_editer_video_traiter_dist($id_video='new', $id_rubrique=0, $retour='', $associer_objet='', $lier_trad=0, $
+  139:  config_fonc='', $row=array(), $hidden=''){
+  140:          $res = formulaires_editer_objet_traiter('video',$id_video,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+  141:
+  142:          // Un lien a prendre en compte ?
+  143:          if ($associer_objet AND $id_video = $res['id_video']) {
+  144:                  list($objet, $id_objet) = explode('|', $associer_objet);
+  145:
+  146:                  if ($objet AND $id_objet AND autoriser('modifier', $objet, $id_objet)) {
+  147:                          include_spip('action/editer_liens');
+  148:                          objet_associer(array('video' => $id_video), array($objet => $id_objet));
+  149:                          if (isset($res['redirect'])) {
+  150:                                  $res['redirect'] = parametre_url ($res['redirect'], "id_lien_ajoute", $id_video, '&');
+  151:                          }
+  152:                  }
+  153:          }
+  154:          return $res;
+  155:
+  156:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE\FORMULAIRES\EDITER_VIDEO.PHP
+  125:   */
+  126:  function formulaires_editer_video_traiter_dist($id_video='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row
+  127:  =array(), $hidden=''){
+  128:          return formulaires_editer_objet_traiter('video',$id_video,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
+  129:  }
 *****
 
 
@@ -133,27 +625,24 @@ paquet.xml :
 Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\paquet.xml et ..\TMP\CACHE\FABRIQUE\POSTE\PAQUET.XML
 ***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\paquet.xml
    11:          <!--
-   12:                  Paquet genere le 2013-10-15 01:59:29
+   12:                  Paquet genere le 2013-10-17 04:06:52
    13:          -->
 ***** ..\TMP\CACHE\FABRIQUE\POSTE\PAQUET.XML
    11:          <!--
-   12:                  Paquet genere le 2013-10-16 01:26:21
+   12:                  Paquet genere le 2013-10-22 04:07:14
    13:          -->
 *****
 
 ***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\paquet.xml
-   39:  png" action="citation_edit" parametres="new=oui" />
-   40:          <menu nom="facts" titre="fact:titre_facts" parent="menu_edition" icone="images/fact-16.png" action="facts" />
-   41:          <menu nom="fact_creer" titre="fact:icone_creer_fact" parent="outils_rapides" icone="images/fact-new-16.png" action="fac
-   42:  t_edit" parametres="new=oui" />
-   43:          <menu nom="contacts" titre="contact:titre_contacts" parent="menu_edition" icone="images/contact-16.png" action="contact
-   44:  s" />
-   45:          <menu nom="contact_creer" titre="contact:icone_creer_contact" parent="outils_rapides" icone="images/contact-new-16.png"
-   46:   action="contact_edit" parametres="new=oui" />
-   47:  </paquet>
+   25:          <pipeline nom="declarer_tables_interfaces" inclure="base/poste.php" />
+   26:          <pipeline nom="declarer_tables_auxiliaires" inclure="base/poste.php" />
+   27:          <pipeline nom="affiche_milieu" inclure="poste_pipelines.php" />
+   28:          <pipeline nom="optimiser_base_disparus" inclure="poste_pipelines.php" />
+   29:
 ***** ..\TMP\CACHE\FABRIQUE\POSTE\PAQUET.XML
-   39:  png" action="citation_edit" parametres="new=oui" />
-   40:  </paquet>
+   25:          <pipeline nom="declarer_tables_interfaces" inclure="base/poste.php" />
+   26:          <pipeline nom="affiche_enfants" inclure="poste_pipelines.php" />
+   27:
 *****
 
 
@@ -163,8 +652,8 @@ poste_administrations.php :
 Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_administrations.php et ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_ADMINISTRATIONS.PHP
 ***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_administrations.php
    26:
-   27:          $maj['create'] = array(array('maj_tables', array('spip_videos', 'spip_textes', 'spip_images', 'spip_citations', 'spip_f
-   28:  acts', 'spip_contacts')));
+   27:          $maj['create'] = array(array('maj_tables', array('spip_videos', 'spip_videos_liens', 'spip_textes', 'spip_textes_liens'
+   28:  , 'spip_images', 'spip_images_liens', 'spip_citations', 'spip_citations_liens')));
    29:
 ***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_ADMINISTRATIONS.PHP
    26:
@@ -173,30 +662,21 @@ Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_administratio
 *****
 
 ***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_administrations.php
-   47:          sql_drop_table("spip_citations");
-   48:          sql_drop_table("spip_facts");
-   49:          sql_drop_table("spip_contacts");
-   50:
+   44:          sql_drop_table("spip_videos");
+   45:          sql_drop_table("spip_videos_liens");
+   46:          sql_drop_table("spip_textes");
+   47:          sql_drop_table("spip_textes_liens");
+   48:          sql_drop_table("spip_images");
+   49:          sql_drop_table("spip_images_liens");
+   50:          sql_drop_table("spip_citations");
+   51:          sql_drop_table("spip_citations_liens");
+   52:
 ***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_ADMINISTRATIONS.PHP
+   43:          sql_drop_table("spip_videos");
+   44:          sql_drop_table("spip_textes");
+   45:          sql_drop_table("spip_images");
    46:          sql_drop_table("spip_citations");
    47:
-*****
-
-***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_administrations.php
-   51:          # Nettoyer les versionnages et forums
-   52:          sql_delete("spip_versions",              sql_in("objet", array('video', 'texte', 'image', 'citation', 'fact', 'contact'
-   53:  )));
-   54:          sql_delete("spip_versions_fragments",    sql_in("objet", array('video', 'texte', 'image', 'citation', 'fact', 'contact'
-   55:  )));
-   56:          sql_delete("spip_forum",                 sql_in("objet", array('video', 'texte', 'image', 'citation', 'fact', 'contact'
-   57:  )));
-   58:
-***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_ADMINISTRATIONS.PHP
-   48:          # Nettoyer les versionnages et forums
-   49:          sql_delete("spip_versions",              sql_in("objet", array('video', 'texte', 'image', 'citation')));
-   50:          sql_delete("spip_versions_fragments",    sql_in("objet", array('video', 'texte', 'image', 'citation')));
-   51:          sql_delete("spip_forum",                 sql_in("objet", array('video', 'texte', 'image', 'citation')));
-   52:
 *****
 
 
@@ -205,119 +685,274 @@ poste_autorisations.php :
 --------------------------------------------------------------------
 Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php et ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
 ***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
-  380:
-  381:  // -----------------
-  382:  // Objet facts
-  383:
+  109:
+  110:
+  111:  /**
+  112:   * Autorisation de lier/délier l'élément (videos)
+  113:   *
 ***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
-  380:
-  381:
+  109:
+  110:  /**
+  111:   * Autorisation de créer l'élément (video) dans une rubrique
+  112:   *
 *****
 
-�chec de la resynchronisation. Les fichiers sont trop diff�rents.
 ***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
-  384:
-  385:  /**
-  386:   * Autorisation de voir un élément de menu (facts)
-  387:   *
-  388:   * @param  string $faire Action demandée
-  389:   * @param  string $type  Type d'objet sur lequel appliquer l'action
-  390:   * @param  int    $id    Identifiant de l'objet
-  391:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
-  392:   * @param  array  $opt   Options de cette autorisation
-  393:   * @return bool          true s'il a le droit, false sinon
-  394:  **/
-  395:  function autoriser_facts_menu_dist($faire, $type, $id, $qui, $opt){
-  396:          return true;
-  397:  }
-  398:
-  399:
-  400:  /**
-  401:   * Autorisation de voir le bouton d'accès rapide de création (fact)
-  402:   *
-  403:   * @param  string $faire Action demandée
-  404:   * @param  string $type  Type d'objet sur lequel appliquer l'action
-  405:   * @param  int    $id    Identifiant de l'objet
-  406:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
-  407:   * @param  array  $opt   Options de cette autorisation
-  408:   * @return bool          true s'il a le droit, false sinon
-  409:  **/
-  410:  function autoriser_factcreer_menu_dist($faire, $type, $id, $qui, $opt){
-  411:          return autoriser('creer', 'fact', '', $qui, $opt);
-  412:  }
-  413:
-  414:  /**
-  415:   * Autorisation de créer (fact)
-  416:   *
-  417:   * @param  string $faire Action demandée
-  418:   * @param  string $type  Type d'objet sur lequel appliquer l'action
-  419:   * @param  int    $id    Identifiant de l'objet
-  420:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
-  421:   * @param  array  $opt   Options de cette autorisation
-  422:   * @return bool          true s'il a le droit, false sinon
-  423:  **/
-  424:  function autoriser_fact_creer_dist($faire, $type, $id, $qui, $opt) {
-  425:          return (in_array($qui['statut'], array('0minirezo', '1comite')) AND sql_countsel('spip_rubriques')>0);
-  426:  }
-  427:
-  428:  /**
-  429:   * Autorisation de voir (fact)
-  430:   *
-  431:   * @param  string $faire Action demandée
-  432:   * @param  string $type  Type d'objet sur lequel appliquer l'action
-  433:   * @param  int    $id    Identifiant de l'objet
-  434:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
-  435:   * @param  array  $opt   Options de cette autorisation
-  436:   * @return bool          true s'il a le droit, false sinon
-  437:  **/
-  438:  function autoriser_fact_voir_dist($faire, $type, $id, $qui, $opt) {
-  439:          return true;
-  440:  }
-  441:
-  442:  /**
-  443:   * Autorisation de modifier (fact)
-  444:   *
-  445:   * @param  string $faire Action demandée
-  446:   * @param  string $type  Type d'objet sur lequel appliquer l'action
-  447:   * @param  int    $id    Identifiant de l'objet
-  448:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
-  449:   * @param  array  $opt   Options de cette autorisation
-  450:   * @return bool          true s'il a le droit, false sinon
-  451:  **/
-  452:  function autoriser_fact_modifier_dist($faire, $type, $id, $qui, $opt) {
-  453:          return in_array($qui['statut'], array('0minirezo', '1comite'));
-  454:  }
-  455:
-  456:  /**
-  457:   * Autorisation de supprimer (fact)
-  458:   *
-  459:   * @param  string $faire Action demandée
-  460:   * @param  string $type  Type d'objet sur lequel appliquer l'action
-  461:   * @param  int    $id    Identifiant de l'objet
-  462:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
-  463:   * @param  array  $opt   Options de cette autorisation
-  464:   * @return bool          true s'il a le droit, false sinon
-  465:  **/
-  466:  function autoriser_fact_supprimer_dist($faire, $type, $id, $qui, $opt) {
-  467:          return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
-  468:  }
-  469:
-  470:
-  471:  // -----------------
-  472:  // Objet contacts
-  473:
-  474:
-  475:  /**
-  476:   * Autorisation de voir un élément de menu (contacts)
-  477:   *
-  478:   * @param  string $faire Action demandée
-  479:   * @param  string $type  Type d'objet sur lequel appliquer l'action
-  480:   * @param  int    $id    Identifiant de l'objet
-  481:   * @param  array  $qui   Description de l'auteur demandant l'autorisation
-  482:   * @param  array  $opt   Options de cette autorisation
-  483:   * @return bool          true s'il a le droit, false sinon
+  120:  **/
+  121:  function autoriser_associervideos_dist($faire, $type, $id, $qui, $opt) {
+  122:          return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+  123:  }
+  124:  // -----------------
 ***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
-  382:
-  383:  ?>
+  119:  **/
+  120:  function autoriser_rubrique_creervideodans_dist($faire, $type, $id, $qui, $opt) {
+  121:          return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','video', $id));
+  122:  }
+  123:
+  124:  // -----------------
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
+  212:
+  213:
+  214:  /**
+  215:   * Autorisation de lier/délier l'élément (textes)
+  216:   *
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
+  212:
+  213:  /**
+  214:   * Autorisation de créer l'élément (texte) dans une rubrique
+  215:   *
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
+  223:  **/
+  224:  function autoriser_associertextes_dist($faire, $type, $id, $qui, $opt) {
+  225:          return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+  226:  }
+  227:  // -----------------
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
+  222:  **/
+  223:  function autoriser_rubrique_creertextedans_dist($faire, $type, $id, $qui, $opt) {
+  224:          return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','texte', $id));
+  225:  }
+  226:
+  227:  // -----------------
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
+  315:
+  316:
+  317:  /**
+  318:   * Autorisation de lier/délier l'élément (images)
+  319:   *
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
+  315:
+  316:  /**
+  317:   * Autorisation de créer l'élément (image) dans une rubrique
+  318:   *
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
+  326:  **/
+  327:  function autoriser_associerimages_dist($faire, $type, $id, $qui, $opt) {
+  328:          return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+  329:  }
+  330:  // -----------------
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
+  325:  **/
+  326:  function autoriser_rubrique_creerimagedans_dist($faire, $type, $id, $qui, $opt) {
+  327:          return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','image', $id));
+  328:  }
+  329:
+  330:  // -----------------
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
+  418:
+  419:
+  420:  /**
+  421:   * Autorisation de lier/délier l'élément (citations)
+  422:   *
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
+  418:
+  419:  /**
+  420:   * Autorisation de créer l'élément (citation) dans une rubrique
+  421:   *
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
+  429:  **/
+  430:  function autoriser_associercitations_dist($faire, $type, $id, $qui, $opt) {
+  431:          return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+  432:  }
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
+  428:  **/
+  429:  function autoriser_rubrique_creercitationdans_dist($faire, $type, $id, $qui, $opt) {
+  430:          return ($id AND autoriser('voir','rubrique', $id) AND autoriser('creer','citation', $id));
+  431:  }
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_autorisations.php
+  434:
+  435:  ?>
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_AUTORISATIONS.PHP
+  433:
+  434:
+  435:  ?>
+*****
+
+
+
+poste_pipelines.php :
+--------------------------------------------------------------------
+Comparaison des fichiers ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_pipelines.php et ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_PIPELINES.PHP
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_pipelines.php
+   14:
+   15:
+   16:  /**
+   17:   * Ajout de contenu sur certaines pages,
+   18:   * notamment des formulaires de liaisons entre objets
+   19:   *
+   20:   * @pipeline affiche_milieu
+   21:   * @param  array $flux Données du pipeline
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_PIPELINES.PHP
+   14:
+   15:  /**
+   16:   * Ajouter les objets sur les vues de rubriques
+   17:   *
+   18:   * @pipeline affiche_enfants
+   19:   * @param  array $flux Données du pipeline
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_pipelines.php
+   22:   * @return array       Données du pipeline
+   23:   */
+   24:  function poste_affiche_milieu($flux) {
+   25:          $texte = "";
+   26:          $e = trouver_objet_exec($flux['args']['exec']);
+   27:
+   28:
+   29:
+   30:          // videos sur les rubriques
+   31:          if (!$e['edition'] AND in_array($e['type'], array('rubrique'))) {
+   32:                  $texte .= recuperer_fond('prive/objets/editer/liens', array(
+   33:                          'table_source' => 'videos',
+   34:                          'objet' => $e['type'],
+   35:                          'id_objet' => $flux['args'][$e['id_table_objet']]
+   36:                  ));
+   37:          }
+   38:          // textes sur les rubriques
+   39:          if (!$e['edition'] AND in_array($e['type'], array('rubrique'))) {
+   40:                  $texte .= recuperer_fond('prive/objets/editer/liens', array(
+   41:                          'table_source' => 'textes',
+   42:                          'objet' => $e['type'],
+   43:                          'id_objet' => $flux['args'][$e['id_table_objet']]
+   44:                  ));
+   45:          }
+   46:          // images sur les rubriques
+   47:          if (!$e['edition'] AND in_array($e['type'], array('rubrique'))) {
+   48:                  $texte .= recuperer_fond('prive/objets/editer/liens', array(
+   49:                          'table_source' => 'images',
+   50:                          'objet' => $e['type'],
+   51:                          'id_objet' => $flux['args'][$e['id_table_objet']]
+   52:                  ));
+   53:          }
+   54:          // citations sur les rubriques
+   55:          if (!$e['edition'] AND in_array($e['type'], array('rubrique'))) {
+   56:                  $texte .= recuperer_fond('prive/objets/editer/liens', array(
+   57:                          'table_source' => 'citations',
+   58:                          'objet' => $e['type'],
+   59:                          'id_objet' => $flux['args'][$e['id_table_objet']]
+   60:                  ));
+   61:          }
+   62:
+   63:          if ($texte) {
+   64:                  if ($p=strpos($flux['data'],"<!--affiche_milieu-->"))
+   65:                          $flux['data'] = substr_replace($flux['data'],$texte,$p,0);
+   66:                  else
+   67:                          $flux['data'] .= $texte;
+   68:          }
+   69:
+   70:          return $flux;
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_PIPELINES.PHP
+   20:   * @return array       Données du pipeline
+   21:  **/
+   22:  function poste_affiche_enfants($flux) {
+   23:          if ($e = trouver_objet_exec($flux['args']['exec'])
+   24:                  AND $e['type'] == 'rubrique'
+   25:                  AND $e['edition'] == false) {
+   26:
+   27:                  $id_rubrique = $flux['args']['id_rubrique'];
+   28:                  $lister_objets = charger_fonction('lister_objets', 'inc');
+   29:
+   30:                  $bouton = '';
+   31:                  if (autoriser('creervideodans', 'rubrique', $id_rubrique)) {
+   32:                          $bouton .= icone_verticale(_T("video:icone_creer_video"), generer_url_ecrire("video_edit", "id_rubrique
+   33:  =$id_rubrique"), "video-24.png", "new", "right")
+   34:                                          . "<br class='nettoyeur' />";
+   35:                  }
+   36:
+   37:                  $flux['data'] .= $lister_objets('videos', array('titre'=>_T('video:titre_videos_rubrique') , 'id_rubrique'=>$id
+   38:  _rubrique, 'par'=>'titre'));
+   39:                  $flux['data'] .= $bouton;
+   40:
+   41:                  $bouton = '';
+   42:                  if (autoriser('creertextedans', 'rubrique', $id_rubrique)) {
+   43:                          $bouton .= icone_verticale(_T("texte:icone_creer_texte"), generer_url_ecrire("texte_edit", "id_rubrique
+   44:  =$id_rubrique"), "texte-24.png", "new", "right")
+   45:                                          . "<br class='nettoyeur' />";
+   46:                  }
+   47:
+   48:                  $flux['data'] .= $lister_objets('textes', array('titre'=>_T('texte:titre_textes_rubrique') , 'id_rubrique'=>$id
+   49:  _rubrique, 'par'=>'titre'));
+   50:                  $flux['data'] .= $bouton;
+   51:
+   52:                  $bouton = '';
+   53:                  if (autoriser('creerimagedans', 'rubrique', $id_rubrique)) {
+   54:                          $bouton .= icone_verticale(_T("image:icone_creer_image"), generer_url_ecrire("image_edit", "id_rubrique
+   55:  =$id_rubrique"), "image-24.png", "new", "right")
+   56:                                          . "<br class='nettoyeur' />";
+   57:                  }
+   58:
+   59:                  $flux['data'] .= $lister_objets('images', array('titre'=>_T('image:titre_images_rubrique') , 'id_rubrique'=>$id
+   60:  _rubrique, 'par'=>'titre'));
+   61:                  $flux['data'] .= $bouton;
+   62:
+   63:                  $bouton = '';
+   64:                  if (autoriser('creercitationdans', 'rubrique', $id_rubrique)) {
+   65:                          $bouton .= icone_verticale(_T("citation:icone_creer_citation"), generer_url_ecrire("citation_edit", "id
+   66:  _rubrique=$id_rubrique"), "citation-24.png", "new", "right")
+   67:                                          . "<br class='nettoyeur' />";
+   68:                  }
+   69:
+   70:                  $flux['data'] .= $lister_objets('citations', array('titre'=>_T('citation:titre_citations_rubrique') , 'id_rubri
+   71:  que'=>$id_rubrique, 'par'=>'auteur'));
+   72:                  $flux['data'] .= $bouton;
+   73:
+   74:          }
+   75:          return $flux;
+*****
+
+***** ..\TMP\CACHE\FABRIQUE\.BACKUP\POSTE\poste_pipelines.php
+   73:
+   74:  /**
+   75:   * Optimiser la base de données en supprimant les liens orphelins
+   76:   * de l'objet vers quelqu'un et de quelqu'un vers l'objet.
+   77:   *
+   78:   * @pipeline optimiser_base_disparus
+   79:   * @param  array $flux Données du pipeline
+   80:   * @return array       Données du pipeline
+   81:   */
+   82:  function poste_optimiser_base_disparus($flux){
+   83:          include_spip('action/editer_liens');
+   84:          $flux['data'] += objet_optimiser_liens(array('video'=>'*', 'texte'=>'*', 'image'=>'*', 'citation'=>'*'),'*');
+   85:          return $flux;
+   86:  }
+   87:
+   88:  ?>
+***** ..\TMP\CACHE\FABRIQUE\POSTE\POSTE_PIPELINES.PHP
+   78:
+   79:  ?>
 *****
 

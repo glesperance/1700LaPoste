@@ -56,6 +56,15 @@
     </B_fac>
         {},
     <//B_fac>
+    <B_rev>
+        
+        <BOUCLE_rev(REVUES){id_rubrique = #ENV{id_rubrique}}{','}>
+            {"type" : "revue", "id" : "#ID_REVUE", "ordre": "[(#TITRE*|couper{3})]"}
+        </BOUCLE_rev>
+        ,
+    </B_rev>
+        {},
+    <//B_rev>
     <B_cont>
         
         <BOUCLE_cont(CONTACTS){id_rubrique = #ENV{id_rubrique}}{','}>

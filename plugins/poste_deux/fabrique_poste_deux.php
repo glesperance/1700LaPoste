@@ -2,7 +2,7 @@
 
 /**
  *  Fichier généré par la Fabrique de plugin v5
- *   le 2013-10-16 01:47:00
+ *   le 2013-10-22 03:59:18
  *
  *  Ce fichier de sauvegarde peut servir à recréer
  *  votre plugin avec le plugin «Fabrique» qui a servi à le créer.
@@ -120,6 +120,7 @@ $data = array (
       array (
         0 => 'id_rubrique',
         1 => 'id_secteur',
+        2 => 'vue_rubrique',
       ),
       'champ_date' => '',
       'statut' => 'on',
@@ -147,6 +148,12 @@ $data = array (
       'roles' => '',
       'auteurs_liens' => '',
       'vue_auteurs_liens' => '',
+      'echafaudages' => 
+      array (
+        0 => 'prive/squelettes/contenu/objets.html',
+        1 => 'prive/objets/infos/objet.html',
+        2 => 'prive/squelettes/contenu/objet.html',
+      ),
       'autorisations' => 
       array (
         'objet_creer' => '',
@@ -239,6 +246,7 @@ $data = array (
       array (
         0 => 'id_rubrique',
         1 => 'id_secteur',
+        2 => 'vue_rubrique',
       ),
       'champ_date' => '',
       'statut' => 'on',
@@ -265,7 +273,139 @@ $data = array (
       'table_liens' => '',
       'roles' => '',
       'auteurs_liens' => '',
-      'vue_auteurs_liens' => 'on',
+      'vue_auteurs_liens' => '',
+      'echafaudages' => 
+      array (
+        0 => 'prive/squelettes/contenu/objets.html',
+        1 => 'prive/objets/infos/objet.html',
+        2 => 'prive/squelettes/contenu/objet.html',
+      ),
+      'autorisations' => 
+      array (
+        'objet_creer' => '',
+        'objet_voir' => '',
+        'objet_modifier' => '',
+        'objet_supprimer' => '',
+        'associerobjet' => '',
+      ),
+      'boutons' => 
+      array (
+        0 => 'menu_edition',
+        1 => 'outils_rapides',
+      ),
+    ),
+    2 => 
+    array (
+      'nom' => 'Revues',
+      'nom_singulier' => 'Revue',
+      'genre' => 'feminin',
+      'logo_variantes' => '',
+      'table' => 'spip_revues',
+      'cle_primaire' => 'id_revue',
+      'cle_primaire_sql' => 'bigint(21) NOT NULL',
+      'table_type' => 'revue',
+      'champs' => 
+      array (
+        0 => 
+        array (
+          'nom' => 'Titre',
+          'champ' => 'titre',
+          'sql' => 'tinytext NOT NULL DEFAULT \'\'',
+          'caracteristiques' => 
+          array (
+            0 => 'editable',
+            1 => 'versionne',
+          ),
+          'recherche' => '10',
+          'saisie' => 'input',
+          'explication' => '',
+          'saisie_options' => '',
+        ),
+        1 => 
+        array (
+          'nom' => 'Extrait',
+          'champ' => 'extrait',
+          'sql' => 'text NOT NULL DEFAULT \'\'',
+          'caracteristiques' => 
+          array (
+            0 => 'editable',
+            1 => 'versionne',
+          ),
+          'recherche' => '8',
+          'saisie' => 'textarea',
+          'explication' => '',
+          'saisie_options' => '',
+        ),
+        2 => 
+        array (
+          'nom' => 'Média',
+          'champ' => 'media',
+          'sql' => 'tinytext NOT NULL DEFAULT \'\'',
+          'caracteristiques' => 
+          array (
+            0 => 'editable',
+            1 => 'versionne',
+          ),
+          'recherche' => '8',
+          'saisie' => 'input',
+          'explication' => '',
+          'saisie_options' => '',
+        ),
+        3 => 
+        array (
+          'nom' => 'Url',
+          'champ' => 'url',
+          'sql' => 'tinytext NOT NULL DEFAULT \'\'',
+          'caracteristiques' => 
+          array (
+            0 => 'editable',
+            1 => 'versionne',
+          ),
+          'recherche' => '',
+          'saisie' => 'input',
+          'explication' => '',
+          'saisie_options' => '',
+        ),
+      ),
+      'champ_titre' => 'titre',
+      'rubriques' => 
+      array (
+        0 => 'id_rubrique',
+        1 => 'id_secteur',
+        2 => 'vue_rubrique',
+      ),
+      'champ_date' => '',
+      'statut' => 'on',
+      'chaines' => 
+      array (
+        'titre_objets' => 'Revues',
+        'titre_objet' => 'Revue',
+        'info_aucun_objet' => 'Aucune revue',
+        'info_1_objet' => 'Une revue',
+        'info_nb_objets' => '@nb@ revues',
+        'icone_creer_objet' => 'Créer une revue',
+        'icone_modifier_objet' => 'Modifier cette revue',
+        'titre_logo_objet' => 'Logo de cette revue',
+        'titre_langue_objet' => 'Langue de cette revue',
+        'titre_objets_rubrique' => 'Revues de la rubrique',
+        'info_objets_auteur' => 'Les revues de cet auteur',
+        'retirer_lien_objet' => 'Retirer cette revue',
+        'retirer_tous_liens_objets' => 'Retirer toutes les revues',
+        'ajouter_lien_objet' => 'Ajouter cette revue',
+        'texte_ajouter_objet' => 'Ajouter une revue',
+        'texte_creer_associer_objet' => 'Créer et associer une revue',
+        'texte_changer_statut_objet' => 'Cette revue est :',
+      ),
+      'table_liens' => '',
+      'roles' => '',
+      'auteurs_liens' => '',
+      'vue_auteurs_liens' => '',
+      'echafaudages' => 
+      array (
+        0 => 'prive/squelettes/contenu/objets.html',
+        1 => 'prive/objets/infos/objet.html',
+        2 => 'prive/squelettes/contenu/objet.html',
+      ),
       'autorisations' => 
       array (
         'objet_creer' => '',
@@ -300,6 +440,9 @@ $data = array (
       array (
       ),
       1 => 
+      array (
+      ),
+      2 => 
       array (
       ),
     ),
