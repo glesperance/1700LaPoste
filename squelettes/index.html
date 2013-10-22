@@ -42,28 +42,42 @@
 		<section class="section scroller" id="section#ID_RUBRIQUE" data-section="#ID_RUBRIQUE" data-name="[(#TITRE|entites_html|strtolower)]">
 			<div class="container-fluid-scroller">
 
-				[<div class="container-fluid"[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"] data-speed="0.2" data-type="background" slide-width="1">
+				[(#TITRE_ROLLOVER|ou{#TEXTE_ROLLOVER}|oui)
+				<div class="container-fluid"[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"] data-speed="0.2" data-type="background" slide-width="1">
 					<div class="row-fluid">
 						<div class="span1"><h2>#TITRE</h2></div>
 						<div class="span1 card">
 							<div>
 								<div class='hover-zone'>
 									<div class="primary">
-										(#DESCRIPTIF)
+										[<h4[ class="(#EDIT{titre})"]>(#TITRE)</h4>]
+										[<div class="descr[ (#EDIT{descriptif})]">(#DESCRIPTIF)</div>]
+										[<div class="texte[ (#EDIT{texte})]">(#TEXTE)</div>]
 									</div>
-									[<div class="secondary">
-										(#TEXTE)
-									</div>]
+									<div class="secondary">
+										[<h4[ class="(#EDIT{titre})"]>(#TITRE_ROLLOVER)</h4>]
+										[<div class="descr[ (#EDIT{descriptif})]">(#TEXTE_ROLLOVER)</div>]
+									</div>
 								</div>
 								<p class="footer"><a href="javascript:void(0)" class="next">Découvrez l'exposition &gt;</a></p>
 							</div>
 						</div>
 					</div><!-- /row-fluid -->
 				</div><!-- /container -->]
-				[(#DESCRIPTIF|non)
-				<div class="container-fluid"[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"] data-speed="0.2" data-type="background" slide-width="0.5">
+				[(#TITRE_ROLLOVER|ou{#TEXTE_ROLLOVER}|non)
+				<div class="container-fluid"[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"] data-speed="0.2" data-type="background" slide-width="1">
 					<div class="row-fluid">
 						<div class="span1"><h2>#TITRE</h2></div>
+						<div class="span1 card">
+							<div>
+								<div class="primary">
+									[<h4[ class="(#EDIT{titre})"]>(#TITRE)</h4>]
+									[<div class="descr[ (#EDIT{descriptif})]">(#DESCRIPTIF)</div>]
+									[<div class="texte[ (#EDIT{texte})]">(#TEXTE)</div>]
+								</div>
+								<p class="footer"><a href="javascript:void(0)" class="next">Découvrez l'exposition &gt;</a></p>
+							</div>
+						</div>
 					</div><!-- /row-fluid -->
 				</div><!-- /container -->
 				]
@@ -142,8 +156,8 @@
 				</div>						
 			</div><!-- /container -->
 		</section><!-- /section -->	
-		<div class="container-fluid" id="wave">
-			<div class="row-fluid">
+		<div class="wrap-fluid" id="wave">
+			<div class="center">
 					<div id="thepng"></div>
 			</div>
 		</div>
