@@ -1,37 +1,44 @@
 <BOUCLE_this(TEXTES){id_texte}>
 [(#REM) SANS VIDEO]
 [(#URL_VIDEO|non)
-<div class="container-fluid" data-type="texte"[ style="background-image: url('(#LOGO_TEXTE|extraire_attribut{src}|url_absolue)');"] data-speed="0.2" data-type="background" slide-width="#LARGEUR">
+<div class="container-fluid[ (#FOND)]" data-type="texte"[(#FOND|=={hasLogo}|oui) style="background-image: url('[(#LOGO_TEXTE|extraire_attribut{src}|url_absolue)]');"] data-speed="0.2" data-type="background" slide-width="[(#LARGEUR|?{#LARGEUR,'1'})]">
 	<div class="row-fluid">
-		<div class="span1 card offset1">
+		<div class="[(#CENTRER|sinon{'span3'}) ][(#TEXTE|textebrut|strlen|>={650}|oui)plus] card">
 			<div>
-				<h3[ class="(#EDIT{titre})"]>#TITRE</h3>
-				<p class="separator">/</p>
 				<div class="texte[ (#EDIT{texte})]">
 				#TEXTE
 				</div>
-				<p class="footer"><a href="javascript:void(0)" class="next">Continuer</a></p>
 			</div>
 		</div>
+		[(#SESSION{statut}|=={0minirezo}|oui)
+		<div class="helpinline">
+		<img src="[(#LOGO_TEXTE|extraire_attribut{src}|url_absolue)]" class="#EDIT{logo}" width="200">
+		<span class="#EDIT{fond}">#FOND</span>
+		<span class="#EDIT{largeur}">#LARGEUR</span>
+		<a class="edition" target="_blank" href="#URL_SITE_SPIP/ecrire/?exec=texte&id_texte=#ID_TEXTE">Éditer</a>
+		</div>
+		]
 	</div><!-- /row-fluid -->
 </div><!-- /container -->
 ]
 [(#REM) AVEC VIDEO]
 [(#URL_VIDEO)|oui)
-<div class="container-fluid" style="background-image: url(#CHEMIN{img/bureau.jpg});" data-speed="0.2" data-type="background" slide-width="#LARGEUR">
+<div class="container-fluid[ (#FOND)]"[(#FOND|=={hasLogo}|oui) style="background-image: url('[(#LOGO_TEXTE|extraire_attribut{src}|url_absolue)]');"] data-speed="0.2" data-type="background" slide-width="1">
 	<div class="row-fluid">
-		<div class="span1 card">
-			<div>
-				<h3[ (#EDIT{titre})]>#TITRE</h3>
-				<p class="separator">/</p>
-				<div class="texte[ (#EDIT{texte})]">
-				#TEXTE
-				</div>
-			</div>
+		<div class="span2 offset1">
+		<iframe id="frame" src="http://player.vimeo.com/video/[(#URL_VIDEO|getVimeoID)]?api=1" width="540" height="329" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			[<div class="video texte[ (#EDIT{texte})]">
+				(#TEXTE|sinon{#DESCRIPTIF})
+			</div>]
 		</div>
-		<div class="span2">
-			#URL_VIDEO
+		[(#SESSION{statut}|=={0minirezo}|oui)
+		<div class="helpinline">
+		<img src="[(#LOGO_TEXTE|extraire_attribut{src}|url_absolue)]" class="#EDIT{logo}" width="200">
+		<span class="#EDIT{fond}">#FOND</span>
+		<span class="#EDIT{largeur}">#LARGEUR</span>
+		<a class="edition" target="_blank" href="#URL_SITE_SPIP/ecrire/?exec=texte&id_texte=#ID_TEXTE">Éditer</a>
 		</div>
+		]
 	</div><!-- /row-fluid -->
 </div><!-- /container -->
 ]

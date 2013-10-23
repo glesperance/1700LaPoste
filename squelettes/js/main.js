@@ -2,7 +2,7 @@
 $(function ($) {
 
   // Set jQuery special scroll events latency to 700ms
-  jQuery.event.special.scrollstop.latency = 700
+  jQuery.event.special.scrollstop.latency = 100
 
   // Redirect external links	
 	$("a[rel='external']").click(function (){ this.target = "_blank"; }); 	
@@ -31,7 +31,7 @@ $(function ($) {
     $letterBacks.each(function () {
       var $this = $(this)
       $this.css({
-          'border-top-width'    : $this.parent().height() * 1/ 4
+          'border-top-width'    : $this.parent().height() * 1/ 2.4
         , 'border-right-width'  : $this.parent().width()  * 1/ 2
         , 'border-bottom-width' : $this.parent().height() * (1 - 1/4)
         , 'border-left-width'   : $this.parent().width()  * (1 - 1/2)
@@ -56,9 +56,9 @@ $(function ($) {
   /****************************************************************************
    * Sticky Section Demo Code. Add to templates and remove in Prod.
    */
-  $('#section1').addClass('sticky')
-  $('#section1 .container-fluid-scroller > :first-child .row-fluid > :first-child').addClass('current-only')
-  $('#section1 .container-fluid-scroller > :first-child .row-fluid > .card .footer').addClass('current-only')
+ // $('#section1').addClass('sticky')
+ // $('#section1 .container-fluid-scroller > :first-child .row-fluid > :first-child').addClass('current-only')
+ // $('#section1 .container-fluid-scroller > :first-child .row-fluid > .card .footer').addClass('current-only')
   /***************************************************************************/
 
   // Setup Scrollers

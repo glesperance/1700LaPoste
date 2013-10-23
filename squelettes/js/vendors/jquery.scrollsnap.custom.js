@@ -14,7 +14,7 @@
                 'snaps' : '*',
                 'proximity' : 12,
                 'offset' : 0,
-                'duration' : 200,
+                'duration' : 500,
                 'easing' : 'swing',
             }, options);
 

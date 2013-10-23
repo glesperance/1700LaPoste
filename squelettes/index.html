@@ -10,16 +10,17 @@
 	<nav id="nav" class="navbar" role="navigation">
 		<a href="javascript:void(0)" class="responsive-menu-button"><i class="icon-list"></i></a>
 		<ul class='nav'>
-			<li><a href="#section40" class="scroll">Accueil</a></li>
+			<li><a href="#accueil" class="scroll">1700 La P0ste</a></li>
 			<BOUCLE_rubrique(RUBRIQUES){racine}{tout}{par num titre, titre}>
 			<li><a href="#section#ID_RUBRIQUE" data-speed="1000" class="scroll">#TITRE</a></li>
 			</BOUCLE_rubrique>
-			<li><a href="#section30" class="scroll">Contact</a></li>
+			<li><a href="#contact" class="scroll">Contact</a></li>
+			<li class="fb"><a href="http://facebook.com/1700laposte" title="Suivez-nous sur Facebook"><img src="#CHEMIN{img/fb.png}" alt="Facebook"></a></li>
 		</ul>
 	</nav>
 	<div id="container">
 
-	<section class="section" id="40" style="background-image: url(#CHEMIN{img/1700LAPOSTE.jpg})" data-section="1" data-speed="0.2" data-type="background">
+	<section class="section" id="accueil" style="background-image: url(#CHEMIN{img/1700LAPOSTE.jpg})" data-section="1" data-speed="0.2" data-type="background">
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div id="logo" class="card fixed-height">
@@ -39,18 +40,17 @@
 	</section><!-- /section -->
 
 	<BOUCLE_racinerubrique(RUBRIQUES){tout}{par num titre, titre}>
-		<section class="section scroller" id="section#ID_RUBRIQUE" data-section="#ID_RUBRIQUE" data-name="[(#TITRE|entites_html|strtolower)]">
+		<section class="section scroller[ (#STICKY|=={on}|oui)sticky][ (#BGFIX|=={on}|oui)bgfix]"[(#BGFIX|=={on}|oui)[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"]] id="section#ID_RUBRIQUE" data-section="#ID_RUBRIQUE" data-name="[(#TITRE|entites_html|strtolower)]">
 			<div class="container-fluid-scroller">
 
 				[(#TITRE_ROLLOVER|ou{#TEXTE_ROLLOVER}|oui)
-				<div class="container-fluid"[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"] data-speed="0.2" data-type="background" slide-width="1">
+				<div class="container-fluid"[(#BGFIX|=={on}|non)[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"]] data-speed="0.2" data-type="background" slide-width="1">
 					<div class="row-fluid">
-						<div class="span1"><h2>#TITRE</h2></div>
+						<div class="span1[ (#STICKY|=={on}|?{'current-only',''})]"><h2>#TITRE</h2></div>
 						<div class="span1 card">
 							<div>
 								<div class='hover-zone'>
 									<div class="primary">
-										[<h4[ class="(#EDIT{titre})"]>(#TITRE)</h4>]
 										[<div class="descr[ (#EDIT{descriptif})]">(#DESCRIPTIF)</div>]
 										[<div class="texte[ (#EDIT{texte})]">(#TEXTE)</div>]
 									</div>
@@ -59,32 +59,51 @@
 										[<div class="descr[ (#EDIT{descriptif})]">(#TEXTE_ROLLOVER)</div>]
 									</div>
 								</div>
-								<p class="footer"><a href="javascript:void(0)" class="next">Découvrez l'exposition &gt;</a></p>
+								<p class="footer[ (#STICKY|=={on}|?{'current-only',''})]"><a href="javascript:void(0)" class="next">Découvrez l'exposition &gt;</a></p>
 							</div>
 						</div>
 					</div><!-- /row-fluid -->
 				</div><!-- /container -->]
 				[(#TITRE_ROLLOVER|ou{#TEXTE_ROLLOVER}|non)
-				<div class="container-fluid"[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"] data-speed="0.2" data-type="background" slide-width="1">
+				[(#TEXTE|oui)<div class="container-fluid"[(#BGFIX|=={on}|non)[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"]] data-speed="0.2" data-type="background" slide-width="1">
 					<div class="row-fluid">
-						<div class="span1"><h2>#TITRE</h2></div>
+						<div class="span1[ (#STICKY|=={on}|?{'current-only',''})]"><h2>#TITRE</h2></div>
 						<div class="span1 card">
 							<div>
 								<div class="primary">
-									[<h4[ class="(#EDIT{titre})"]>(#TITRE)</h4>]
 									[<div class="descr[ (#EDIT{descriptif})]">(#DESCRIPTIF)</div>]
 									[<div class="texte[ (#EDIT{texte})]">(#TEXTE)</div>]
 								</div>
-								<p class="footer"><a href="javascript:void(0)" class="next">Découvrez l'exposition &gt;</a></p>
+								[<p class="footer[ (#STICKY|=={on}|?{'current-only',''})]"><a href="javascript:void(0)" class="next">(#CTA)</a></p>]
 							</div>
 						</div>
 					</div><!-- /row-fluid -->
-				</div><!-- /container -->
+				</div><!-- /container -->]
+				[(#TEXTE|non)<div class="container-fluid short"[(#BGFIX|=={on}|non)[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"]] data-speed="0.2" data-type="background" slide-width="0.5">
+					<div class="row-fluid">
+						<div class="title[ (#STICKY|=={on}|?{'current-only',''})]"><h2>#TITRE</h2></div>
+					</div><!-- /row-fluid -->
+				</div><!-- /container -->]
 				]
 
 				<BOUCLE_items(DATA){par ordre}{source JSON, #URL_SITE_SPIP/?page=moulinet.json&id_rubrique=#ID_RUBRIQUE}{datapath object}>
 				<INCLURE{fond=template/triage, id_objet=#VALEUR{id}, objet=#VALEUR{type}}>
 				</BOUCLE_items>
+
+				[(#SESSION{statut}|=={0minirezo}|oui)
+				<div class="container-fluid help" slide-width="0.5" data-type="background">
+					<div class="row-fluid">
+						<div class="span3 helpadmin">
+						<ul>
+							<li><a href="#URL_SITE_SPIP/spip/ecrire/?exec=texte_edit&id_rubrique=#ID_RUBRIQUE" target="_blank">Ajouter un texte</a></li>
+							<li><a href="#URL_SITE_SPIP/spip/ecrire/?exec=image_edit&id_rubrique=#ID_RUBRIQUE" target="_blank">Ajouter une image</a></li>
+							<li><a href="#URL_SITE_SPIP/spip/ecrire/?exec=citation_edit&id_rubrique=#ID_RUBRIQUE" target="_blank">Ajouter une citation</a></li>
+						</ul>
+						</div>
+					</div>
+				</div>
+				]
+				</B_items>
 
 			</div><!-- /container-fluid-scroller -->
 			<div class='scroller-control prev'><img src="#CHEMIN{img/chevl.png}" alt="&lt;" title="Page précédente"></div>
@@ -95,13 +114,15 @@
 		<section class="section" id="contact" data-section="30" style="background-image: url(#CHEMIN{img/1700LAPOSTE.jpg})">
 			<div class="letter-back"></div>
 			<div class="container-fluid">
+				<div class="spacetop">
+				</div>
 				<div class="row-fluid">
-					<div class="span1 spacetop">
+					<div class="title">
 						<h2>Contact</h2>
 					</div>
-					<div class="span2 spacetop">
+					<div class="span2 offset1">
 						<form>
-							<div><p>Abonnez vous à notre infolettre</p></div>
+							<div><p>Abonnez vous à notre liste d'envoi</p></div>
 							<div>
 								<input type="text" placeholder="Votre Nom"/>
 								<input type="text" placeholder="Votre courriel"/>
@@ -111,21 +132,8 @@
 					</div>
 				</div>
 				<div class="row-fluid">
-					<img src="img/1700_logo.svg" alt="1700 la poste" title="1700 la poste" width="170">
-				</div>
-				<div class="row-fluid">
 					<div class="span1">
-						<p>
-							<b>Heures d'ouverture*</b><br>
-							Mercredi au samedi, de 11 h à 17 h<br>
-							Ou sur rendez-vous<br>
-							<br>
-							<b>Entrée libre</b><br>
-							<br>
-							<em>*Pour les visites de groupe, veuillez nous contacter au 438.384.1700 ou via <a href="mailto:info@1700laposte.com" target="_blank">info@1700laposte.com.</a></em>
-						</p>
-					</div><!-- /span1 -->
-					<div class="span1">
+						[<img src="(#CHEMIN{img/1700_logo.svg})" alt="1700 la poste" title="1700 la poste" width="170">]
 						<p>
 							1700, rue Notre-Dame Ouest<br>
 							Montréal (Qc) H3J 1M3<br>
@@ -135,7 +143,18 @@
 							<br>
 							<b>Rosemonde Gingras</b><br>
 							Relationiste<br>
+							514-458-8355<br>
 							<a href="mailto:rosemonde@rosemondecommunication.com" target="_blank">rosemonde@rosemondecommunication.com</a><br>
+						</p>
+					</div><!-- /span1 -->
+					<div class="span1">
+						<p>
+							<b>Heures d'ouverture*</b><br>
+							Mercredi au samedi, de 11 h à 17 h<br>
+							Ou sur rendez-vous<br>
+							Entrée libre<br>
+							<br>
+							<em>*Pour les visites de groupe, veuillez<br> nous contacter au <b>438.384.1700</b> ou via <a href="mailto:info@1700laposte.com" target="_blank">info@1700laposte.com.</a></em>
 						</p>
 					</div><!-- /span1 -->
 					<div class="span1">
