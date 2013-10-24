@@ -1,4 +1,33 @@
 $(document).ready(function (){   
+
+  _throttle = function(func, wait, options) {
+    var context, args, result;
+    var timeout = null;
+    var previous = 0;
+    options || (options = {});
+    var later = function() {
+      previous = options.leading === false ? 0 : new Date;
+      timeout = null;
+      result = func.apply(context, args);
+    };
+    return function() {
+      var now = new Date;
+      if (!previous && options.leading === false) previous = now;
+      var remaining = wait - (now - previous);
+      context = this;
+      args = arguments;
+      if (remaining <= 0) {
+        clearTimeout(timeout);
+        timeout = null;
+        previous = now;
+        result = func.apply(context, args);
+      } else if (!timeout && options.trailing !== false) {
+        timeout = setTimeout(later, remaining);
+      }
+      return result;
+    };
+  };
+
   // Cache the Window object
   $window = $(window);
 
@@ -60,7 +89,7 @@ $(document).ready(function (){
       setTimeout(onResize, 100);
 
       // When the window is scrolled...
-      $(window).scroll(function () {
+      $(window).scroll(_throttle(function () {
         var elementRect = self.getBoundingClientRect()
         
         var elementTopIsinView = elementRect.top >= 0 && elementRect.top < windowHeight
@@ -74,6 +103,6 @@ $(document).ready(function (){
 
         else if (elementTopIsinView)
           $self.css('background-position-y', -selfHeight / 4 + elementRect.top * speed + 'px')
-    })
+    }, 30))
   })
 })

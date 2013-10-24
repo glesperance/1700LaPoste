@@ -1,8 +1,34 @@
-
+_throttle = function(func, wait, options) {
+    var context, args, result;
+    var timeout = null;
+    var previous = 0;
+    options || (options = {});
+    var later = function() {
+      previous = options.leading === false ? 0 : new Date;
+      timeout = null;
+      result = func.apply(context, args);
+    };
+    return function() {
+      var now = new Date;
+      if (!previous && options.leading === false) previous = now;
+      var remaining = wait - (now - previous);
+      context = this;
+      args = arguments;
+      if (remaining <= 0) {
+        clearTimeout(timeout);
+        timeout = null;
+        previous = now;
+        result = func.apply(context, args);
+      } else if (!timeout && options.trailing !== false) {
+        timeout = setTimeout(later, remaining);
+      }
+      return result;
+    };
+  };
 $(function ($) {
 
   // Set jQuery special scroll events latency to 700ms
-  jQuery.event.special.scrollstop.latency = 100
+  jQuery.event.special.scrollstop.latency = 700
 
   // Redirect external links	
 	$("a[rel='external']").click(function (){ this.target = "_blank"; }); 	
@@ -41,10 +67,10 @@ $(function ($) {
     // Setup Responsive Sidr Menu
     $('.responsive-menu-button').sidr({ source: '#nav' })
 
-    $(document).scrollsnap({
-        snaps     : '.section'
-      , proximity : sectionsHeight / 2 - 100
-    });
+    // $(document).scrollsnap({
+    //     snaps     : '.section'
+    //   , proximity : sectionsHeight / 2 - 100
+    // });
 
     $('iframe[width][height]').each(function () {
       var $iframe = $(this)
@@ -195,8 +221,50 @@ $(function ($) {
     if (event.target.hash) $.scrollTo(event.target.hash,{
         duration : 500
       , easing   : 'swing'
+      , offset   : - $(event.target.hash).attr('translate-y-offset') || 0
     });
   });
+
+  // Bottom Section Scrolling over content Effect
+  var $contactSlide = $('#contact')
+  var $previousSlide = $contactSlide.siblings(':nth-child(' + $contactSlide.index() + ')')
+  var $previousSlideChildren = $previousSlide.children()
+  $(window).scroll(_throttle(function () {
+    var contactRect = $contactSlide[0].getBoundingClientRect()
+    var previousSlideRect = $previousSlide[0].getBoundingClientRect()
+    
+    if (previousSlideRect.top > $(window).innerHeight()) return
+
+    if (contactRect.top > $(window).innerHeight())
+      translateY = 0
+    else
+      translateY = Math.min(
+          Math.max(
+              $previousSlide.height() - contactRect.top - ($previousSlide.height() - $(window).innerHeight())
+            , 0
+          )
+        , $contactSlide.height()
+      )
+
+    var isFireFox = !!window.sidebar
+    var transformString = isFireFox 
+      ? 'translate3d(0,' + Math.round(translateY) + 'px, 0)'
+      : 'translate(0,' + Math.round(translateY) + 'px)'
+
+    var opacity = 1 - (translateY / $contactSlide.height()) * 0.5
+    
+    if (isFireFox)
+      $previousSlide.css({ 'transform' : transformString })
+    else
+      $previousSlide.css({ 
+          'transform'         : transformString
+        , '-webkit-transform' : transformString
+        , '-ms-transform'     : transformString
+      })
+
+    $previousSlideChildren.css({'opacity' : opacity })
+    $previousSlide.attr('translate-y-offset', translateY)
+  }, 10))
 
   // Setup onResize callback
   $(window).resize(onResize)
