@@ -96,8 +96,10 @@ $(function ($) {
     })
 
     function getDistance($slide) {
+      var firstSlideWidth = +$firstSlide.attr('slide-width') || 1
+
       var alignLeft = $scroller.attr('slide-align')
-      var distance = alignLeft ? 0 : -1
+      var distance = alignLeft ? 0 : -firstSlideWidth
 
       $containerFluidScroller.children().each(function () {
         
