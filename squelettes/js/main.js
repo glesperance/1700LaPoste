@@ -28,7 +28,7 @@ _throttle = function(func, wait, options) {
 $(function ($) {
 
   // Set jQuery special scroll events latency to 700ms
-  jQuery.event.special.scrollstop.latency = 700
+  jQuery.event.special.scrollstop.latency = 100
 
   // Redirect external links	
 	$("a[rel='external']").click(function (){ this.target = "_blank"; }); 	
@@ -94,13 +94,20 @@ $(function ($) {
     var $containerFluidScroller = $(this).children('.container-fluid-scroller')
     
     var isSticky = $scroller.hasClass('sticky')
-    var $firstSlide = $containerFluidScroller.find('> :first-child')
     
     var scrollerLength = 0
+    var initialSlidesWidth = 0
+    var $lastInitialSlide
 
     $containerFluidScroller.children().each(function () {
       var $child = $(this)
-      scrollerLength += (+$child.attr('slide-width') || 1)
+      var childWidth = +$child.attr('slide-width') || 1
+      scrollerLength += childWidth
+
+      if (initialSlidesWidth + childWidth <= 1) {
+        initialSlidesWidth += childWidth
+        $lastInitialSlide = $child
+      }
     })
 
     var scrollerLengthPercent = scrollerLength * (scrollerWidth)
@@ -122,10 +129,8 @@ $(function ($) {
     })
 
     function getDistance($slide) {
-      var firstSlideWidth = +$firstSlide.attr('slide-width') || 1
-
       var alignLeft = $scroller.attr('slide-align')
-      var distance = alignLeft ? 0 : -firstSlideWidth
+      var distance = alignLeft ? 0 : -initialSlidesWidth
 
       $containerFluidScroller.children().each(function () {
         
@@ -135,15 +140,15 @@ $(function ($) {
         
         if ($slide.is(this)) return false
       })
-
-      return Math.max(distance, 0)
+      
+      return Math.min(Math.max(distance, 0), scrollerLength - 1)
     }
 
     function scroll(options) {
       if (!options) options = {}
 
       var $currentSlide = $containerFluidScroller.children('[current=true]')
-      if (!$currentSlide.length) $currentSlide = $containerFluidScroller.children().first()
+      if (!$currentSlide.length) $currentSlide = $lastInitialSlide
       
       var $slide
       if (options.refresh) {
@@ -163,7 +168,7 @@ $(function ($) {
       $slide.attr('current', true)
       $slide.siblings().attr('current', false)
 
-      $scroller.attr('slide-first', !$slide.prev().length)
+      $scroller.attr('slide-first', $slide.is($lastInitialSlide))
       $scroller.attr('slide-last', !$slide.next().length)
 
       var scrollPositionPercent =  distance * (scrollerWidth)

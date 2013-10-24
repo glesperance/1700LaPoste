@@ -206,6 +206,7 @@ a:hover {
   -o-transition: left 0.5s ease;
   transition: left 0.5s ease;
   background-color: #32312c;
+  word-break: break-word;
 }
 .scroller.sticky {
   word-break: break-word;
