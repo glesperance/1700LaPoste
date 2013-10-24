@@ -95,37 +95,58 @@ $(function ($) {
     
     var isSticky = $scroller.hasClass('sticky')
     
-    var scrollerLength = 0
-    var initialSlidesWidth = 0
+    var scrollerLength
+    var initialSlidesWidth
     var $lastInitialSlide
 
-    $containerFluidScroller.children().each(function () {
-      var $child = $(this)
-      var childWidth = +$child.attr('slide-width') || 1
-      scrollerLength += childWidth
+    function slideWidth($el) {
+      var minimum
 
-      if (initialSlidesWidth + childWidth <= 1) {
-        initialSlidesWidth += childWidth
-        $lastInitialSlide = $child
+      switch(true) {
+        case ($(window).innerWidth() <= 768): minimum = 1; break;
+        case ($(window).innerWidth() <= 979): minimum = 0.5; break;
+        default: minimum = 0;
       }
-    })
 
-    var scrollerLengthPercent = scrollerLength * (scrollerWidth)
+      return Math.max(+$el.attr('slide-width') || 1, minimum)
+    }
 
-    $containerFluidScroller.css({ 
-        'width'       : scrollerLengthPercent + '%'
-    })
+    function initScroller() {
+      scrollerLength = 0
+      initialSlidesWidth = 0
+      $lastInitialSlide
 
-    $containerFluidScroller.children().each(function () {
-      var $child      = $(this)
-        , childWidth  = +$child.attr('slide-width') || 1
+      $containerFluidScroller.children().each(function () {
+        var $child = $(this)
+        var childWidth = slideWidth($child)
+        scrollerLength += childWidth
 
-      var childWidthPercent = childWidth / scrollerLength * (scrollerWidth)
-      $child.css({ 'width' : childWidthPercent + '%' })
-    })
+        if (initialSlidesWidth + childWidth <= 1) {
+          initialSlidesWidth += childWidth
+          $lastInitialSlide = $child
+        }
+      })
+
+      var scrollerLengthPercent = scrollerLength * (scrollerWidth)
+
+      $containerFluidScroller.css({ 
+          'width'       : scrollerLengthPercent + '%'
+      })
+
+      $containerFluidScroller.children().each(function () {
+        var $child      = $(this)
+          , childWidth  = slideWidth($child)
+
+        var childWidthPercent = childWidth / scrollerLength * (scrollerWidth)
+        $child.css({ 'width' : childWidthPercent + '%' })
+      })
+    }
+
+    initScroller()
 
     $(window).resize(function () {
       scroll({ refresh : true })
+      initScroller()
     })
 
     function getDistance($slide) {
@@ -136,7 +157,7 @@ $(function ($) {
         
         if (alignLeft && $slide.is(this)) return false
         
-        distance += +$(this).attr('slide-width') || 1
+        distance += slideWidth($(this))
         
         if ($slide.is(this)) return false
       })
