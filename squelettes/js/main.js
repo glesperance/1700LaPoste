@@ -67,10 +67,10 @@ $(function ($) {
     // Setup Responsive Sidr Menu
     $('.responsive-menu-button').sidr({ source: '#nav' })
 
-    // $(document).scrollsnap({
-    //     snaps     : '.section'
-    //   , proximity : sectionsHeight / 2 - 100
-    // });
+    $(document).scrollsnap({
+        snaps     : '.section'
+      , proximity : sectionsHeight / 2 - 100
+    });
 
     $('iframe[width][height]').each(function () {
       var $iframe = $(this)
@@ -225,10 +225,13 @@ $(function ($) {
     });
   });
 
-  // Bottom Section Scrolling over content Effect
+  // Bottom Section Scrolling over content Effect & Red png Effect
   var $contactSlide = $('#contact')
   var $previousSlide = $contactSlide.siblings(':nth-child(' + $contactSlide.index() + ')')
   var $previousSlideChildren = $previousSlide.children()
+  
+  var $redPng = $('#thepng-red')
+
   $(window).scroll(_throttle(function () {
     var contactRect = $contactSlide[0].getBoundingClientRect()
     var previousSlideRect = $previousSlide[0].getBoundingClientRect()
@@ -263,6 +266,9 @@ $(function ($) {
       })
 
     $previousSlideChildren.css({'opacity' : opacity })
+
+    $redPng.css({ 'opacity' : (translateY / $contactSlide.height()) })
+
     $previousSlide.attr('translate-y-offset', translateY)
   }, 10))
 

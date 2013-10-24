@@ -37,7 +37,7 @@
     position: relative;
     margin: 0 auto;
   }
-  #thepng{
+  #thepng-white, #thepng-red{
     background-image: url(../img/wave.png);
     background-repeat: no-repeat;
     height: 88px;
@@ -46,10 +46,12 @@
     z-index: 900;
     margin-left: -280px;
     background-position: 0 100%;
+    position: absolute;
   }
 }
-#contact[scrollsnap-current="true"] ~ #wave #thepng {
-  background-position: 0 0; 
+#thepng-red {
+  opacity: 0;
+  background-position: 0 0 !important;
 }
 
 /* Global */
