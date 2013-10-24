@@ -34,7 +34,7 @@
 
                     $(scrollingEl).find(self.scrollsnapSettings.snaps).each(function() {
                         var snappingEl = this,
-                            dy = Math.abs(snappingEl['offset'+leftOrTop] + self.scrollsnapSettings.offset - scrollingEl['scroll'+leftOrTop]);
+                            dy = Math.abs(snappingEl['offset'+leftOrTop] + self.scrollsnapSettings.offset - scrollingEl['scroll'+leftOrTop]) - ($(snappingEl).attr('translate-y-offset') || 0);
 
                         if (dy <= self.scrollsnapSettings.proximity && dy < matchingDy) {
                             matchingEl = snappingEl;
@@ -47,7 +47,7 @@
                         $(matchingEl).siblings('[scrollsnap-current=true]').attr('scrollsnap-current', false);
                         $(matchingEl).attr('scrollsnap-current', true);
 
-                        var endScroll = matchingEl['offset'+leftOrTop] + self.scrollsnapSettings.offset,
+                        var endScroll = matchingEl['offset'+leftOrTop] + self.scrollsnapSettings.offset - ($(matchingEl).attr('translate-y-offset') || 0),
                             animateProp = {};
                         animateProp['scroll'+leftOrTop] = endScroll;
                         if ($(scrollingEl)['scroll'+leftOrTop]() != endScroll) {
@@ -65,7 +65,7 @@
 
                     $(scrollingEl).find(self.scrollsnapSettings.snaps).each(function() {
                         var snappingEl = this,
-                            dy = Math.abs(($(snappingEl).offset()[leftOrTop.toLowerCase()] + self.scrollsnapSettings.offset) - scrollingEl.defaultView['scroll'+self.scrollsnapSettings.direction.toUpperCase()]);
+                            dy = Math.abs(($(snappingEl).offset()[leftOrTop.toLowerCase()] + self.scrollsnapSettings.offset - ($(snappingEl).attr('translate-y-offset') || 0)) - scrollingEl.defaultView['scroll'+self.scrollsnapSettings.direction.toUpperCase()]);
 
                         if (dy <= self.scrollsnapSettings.proximity && dy < matchingDy) {
                             matchingEl = snappingEl;
@@ -77,7 +77,7 @@
                         $(matchingEl).siblings('[scrollsnap-current=true]').attr('scrollsnap-current', false);
                         $(matchingEl).attr('scrollsnap-current', true);
 
-                        var endScroll = $(matchingEl).offset()[leftOrTop.toLowerCase()] + self.scrollsnapSettings.offset,
+                        var endScroll = $(matchingEl).offset()[leftOrTop.toLowerCase()] + self.scrollsnapSettings.offset - ($(matchingEl).attr('translate-y-offset') || 0),
                             animateProp = {};
                         animateProp['scroll'+leftOrTop] = endScroll;
                         if ($(scrollingEl)['scroll'+leftOrTop]() != endScroll) {
