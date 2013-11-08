@@ -63,6 +63,7 @@ body {
   font-weight: 300;
   line-height: 22px;
   /* margin-top: 60px; */
+
 }
 h1,
 h2,
@@ -127,8 +128,7 @@ a:hover {
   -o-transition: opacity 400ms 200ms;
   transition: opacity 400ms 200ms;
 }
-/* General Styling */
-#container {
+/* General Styling */#container {
   position: relative;
   transition: transform 500ms ease 0s;
   width: 100%;
@@ -211,6 +211,9 @@ a:hover {
 .scroller.sticky {
   word-break: break-word;
 }
+.scroller.sticky .current-only .card {
+  position: fixed;
+}
 .scroller.sticky .container-fluid-scroller > .container-fluid:first-child[current=false] .current-only {
   width: 0;
   opacity: 0;
@@ -230,13 +233,16 @@ a:hover {
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
-.title {
-  padding-left: 40px;
-}
-.short .title {
-  margin-left: 0%;
-}
 #contact .title {
+  position: absolute;
+}
+.title {
+  position: absolute;
+  top: 43%;
+  left: 0px;
+}
+.title h2 {
+  left: 160px;
   position: absolute;
 }
 .bgfix .container-fluid-scroller {
@@ -328,7 +334,7 @@ a:hover {
   background: none;
 }
 .darkness .card .texte {
-  padding: 15%;
+  padding: 5% 15%;
 }
 .darkness .card .texte h3 {
   color: #ffffff;
@@ -347,6 +353,10 @@ a:hover {
   color: #32312c;
   font-family: 'Buenard', 'Time New Roman', serif;
   text-align: center;
+}
+.card .span1.plus.card {
+  width: 380px;
+  max-width: 100%;
 }
 .card .hover-zone .primary,
 .card .hover-zone .secondary {
@@ -420,6 +430,12 @@ a:hover {
   margin: 1px;
   background: #ffffff;
   position: relative;
+}
+.card.span1.plus {
+  width: 45%;
+}
+.card.span2.plus {
+  width: 80%;
 }
 .revue .card h3,
 .revue .card a {
@@ -667,6 +683,7 @@ a:hover {
   right: -1px;
   left: -1px;
   /* Edge Smoothing hack */
+
   -webkit-transform: rotate(0.05deg);
   -moz-transform: scale(1.0001);
   -o-transform: rotate(0.005deg);
@@ -702,15 +719,38 @@ a:hover {
   font-size: 18px;
   margin: 0px 0px 10px;
 }
+#section5 .card {
+  overflow: hidden;
+  height: 600px;
+}
+#section5 .card > div {
+  height: 578px;
+}
+#section5 .card > div .wrapcard {
+  display: block;
+  vertical-align: middle;
+}
+#section5 .card > div .texte {
+  padding: 0px;
+}
+.tcell {
+  display: table-cell;
+  vertical-align: middle;
+  height: 560px;
+}
+#contact p {
+  font-size: 14px;
+}
 #contact h2 {
   font-size: 56px;
   position: relative;
-  padding: 10px 0px;
+  padding: 0px 0px 40px;
+  margin: -40px 0px 0px;
 }
 #contact form {
   text-align: center;
   max-width: 500px;
-  margin-left: -40px;
+  margin: 0px auto 20px;
   color: #94928a;
 }
 #contact form * {
@@ -720,6 +760,8 @@ a:hover {
   font-weight: bold;
   margin: 0;
   font-size: 16px;
+  color: #5b5950;
+  margin-bottom: 5px;
   display: inline-block;
 }
 #contact form input {
@@ -727,27 +769,31 @@ a:hover {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   padding: 13px 5px;
-  width: 38%;
   font-family: 'Buenard', 'Time New Roman', serif;
   vertical-align: top;
+  width: 90%;
 }
 #contact form input[type="submit"] {
-  width: 20%;
   text-align: center;
   background: #EDEDED;
   border: none;
   color: red;
-  height: 29px;
+  clear: both;
+  display: block;
+  padding: 2px 10px;
   line-height: 30px;
-  padding: 0;
   margin-top: -1px;
+  width: inherit;
 }
 #contact .spacetop {
-  margin-top: 360px;
+  margin-top: 280px;
   content: " ";
   display: block;
   height: 1px;
   width: 100%;
+}
+.separator {
+  border-top: 1px solid #CCC;
 }
 .helpinline {
   display: block;
@@ -769,6 +815,14 @@ a:hover {
 .helpinline img:hover {
   background-color: #ffffff;
 }
+.contactbloc {
+  width: 20%;
+  display: inline-block;
+  margin-top: 5px;
+}
+.contactbloc.large {
+  width: 30%;
+}
 .helpadmin {
   padding: 30px;
   width: 100%;
@@ -782,7 +836,19 @@ a:hover {
   display: block;
 }
 /* Media Queries */
+@media screen and (min-width: 1800px) {
+  
+}
+@media screen and (max-width: 1320px) {
+  
+}
+@media screen and (min-width: 1200px) {
+  
+}
 @media screen and (max-width: 1199px) {
+  .row-fluid .span3 {
+    width: 100%;
+  }
   .section h2 {
     font-size: 32px;
     text-align: center;
@@ -791,6 +857,10 @@ a:hover {
   .container-fluid {
     padding-left: 75px;
     padding-right: 75px;
+  }
+  .container-fluid.revue {
+    padding-left: 15px;
+    padding-right: 15px;
   }
   .container-fluid.citation p {
     margin: 0px;
@@ -874,6 +944,130 @@ a:hover {
   }
   .navbar .responsive-menu-button {
     display: inline-block;
+  }
+  .container-fluid {
+    padding: 50px 0px;
+  }
+  .short .title {
+    left: 0px;
+    text-align: left;
+  }
+  .short .title h2 {
+    left: 0;
+    text-align: center;
+  }
+  body {
+    padding: 0;
+  }
+  body .title {
+    position: relative;
+    top: inherit;
+    left: inherit;
+    width: 0;
+  }
+  body #wrapper {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  body #contact {
+    background-color: #FFF;
+  }
+  body #contact .spacetop {
+    display: none;
+  }
+  body #contact .title {
+    position: relative;
+    width: inherit;
+    text-align: center;
+  }
+  body #contact .title h2 {
+    padding-top: 20px;
+    left: 0;
+  }
+  body #contact .letter-back {
+    display: none;
+  }
+  body #contact h2 {
+    text-align: center;
+  }
+  body #contact form {
+    margin: 0 auto;
+  }
+  body #contact form p {
+    font-size: 18px;
+    display: block;
+    text-align: center;
+  }
+  body #contact form div {
+    text-align: center;
+  }
+  body #contact form input {
+    margin: 10px auto 0px;
+    clear: both;
+    width: 80%;
+    font-size: 16px;
+  }
+  body #contact form input[type="submit"] {
+    padding: 5px;
+    width: 80%;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  body .short .title {
+    position: relative;
+    width: 100%;
+  }
+  body .navbar {
+    top: 0;
+  }
+  body #logo {
+    width: 240px;
+    height: 240px;
+  }
+  body #logo .inner-logo img {
+    margin-top: 80px;
+  }
+  body #logo .inner-logo .geo {
+    width: 230px;
+  }
+  .fixed-border {
+    display: none;
+  }
+}
+@media screen and (max-width: 980px) {
+  .container-fluid {
+    padding: 0;
+  }
+  .container-fluid .row-fluid {
+    width: 100%;
+    padding: 0;
+  }
+  .container-fluid .row-fluid .span3.card {
+    min-width: 300px;
+  }
+  .container-fluid .row-fluid .span1.plus.card {
+    width: 320px;
+    max-width: 100%;
+  }
+  #contact form {
+    margin-left: 0;
+  }
+  #contact h2 {
+    margin-top: 0px;
+  }
+}
+@media screen and (max-height: 860px) {
+  #section5 .card {
+    height: 500px;
+  }
+  #section5 .card > div {
+    height: 478px;
+  }
+  #section5 .card > div .tcell {
+    height: 460px;
   }
 }
 .sidr {

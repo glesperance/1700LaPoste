@@ -43,8 +43,10 @@
                     });
 
                     if (matchingEl) {
+                        var $previousSlides = $(matchingEl).siblings('[scrollsnap-current=true]')
+                        $previousSlides.attr('scrollsnap-current', false);
+                        $previousSlides.trigger('scrollsnap::blur');
 
-                        $(matchingEl).siblings('[scrollsnap-current=true]').attr('scrollsnap-current', false);
                         $(matchingEl).attr('scrollsnap-current', true);
 
                         var endScroll = matchingEl['offset'+leftOrTop] + self.scrollsnapSettings.offset - ($(matchingEl).attr('translate-y-offset') || 0),
@@ -74,7 +76,10 @@
                     });
 
                     if (matchingEl) {
-                        $(matchingEl).siblings('[scrollsnap-current=true]').attr('scrollsnap-current', false);
+                        var $previousSlides = $(matchingEl).siblings('[scrollsnap-current=true]')
+                        $previousSlides.attr('scrollsnap-current', false);
+                        $previousSlides.trigger('scrollsnap::blur');
+                        
                         $(matchingEl).attr('scrollsnap-current', true);
 
                         var endScroll = $(matchingEl).offset()[leftOrTop.toLowerCase()] + self.scrollsnapSettings.offset - ($(matchingEl).attr('translate-y-offset') || 0),

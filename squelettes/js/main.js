@@ -28,7 +28,7 @@ _throttle = function(func, wait, options) {
 $(function ($) {
 
   // Set jQuery special scroll events latency to 700ms
-  jQuery.event.special.scrollstop.latency = 100
+  jQuery.event.special.scrollstop.latency = 300
 
   // Redirect external links	
 	$("a[rel='external']").click(function (){ this.target = "_blank"; }); 	
@@ -57,7 +57,7 @@ $(function ($) {
     $letterBacks.each(function () {
       var $this = $(this)
       $this.css({
-          'border-top-width'    : $this.parent().height() * 1/ 2.4
+          'border-top-width'    : $this.parent().height() * 1/ 2.8
         , 'border-right-width'  : $this.parent().width()  * 1/ 2
         , 'border-bottom-width' : $this.parent().height() * (1 - 1/4)
         , 'border-left-width'   : $this.parent().width()  * (1 - 1/2)
@@ -172,7 +172,10 @@ $(function ($) {
       if (!$currentSlide.length) $currentSlide = $lastInitialSlide
       
       var $slide
-      if (options.refresh) {
+      if (options.to) {
+        $slide = options.to
+      }
+      else if (options.refresh) {
         $slide = $currentSlide
       }
       else if (options.prev) {
@@ -223,6 +226,11 @@ $(function ($) {
     $containerFluidScroller.siblings('.prev').click(function () { scroll({ prev : true }) })
 
     $scroller.attr('slide-first', true)
+
+    $scroller.on('scrollsnap::blur', function () {
+      scroll({ to : $containerFluidScroller.children().first() })
+    })
+
   })
 
   // Setup nav bar secondary menu
@@ -280,7 +288,7 @@ $(function ($) {
       ? 'translate3d(0,' + Math.round(translateY) + 'px, 0)'
       : 'translate(0,' + Math.round(translateY) + 'px)'
 
-    var opacity = 1 - (translateY / $contactSlide.height()) * 0.5
+    var opacity = 1 - (translateY / $contactSlide.height()) /** 0.5*/
     
     if (isFireFox)
       $previousSlide.css({ 'transform' : transformString })

@@ -45,9 +45,10 @@
 
 				[(#TITRE_ROLLOVER|ou{#TEXTE_ROLLOVER}|oui)
 				<div class="container-fluid"[(#BGFIX|=={on}|non)[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"]] data-speed="0.2" data-type="background" slide-width="1">
+					<div class="span1[ (#STICKY|=={on}|?{'current-only',''})] title"><h2>#TITRE</h2></div>
 					<div class="row-fluid">
-						<div class="span1[ (#STICKY|=={on}|?{'current-only',''})]"><h2>#TITRE</h2></div>
-						<div class="span1 card">
+						
+						<div class="span1 offset1 card first">
 							<div>
 								<div class='hover-zone'>
 									<div class="primary">
@@ -66,9 +67,10 @@
 				</div><!-- /container -->]
 				[(#TITRE_ROLLOVER|ou{#TEXTE_ROLLOVER}|non)
 				[(#TEXTE|oui)<div class="container-fluid"[(#BGFIX|=={on}|non)[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"]] data-speed="0.2" data-type="background" slide-width="1">
+					<div class="span1[ (#STICKY|=={on}|?{'current-only',''})] title"><h2>#TITRE</h2></div>
 					<div class="row-fluid">
-						<div class="span1[ (#STICKY|=={on}|?{'current-only',''})]"><h2>#TITRE</h2></div>
-						<div class="span1 card">
+						
+						<div class="span1 offset1 card first">
 							<div>
 								<div class="primary">
 									[<div class="descr[ (#EDIT{descriptif})]">(#DESCRIPTIF)</div>]
@@ -80,9 +82,9 @@
 					</div><!-- /row-fluid -->
 				</div><!-- /container -->]
 				[(#TEXTE|non)<div class="container-fluid short"[(#BGFIX|=={on}|non)[ style="background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)');"]] data-speed="0.2" data-type="background" slide-width="0.5">
-					<div class="row-fluid">
+
 						<div class="title[ (#STICKY|=={on}|?{'current-only',''})]"><h2>#TITRE</h2></div>
-					</div><!-- /row-fluid -->
+
 				</div><!-- /container -->]
 				]
 
@@ -117,34 +119,23 @@
 				<div class="spacetop">
 				</div>
 				<div class="row-fluid">
-					<div class="title">
+					<div class="span1">
 						<h2>Contact</h2>
 					</div>
-					<div class="span2 offset1">
-						<form>
-							<div><p>Abonnez vous à notre liste d'envoi</p></div>
-							<div>
-								<input type="text" placeholder="Votre Nom"/>
-								<input type="text" placeholder="Votre courriel"/>
-								<input type="submit" value="Soumettre"/>
-							</div>
-						</form>
+					<div class="span2">
+						
 					</div>
 				</div>
 				<div class="row-fluid">
 					<div class="span1">
-						[<img src="(#CHEMIN{img/1700_logo.svg})" alt="1700 la poste" title="1700 la poste" width="170">]
+						[<a class="nott" target="_blank" href="https://maps.google.com/maps?q=1700,+rue+Notre-Dame+Ouest+Montr%C3%A9al+(Qc)+H3J+1M3&hl=fr&ie=UTF8&ll=45.489201,-73.567972&spn=0.006777,0.006942&sll=37.0625,-95.677068&sspn=61.582079,56.865234&hnear=1700+Rue+Notre-Dame+Ouest,+Montr%C3%A9al,+Qu%C3%A9bec+H3J+1M3,+Canada&t=m&z=17"><img src="(#CHEMIN{img/1700_logo.svg})" alt="1700 la poste" title="1700 la poste" width="170"></a>]
 						<p>
-							1700, rue Notre-Dame Ouest<br>
-							Montréal (Qc) H3J 1M3<br>
+							<a class="nott" target="_blank" href="https://maps.google.com/maps?q=1700,+rue+Notre-Dame+Ouest+Montr%C3%A9al+(Qc)+H3J+1M3&hl=fr&ie=UTF8&ll=45.489201,-73.567972&spn=0.006777,0.006942&sll=37.0625,-95.677068&sspn=61.582079,56.865234&hnear=1700+Rue+Notre-Dame+Ouest,+Montr%C3%A9al,+Qu%C3%A9bec+H3J+1M3,+Canada&t=m&z=17">1700, rue Notre-Dame Ouest</a><br>
+							<a class="nott" target="_blank" href="https://maps.google.com/maps?q=1700,+rue+Notre-Dame+Ouest+Montr%C3%A9al+(Qc)+H3J+1M3&hl=fr&ie=UTF8&ll=45.489201,-73.567972&spn=0.006777,0.006942&sll=37.0625,-95.677068&sspn=61.582079,56.865234&hnear=1700+Rue+Notre-Dame+Ouest,+Montr%C3%A9al,+Qu%C3%A9bec+H3J+1M3,+Canada&t=m&z=17">Montréal (Qc) H3J 1M3</a><br>
 							<br>
 							T. 438.384.1700<br>
 							F. 438.384.1600<br>
 							<br>
-							<b>Rosemonde Gingras</b><br>
-							Relationiste<br>
-							514-458-8355<br>
-							<a href="mailto:rosemonde@rosemondecommunication.com" target="_blank">rosemonde@rosemondecommunication.com</a><br>
 						</p>
 					</div><!-- /span1 -->
 					<div class="span1">
@@ -158,21 +149,41 @@
 						</p>
 					</div><!-- /span1 -->
 					<div class="span1">
-						<p class>
+						<form>
+							<div><p>Pour rester à l'affût de nos événements:</p></div>
+							<div>
+								<input type="text" placeholder="Votre Nom"/>
+								<input type="text" placeholder="Votre courriel"/>
+								<input type="submit" value="Soumettre"/>
+							</div>
+						</form>
+					</div><!-- /span1 -->
+				</div>
+				<div class="row-fluid">
+					<div class="span3">
+						<hr class="separator">
+						<div class="contactbloc">
 							<b>Isabelle de Mévius</b><br>
 							Directrice générale et artistique<br>
 							<a href="mailto:isabelle@1700laposte.com" target="_blank">isabelle@1700laposte.com</a><br>
-							<br>
+						</div>
+						<div class="contactbloc">
 							<b>Roger Lupien</b><br>
 							Directeur administratif<br>
 							<a href="mailto:roger@1700laposte.com" target="_blank">roger@1700laposte.com</a><br>
-							<br>
+						</div>
+						<div class="contactbloc">
 							<b>Annie Lafleur</b><br>
 							Adjointe à la coordination<br>
 							<a href="mailto:annie@1700laposte.com" target="_blank">annie@1700laposte.com</a><br>
-						</p>
-					</div><!-- /span1 -->
-				</div>						
+						</div>
+						<div class="contactbloc large">
+							<b>Relations de presse</b><br>
+							514-458-8355<br>
+							<a href="mailto:rosemonde@rosemondecommunication.com" target="_blank">rosemonde@rosemondecommunication.com</a><br>
+						</div>
+					</div>
+				</div>
 			</div><!-- /container -->
 		</section><!-- /section -->	
 		<div class="wrap-fluid" id="wave">

@@ -99,10 +99,10 @@ $(document).ready(function (){
         // ==> we want background top position to augment in a fashion
         // that is inversely proportional to the rect top
         if (elementBottomIsInView)
-          $self.css('background-position-y', -selfHeight / 4 - elementRect.top * speed + 'px')
+          $self.css('background-position-y', -selfHeight / 30 - elementRect.top * speed + 'px')
 
         else if (elementTopIsinView)
-          $self.css('background-position-y', -selfHeight / 4 + elementRect.top * speed + 'px')
+          $self.css('background-position-y', -selfHeight / 30 + elementRect.top * speed + 'px')
     }, 30))
   })
 })

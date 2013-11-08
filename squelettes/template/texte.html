@@ -11,12 +11,14 @@
 			</div>
 		</div>
 		[(#SESSION{statut}|=={0minirezo}|oui)
+		[(#ENV{hypractif}|=={true}|oui)
 		<div class="helpinline">
 		<img src="[(#LOGO_TEXTE|extraire_attribut{src}|url_absolue)]" class="#EDIT{logo}" width="200">
 		<span class="#EDIT{fond}">#FOND</span>
 		<span class="#EDIT{largeur}">#LARGEUR</span>
 		<a class="edition" target="_blank" href="#URL_SITE_SPIP/ecrire/?exec=texte&id_texte=#ID_TEXTE">Éditer</a>
 		</div>
+		]
 		]
 	</div><!-- /row-fluid -->
 </div><!-- /container -->
@@ -32,12 +34,14 @@
 			</div>]
 		</div>
 		[(#SESSION{statut}|=={0minirezo}|oui)
+		[(#ENV{hypractif}|=={true}|oui)
 		<div class="helpinline">
 		<img src="[(#LOGO_TEXTE|extraire_attribut{src}|url_absolue)]" class="#EDIT{logo}" width="200">
 		<span class="#EDIT{fond}">#FOND</span>
 		<span class="#EDIT{largeur}">#LARGEUR</span>
 		<a class="edition" target="_blank" href="#URL_SITE_SPIP/ecrire/?exec=texte&id_texte=#ID_TEXTE">Éditer</a>
 		</div>
+		]
 		]
 	</div><!-- /row-fluid -->
 </div><!-- /container -->
