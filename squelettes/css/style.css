@@ -342,11 +342,19 @@ a:hover {
 .darkness .card .texte p {
   color: #ffffff;
   font-size: 16px;
+  padding: 0px 5px 5px;
 }
-.darkness .card .texte b,
 .darkness .card .texte strong {
   color: #e2231a;
   font-weight: normal;
+}
+.darkness .card .texte.fullw {
+  padding: 5%;
+}
+.darkness hr {
+  margin: 20px 43% 0px;
+  border: none;
+  border-top: 1px solid #FFF;
 }
 .card {
   border: 10px solid #ffffff;
