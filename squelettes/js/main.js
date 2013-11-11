@@ -93,6 +93,7 @@ $(function ($) {
     var scrollerWidth = $scroller.attr('scroller-width') || 100
     var $containerFluidScroller = $(this).children('.container-fluid-scroller')
     
+    var $firstSlide = $containerFluidScroller.find('> :first-child')
     var isSticky = $scroller.hasClass('sticky')
     
     var scrollerLength
